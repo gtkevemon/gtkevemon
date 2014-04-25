@@ -130,6 +130,9 @@ class ApiCharSheet : public ApiBase
     static ApiCharSheetPtr create (void);
     void set_api_data (EveApiData const& data);
 
+    /* Check whether the character knows this skill */
+    bool is_skill_known(int id);
+  
     /* Lookup methods for skills. This is expensive. */
     ApiCharSheetSkill* get_skill_for_id (int id);
     int get_level_for_skill (int id) const;

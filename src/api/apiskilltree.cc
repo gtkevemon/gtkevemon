@@ -347,6 +347,20 @@ ApiSkillTree::get_attrib_short_name (ApiAttrib const& attrib)
 
 /* ---------------------------------------------------------------- */
 
+int
+ApiSkillTree::count_total_skills() const
+{
+  int count = 0;
+  for (ApiSkillMap::const_iterator iter = this->skills.begin();
+      iter != this->skills.end(); iter++)
+  {
+    if(iter->second.published)
+      count++;
+  }
+  return count;
+}
+/* ---------------------------------------------------------------- */
+
 void
 ApiSkill::debug (void) const
 {
