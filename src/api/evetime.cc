@@ -72,14 +72,30 @@ EveTime::get_local_time_string (void)
 /* ---------------------------------------------------------------- */
 
 std::string
-EveTime::get_local_time_string (time_t time, bool slim)
+EveTime::get_time_string (struct tm *tm, bool slim)
 {
+  // If we wind up with an invalid time, we don't want to crash,
+  // so we return a string indicating something has gone wrong.
+  if (!tm)
+  {
+    return "INVALID TIME";
+  }
+
   static ConfValuePtr lf = Config::conf.get_value("evetime.time_format");
   static ConfValuePtr sf = Config::conf.get_value("evetime.time_short_format");
 
   char buffer[128];
-  strftime(buffer, 128, (slim ? **sf : **lf).c_str(), ::localtime(&time));
+  strftime(buffer, 128, (slim ? **sf : **lf).c_str(), tm);
   return std::string(buffer);
+}
+
+/* ---------------------------------------------------------------- */
+
+std::string
+EveTime::get_local_time_string (time_t time, bool slim)
+{
+  struct tm tm;
+  return EveTime::get_time_string(::localtime_r(&time, &tm), slim);
 }
 
 /* ---------------------------------------------------------------- */
@@ -87,12 +103,8 @@ EveTime::get_local_time_string (time_t time, bool slim)
 std::string
 EveTime::get_gm_time_string (time_t time, bool slim)
 {
-  static ConfValuePtr lf = Config::conf.get_value("evetime.time_format");
-  static ConfValuePtr sf = Config::conf.get_value("evetime.time_short_format");
-
-  char buffer[128];
-  strftime(buffer, 128, (slim ? **sf : **lf).c_str(), ::gmtime(&time));
-  return std::string(buffer);
+  struct tm tm;
+  return EveTime::get_time_string(::gmtime_r(&time, &tm), slim);
 }
 
 /* ---------------------------------------------------------------- */
