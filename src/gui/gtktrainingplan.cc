@@ -147,20 +147,20 @@ GtkSkillList::release_skill (unsigned int index)
 /* ---------------------------------------------------------------- */
 
 void
-GtkSkillList::calc_details (bool use_active_spph)
+GtkSkillList::calc_details ()
 {
   /*
    * Get attribute values for the character and delegate work. We _really_
    * need a copy of the attribs here, otherwise the character gets modified!
    */
   ApiCharAttribs attribs = this->character->cs->total;
-  this->calc_details(attribs, use_active_spph);
+  this->calc_details(attribs);
 }
 
 /* ---------------------------------------------------------------- */
 
 void
-GtkSkillList::calc_details (ApiCharAttribs& attribs, bool use_active_spph)
+GtkSkillList::calc_details (ApiCharAttribs& attribs)
 {
   ApiCharSheetPtr cs = this->character->cs;
 
@@ -174,7 +174,6 @@ GtkSkillList::calc_details (ApiCharAttribs& attribs, bool use_active_spph)
 
   /* Cached values for time calculations. */
   time_t now = EveTime::get_local_time();
-  time_t now_eve = EveTime::get_eve_time();
   time_t duration = 0;
 
   /* Go through list and do mighty things. Caching the cskill variable
@@ -206,11 +205,7 @@ GtkSkillList::calc_details (ApiCharAttribs& attribs, bool use_active_spph)
     bool active = (skill->id == train_skill && info.plan_level == train_level);
 
     /* SP per second and per hour. */
-    unsigned int spph;
-    if (active && use_active_spph)
-      spph = this->character->training_spph;
-    else
-      spph = cs->get_spph_for_skill(skill, attribs);
+    unsigned int spph = cs->get_spph_for_skill(skill, attribs);
     double spps = spph / 3600.0;
 
     /* Start SP, dest SP and current SP. */
@@ -221,9 +216,7 @@ GtkSkillList::calc_details (ApiCharAttribs& attribs, bool use_active_spph)
     /* Set current SP only if in training or previous char level available. */
     if (active)
     {
-      double live_spps = this->character->training_spph / 3600.0;
-      time_t diff_time = this->character->training_info.end_time_t - now_eve;
-      csp = dsp - (int)((double)diff_time * live_spps);
+      csp = this->character->training_skill_sp;
     }
     else if (cskill != 0)
     {
@@ -383,7 +376,7 @@ GtkSkillList::is_dependency (unsigned int index)
 /* ---------------------------------------------------------------- */
 
 OptimalData
-GtkSkillList::get_optimal_data (void) const 
+GtkSkillList::get_optimal_data (void) const
 {
   GtkSkillList plan = *this;
 
@@ -412,7 +405,7 @@ GtkSkillList::get_optimal_data (void) const
       + (int)cur_base_atts.mem + (int)cur_base_atts.per
       + (int)cur_base_atts.wil - (MINIMUM_VALUE_PER_ATTRIB * 5);
 
-  plan.calc_details(cur_total_atts, false);
+  plan.calc_details(cur_total_atts);
 
   time_t orig_total_time = plan.back().train_duration;
   time_t cur_total_time = orig_total_time;
@@ -451,7 +444,7 @@ GtkSkillList::get_optimal_data (void) const
             cur_total_atts = cur_base_atts + implant_atts;
 
             ApiCharAttribs cur_total_atts_copy = cur_total_atts;
-            plan.calc_details(cur_total_atts_copy, false);
+            plan.calc_details(cur_total_atts_copy);
             cur_total_time = plan.back().train_duration;
 
             if (cur_total_time < best_total_time)
@@ -469,7 +462,7 @@ GtkSkillList::get_optimal_data (void) const
   /* Calculate the details for the new list with the best attributes. */
   {
     ApiCharAttribs best_total_atts_copy = best_total_atts;
-    plan.calc_details(best_total_atts_copy, false);
+    plan.calc_details(best_total_atts_copy);
   }
   OptimalData result;
   result.optimal_time = plan.back().train_duration;

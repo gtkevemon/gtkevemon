@@ -106,10 +106,9 @@ class GtkSkillList : public std::vector<GtkSkillInfo>
 
     /* Calculate all details for the skill plan. If attributes and
      * the learning level are specified, these are used instead
-     * of the character ones. "use_active_spph" specifies if the SP/h
-     * for the skill in training is taken from the training sheet. */
-    void calc_details (bool use_active_spph = true);
-    void calc_details (ApiCharAttribs& attribs, bool use_active_spph = true);
+     * of the character ones. */
+    void calc_details (void);
+    void calc_details (ApiCharAttribs& attribs);
     //void simulate_select (unsigned int index);
 
     OptimalData get_optimal_data (void) const;

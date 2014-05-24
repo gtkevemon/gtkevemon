@@ -100,7 +100,6 @@ void
 Character::process_api_data (void)
 {
     this->training_skill = 0;
-    this->training_spph = 0;
     this->training_level_sp = 0;
     this->training_skill_sp = 0;
     this->training_level_done = 0.0;
@@ -124,7 +123,6 @@ Character::process_api_data (void)
         ApiSkillTreePtr tree = ApiSkillTree::request();
         this->training_info = *this->sq->get_training_skill();
         this->training_skill = tree->get_skill_for_id(this->training_info.skill_id);
-        this->training_spph = this->sq->get_spph_for_current();
 
         if (this->training_skill == 0)
         {
@@ -197,7 +195,13 @@ Character::update_live_info (void)
 
   /* Update easy values first to get useful results even in case of errors. */
   unsigned int level_dest_sp = this->training_info.end_sp;
-  double spps = (double)this->training_spph / 3600.0;
+  double spps = 0.0;
+  /* The easy values aren't as easy as one would hope, though. Compute
+   * the spph of the current skill if we can, otherwise call it 0. */
+  if (this->cs->valid && this->training_skill)
+  {
+    spps = this->cs->get_spph_for_skill(this->training_skill) / 3600.0;
+  }
 
   this->training_remaining = diff;
   this->training_skill_sp = level_dest_sp - (unsigned int)((double)diff * spps);

@@ -356,7 +356,7 @@ GuiPlanAttribOpt::optimize_plan (void)
   ApiCharAttribs best_total_atts = total_atts;
 
   /* Calculate the original plan with the original attribues. */
-  plan_orig.calc_details(cur_total_atts, false);
+  plan_orig.calc_details(cur_total_atts);
   cur_total_atts = total_atts;
 
   time_t orig_total_time = plan_orig.back().train_duration;
@@ -408,7 +408,7 @@ GuiPlanAttribOpt::optimize_plan (void)
             cur_total_atts = cur_base_atts + implant_atts;
 
             ApiCharAttribs cur_total_atts_copy = cur_total_atts;
-            plan_part.calc_details(cur_total_atts_copy, false);
+            plan_part.calc_details(cur_total_atts_copy);
             cur_total_time = plan_part.back().train_duration;
 
             if (cur_total_time < best_total_time)
@@ -426,7 +426,7 @@ GuiPlanAttribOpt::optimize_plan (void)
   /* Calculate the details for the new list with the best attributes. */
   {
     ApiCharAttribs best_total_atts_copy = best_total_atts;
-    plan_part.calc_details(best_total_atts_copy, false);
+    plan_part.calc_details(best_total_atts_copy);
   }
 
   /* Warn the user if the optimized time is below one year. */
