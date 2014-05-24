@@ -44,16 +44,12 @@ GtkHelpers::create_tooltip (Glib::RefPtr<Gtk::Tooltip> const& tooltip,
         /* Fill live information. */
         current_sp = character->training_skill_sp;
         completed = character->training_level_done;
-        spph = character->training_spph;
-        time_remaining = character->training_remaining;
       }
-      else
-      {
-        /* Fill information from char sheet. */
-        int sp_remaining = cskill->points_dest - current_sp;
-        spph = (double)character->cs->get_spph_for_skill(skill);
-        time_remaining = (time_t)(3600.0 * (double)sp_remaining / spph);
-      }
+
+      /* Fill information from char sheet. */
+      int sp_remaining = cskill->points_dest - current_sp;
+      spph = (double)character->cs->get_spph_for_skill(skill);
+      time_remaining = (time_t)(3600.0 * (double)sp_remaining / spph);
     }
 
     ss << "Skill level from " << Helpers::get_dotted_str_from_int
@@ -75,18 +71,18 @@ GtkHelpers::create_tooltip (Glib::RefPtr<Gtk::Tooltip> const& tooltip,
       ss << EveTime::get_string_for_timediff(time_remaining, false) << "\n";
     }
 
-    for (int level = cskill->level + 2; level <= 5; level++) 
+    for (int level = cskill->level + 2; level <= 5; level++)
     {
       time_remaining = (time_t)(3600.0
         * (double)(ApiCharSheet::calc_dest_sp(
-        level - 1, cskill->details->rank) 
+        level - 1, cskill->details->rank)
         - ApiCharSheet::calc_start_sp(level - 1,
         cskill->details->rank)) / spph);
-      ss << "Training time to level " 
+      ss << "Training time to level "
         << Helpers::get_roman_from_int(level) << ": "
         << EveTime::get_string_for_timediff(time_remaining, false) << "\n";
     }
-    
+
     if (completed != 0.0)
       ss << "Completed: " << Helpers::get_string_from_double
           (completed * 100.0, 2) << "%\n";
