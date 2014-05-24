@@ -1,10 +1,12 @@
 # git ignore for gtkevemon
 
-# object files 
-.*\.o$
+*~
+
+# object files
+*.o
 
 # orig from hg revert
-.*\.orig$
+*.orig
 
 # end executable
 src/gtkevemon

@@ -30,6 +30,8 @@ class EveTime
     static time_t timediff;
     static bool initialized;
 
+    static std::string get_time_string (struct tm *tm, bool slim);
+
   public:
     /* Calculate the time difference from a string. */
     static void init_from_eveapi_string (std::string const& evetime);

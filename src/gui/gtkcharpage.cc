@@ -291,7 +291,7 @@ GtkCharPage::update_charsheet_details (void)
 {
   ApiCharSheetPtr cs = this->character->cs;
   ApiSkillTreePtr tree = ApiSkillTree::request();
-  
+
   this->char_name_label.set_text("<b>"
       + this->character->get_char_name() + "</b>");
   this->char_name_label.set_use_markup(true);
@@ -445,21 +445,19 @@ GtkCharPage::update_training_details (void)
             (end_time_t, false) + downtime_str);
         this->finish_local_label.set_markup(EveTime::get_local_time_string
             (EveTime::adjust_local_time(end_time_t), false) + downtime_str);
-        this->spph_label.set_text(Helpers::get_string_from_uint
-            (this->character->training_spph) + " SP per hour");
 
-        /* Set SP/h tooltip. */
-        std::stringstream spph_tooltip;
-        spph_tooltip << "<b><u>Training based</u></b>\n"
-            << this->character->training_spph << " SP/h";
         if (this->character->cs->valid)
         {
-            spph_tooltip << "\n<b><u>Attribute based</u></b>\n"
-                << this->character->cs->get_spph_for_skill
-                (this->character->training_skill) << " SP/h";
+          int spph = this->character->cs->get_spph_for_skill
+            (this->character->training_skill);
+          this->spph_label.set_text(Helpers::get_string_from_uint
+               (spph) + " SP per hour");
         }
-        this->spph_label.set_has_tooltip(true);
-        this->spph_label.set_tooltip_markup(spph_tooltip.str());
+        else
+        {
+          this->spph_label.set_text("---");
+        }
+
     }
     else if (this->character->valid_training_sheet())
     {
@@ -468,7 +466,6 @@ GtkCharPage::update_training_details (void)
         this->finish_eve_label.set_text("---");
         this->finish_local_label.set_text("---");
         this->spph_label.set_text("0 SP per hour");
-        this->spph_label.set_has_tooltip(false);
         this->live_sp_label.set_text("---");
     }
     else
@@ -478,7 +475,6 @@ GtkCharPage::update_training_details (void)
         this->finish_eve_label.set_text("---");
         this->finish_local_label.set_text("---");
         this->spph_label.set_text("---");
-        this->spph_label.set_has_tooltip(false);
         this->live_sp_label.set_text("---");
     }
 }
@@ -617,7 +613,7 @@ GtkCharPage::update_skill_list (void)
     iiter->second.sp += skills[i].points;
     iiter->second.empty = false;
   }
-  
+
   /* Add unknown skills */
   ApiSkillMap& all_skills = tree->skills;
   for (ApiSkillMap::iterator iter = all_skills.begin();
@@ -801,7 +797,7 @@ GtkCharPage::api_info_changed (void)
         "Error: Skill with ID " + Helpers::get_string_from_int
         (this->character->training_info.skill_id) + " did not resolve!");
   }
-  
+
   /* Update the char sheet and training sheet info. */
   this->update_cached_duration();
   this->update_charsheet_details();

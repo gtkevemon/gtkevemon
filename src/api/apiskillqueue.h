@@ -73,10 +73,6 @@ class ApiSkillQueue : public ApiBase
     /* Returns the queue item currently in training. */
     ApiSkillQueueItem const* get_training_skill (void) const;
 
-    /* Returns the SP/h of the skill currently in training,
-     * or 0 if there is no skill in training. */
-    unsigned int get_spph_for_current (void) const;
-
     /* Debugging. */
     void debug_dump (void);
 };
