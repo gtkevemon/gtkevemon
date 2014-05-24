@@ -1,6 +1,8 @@
 #include <iostream>
 #include <openssl/err.h>
 
+#include "util/thread.h"
+
 #include "certificates.h"
 #include "networking.h"
 
@@ -55,6 +57,22 @@ unload (void)
 
 /* ---------------------------------------------------------------- */
 
+static Semaphore *ssl_locks;
+
+static void locking_callback(int mode, int type, const char *file, int line)
+{
+  (void)file; (void)line;
+
+  if (mode & CRYPTO_LOCK)
+  {
+    ssl_locks[type].wait();
+  }
+  else
+  {
+    ssl_locks[type].post();
+  }
+}
+
 SSL_CTX*
 ssl_context (void)
 {
@@ -106,6 +124,11 @@ ssl_context (void)
     SSL_CTX_set_verify_depth(ctx, 2);
 
     ssl_ctx = ctx;
+
+    /* Set up locks so that openssl is thread safe. */
+    ssl_locks = new Semaphore[CRYPTO_num_locks()];
+    CRYPTO_set_locking_callback(locking_callback);
+
     return ssl_ctx;
 }
 
