@@ -6,42 +6,42 @@ This is the README file for GtkEveMon. It covers:
 * Uninstalling GtkEveMon
 
 
-STEP 1: BUILDING
-=====================================================================
+BUILDING
+========
 
 GtkEveMon comes in form of source code. You can take a look at the
 code, it's all located in the "src/" directory. In order to execute
 it, it needs to be build. It does not come with a configure script.
 So just execute the following command:
 
-$ make
+    $ make
 
 To build a debug version simple run
 
-$ make debug
+    $ make debug
 
-STEP 2: RUNNING
-=====================================================================
+RUNNING
+=======
 
 Note that you DO NOT NEED to install GtkEveMon in order to use it.
 If you don't want to install GtkEveMon, issue the following commands,
 relative to this README file:
 
-$ cd src
-$ ./gtkevemon
+    $ cd src
+    $ ./gtkevemon
 
 If you're going to install GtkEveMon (read below), just type
 "gtkevemon" anywhere in your system or make a nice shortcut in
 your window manager yourself.
 
 
-OPTION: INSTALLING
-=====================================================================
+INSTALLING
+==========
 
 Make sure your current working directory is relative to this file.
 To install GtkEveMon execute the following command (as super user):
 
-# make install
+    # make install
 
 The files will be installed to "/usr/local/bin". If you want to change
 that, edit the Makefile.
@@ -51,20 +51,19 @@ CertificateTree.xml) are placed in "~/.gtkevemon" whether you
 install GtkEveMon or not.
 
 
-OPTION: UNINSTALLING
-=====================================================================
+UNINSTALLING
+============
 
 If you want to uninstall GtkEveMon, just type
 following command (as super user):
 
-# make uninstall
+    # make uninstall
 
 This will not remove your user data in your home directory.
 
 
 RESSOURCES
-=====================================================================
+==========
 
-Homepage: http://gtkevemon.battleclinic.com/
-Forum: http://www.battleclinic.com/forum/index.php#c43
+Homepage: https://github.com/gtkevemon/gtkevemon  
 E-Mail: Simon Fuhrmann <SimonFuhrmann@gmx.de>
