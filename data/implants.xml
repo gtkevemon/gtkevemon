@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<implants>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Genolution Core Augmentation CA-1" perceptionBonus="3" typeID="2082" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="3" memoryBonus="0" name="Genolution Core Augmentation CA-2" perceptionBonus="0" typeID="2589" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Zainou 'Gnome' Shield Upgrades SU-602" perceptionBonus="0" typeID="3077" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Zainou 'Gnome' Shield Upgrades SU-604" perceptionBonus="0" typeID="3078" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Zainou 'Gnome' Shield Upgrades SU-606" perceptionBonus="0" typeID="3079" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Ocular Filter - Basic" perceptionBonus="3" typeID="9899" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="3" name="Memory Augmentation - Basic" perceptionBonus="0" typeID="9941" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Neural Boost - Basic" perceptionBonus="0" typeID="9942" willpowerBonus="3"/>
+  <implant charismaBonus="0" intelligenceBonus="3" memoryBonus="0" name="Cybernetic Subprocessor - Basic" perceptionBonus="0" typeID="9943" willpowerBonus="0"/>
+  <implant charismaBonus="3" intelligenceBonus="0" memoryBonus="0" name="Social Adaptation Chip - Basic" perceptionBonus="0" typeID="9956" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="4" name="Memory Augmentation - Standard" perceptionBonus="0" typeID="10208" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="5" name="Memory Augmentation - Improved" perceptionBonus="0" typeID="10209" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="6" name="Memory Augmentation - Advanced" perceptionBonus="0" typeID="10210" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="7" name="Memory Augmentation - Elite" perceptionBonus="0" typeID="10211" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Neural Boost - Standard" perceptionBonus="0" typeID="10212" willpowerBonus="4"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Neural Boost - Improved" perceptionBonus="0" typeID="10213" willpowerBonus="5"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Neural Boost - Advanced" perceptionBonus="0" typeID="10214" willpowerBonus="6"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Neural Boost - Elite" perceptionBonus="0" typeID="10215" willpowerBonus="7"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Ocular Filter - Standard" perceptionBonus="4" typeID="10216" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Ocular Filter - Improved" perceptionBonus="5" typeID="10217" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Ocular Filter - Advanced" perceptionBonus="6" typeID="10218" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Ocular Filter - Elite" perceptionBonus="7" typeID="10219" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="4" memoryBonus="0" name="Cybernetic Subprocessor - Standard" perceptionBonus="0" typeID="10221" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="5" memoryBonus="0" name="Cybernetic Subprocessor - Improved" perceptionBonus="0" typeID="10222" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="6" memoryBonus="0" name="Cybernetic Subprocessor - Advanced" perceptionBonus="0" typeID="10223" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="7" memoryBonus="0" name="Cybernetic Subprocessor - Elite" perceptionBonus="0" typeID="10224" willpowerBonus="0"/>
+  <implant charismaBonus="4" intelligenceBonus="0" memoryBonus="0" name="Social Adaptation Chip - Standard" perceptionBonus="0" typeID="10225" willpowerBonus="0"/>
+  <implant charismaBonus="5" intelligenceBonus="0" memoryBonus="0" name="Social Adaptation Chip - Improved" perceptionBonus="0" typeID="10226" willpowerBonus="0"/>
+  <implant charismaBonus="6" intelligenceBonus="0" memoryBonus="0" name="Social Adaptation Chip - Advanced" perceptionBonus="0" typeID="10227" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Zainou 'Gnome' Shield Upgrades SU-603" perceptionBonus="0" typeID="13253" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Limited Ocular Filter" perceptionBonus="1" typeID="13283" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="1" name="Limited Memory Augmentation" perceptionBonus="0" typeID="13284" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Limited Neural Boost" perceptionBonus="0" typeID="13285" willpowerBonus="1"/>
+  <implant charismaBonus="1" intelligenceBonus="0" memoryBonus="0" name="Limited Social Adaptation Chip" perceptionBonus="0" typeID="13286" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="1" memoryBonus="0" name="Limited Cybernetic Subprocessor" perceptionBonus="0" typeID="13287" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Limited Ocular Filter - Beta" perceptionBonus="2" typeID="14295" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Limited Neural Boost - Beta" perceptionBonus="0" typeID="14296" willpowerBonus="2"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="2" name="Limited Memory Augmentation - Beta" perceptionBonus="0" typeID="14297" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="2" memoryBonus="0" name="Limited Cybernetic Subprocessor - Beta" perceptionBonus="0" typeID="14298" willpowerBonus="0"/>
+  <implant charismaBonus="2" intelligenceBonus="0" memoryBonus="0" name="Limited Social Adaptation Chip - Beta" perceptionBonus="0" typeID="14299" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Talisman Alpha" perceptionBonus="4" typeID="19534" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="4" name="High-grade Talisman Beta" perceptionBonus="0" typeID="19535" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Talisman Gamma" perceptionBonus="0" typeID="19536" willpowerBonus="4"/>
+  <implant charismaBonus="0" intelligenceBonus="4" memoryBonus="0" name="High-grade Talisman Delta" perceptionBonus="0" typeID="19537" willpowerBonus="0"/>
+  <implant charismaBonus="4" intelligenceBonus="0" memoryBonus="0" name="High-grade Talisman Epsilon" perceptionBonus="0" typeID="19538" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Talisman Omega" perceptionBonus="0" typeID="19539" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Snake Alpha" perceptionBonus="4" typeID="19540" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="4" name="High-grade Snake Beta" perceptionBonus="0" typeID="19551" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Snake Gamma" perceptionBonus="0" typeID="19553" willpowerBonus="4"/>
+  <implant charismaBonus="0" intelligenceBonus="4" memoryBonus="0" name="High-grade Snake Delta" perceptionBonus="0" typeID="19554" willpowerBonus="0"/>
+  <implant charismaBonus="4" intelligenceBonus="0" memoryBonus="0" name="High-grade Snake Epsilon" perceptionBonus="0" typeID="19555" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Snake Omega" perceptionBonus="0" typeID="19556" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Crystal Alpha" perceptionBonus="4" typeID="20121" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="4" name="High-grade Crystal Beta" perceptionBonus="0" typeID="20157" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Crystal Gamma" perceptionBonus="0" typeID="20158" willpowerBonus="4"/>
+  <implant charismaBonus="0" intelligenceBonus="4" memoryBonus="0" name="High-grade Crystal Delta" perceptionBonus="0" typeID="20159" willpowerBonus="0"/>
+  <implant charismaBonus="4" intelligenceBonus="0" memoryBonus="0" name="High-grade Crystal Epsilon" perceptionBonus="0" typeID="20160" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Crystal Omega" perceptionBonus="0" typeID="20161" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Halo Alpha" perceptionBonus="4" typeID="20498" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Slave Alpha" perceptionBonus="4" typeID="20499" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="4" name="High-grade Halo Beta" perceptionBonus="0" typeID="20500" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="4" name="High-grade Slave Beta" perceptionBonus="0" typeID="20501" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="4" memoryBonus="0" name="High-grade Halo Delta" perceptionBonus="0" typeID="20502" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="4" memoryBonus="0" name="High-grade Slave Delta" perceptionBonus="0" typeID="20503" willpowerBonus="0"/>
+  <implant charismaBonus="4" intelligenceBonus="0" memoryBonus="0" name="High-grade Halo Epsilon" perceptionBonus="0" typeID="20504" willpowerBonus="0"/>
+  <implant charismaBonus="4" intelligenceBonus="0" memoryBonus="0" name="High-grade Slave Epsilon" perceptionBonus="0" typeID="20505" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Halo Gamma" perceptionBonus="0" typeID="20506" willpowerBonus="4"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Slave Gamma" perceptionBonus="0" typeID="20507" willpowerBonus="4"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Halo Omega" perceptionBonus="0" typeID="20508" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Slave Omega" perceptionBonus="0" typeID="20509" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Crystal Alpha" perceptionBonus="3" typeID="22107" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="3" name="Mid-grade Crystal Beta" perceptionBonus="0" typeID="22108" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="3" memoryBonus="0" name="Mid-grade Crystal Delta" perceptionBonus="0" typeID="22109" willpowerBonus="0"/>
+  <implant charismaBonus="3" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Crystal Epsilon" perceptionBonus="0" typeID="22110" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Crystal Gamma" perceptionBonus="0" typeID="22111" willpowerBonus="3"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Crystal Omega" perceptionBonus="0" typeID="22112" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Halo Alpha" perceptionBonus="3" typeID="22113" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="3" name="Mid-grade Halo Beta" perceptionBonus="0" typeID="22114" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="3" memoryBonus="0" name="Mid-grade Halo Delta" perceptionBonus="0" typeID="22115" willpowerBonus="0"/>
+  <implant charismaBonus="3" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Halo Epsilon" perceptionBonus="0" typeID="22116" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Halo Gamma" perceptionBonus="0" typeID="22117" willpowerBonus="3"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Halo Omega" perceptionBonus="0" typeID="22118" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Slave Alpha" perceptionBonus="3" typeID="22119" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="3" name="Mid-grade Slave Beta" perceptionBonus="0" typeID="22120" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="3" memoryBonus="0" name="Mid-grade Slave Delta" perceptionBonus="0" typeID="22121" willpowerBonus="0"/>
+  <implant charismaBonus="3" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Slave Epsilon" perceptionBonus="0" typeID="22122" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Slave Gamma" perceptionBonus="0" typeID="22123" willpowerBonus="3"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Slave Omega" perceptionBonus="0" typeID="22124" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Snake Alpha" perceptionBonus="3" typeID="22125" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="3" name="Mid-grade Snake Beta" perceptionBonus="0" typeID="22126" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="3" memoryBonus="0" name="Mid-grade Snake Delta" perceptionBonus="0" typeID="22127" willpowerBonus="0"/>
+  <implant charismaBonus="3" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Snake Epsilon" perceptionBonus="0" typeID="22128" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Snake Gamma" perceptionBonus="0" typeID="22129" willpowerBonus="3"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Snake Omega" perceptionBonus="0" typeID="22130" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Talisman Alpha" perceptionBonus="3" typeID="22131" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="3" name="Mid-grade Talisman Beta" perceptionBonus="0" typeID="22133" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="3" memoryBonus="0" name="Mid-grade Talisman Delta" perceptionBonus="0" typeID="22134" willpowerBonus="0"/>
+  <implant charismaBonus="3" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Talisman Epsilon" perceptionBonus="0" typeID="22135" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Talisman Gamma" perceptionBonus="0" typeID="22136" willpowerBonus="3"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Talisman Omega" perceptionBonus="0" typeID="22137" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Republic Special Ops Field Enhancer - Gamma" perceptionBonus="0" typeID="22715" willpowerBonus="4"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Imperial Special Ops Field Enhancer - Standard" perceptionBonus="4" typeID="22760" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Zainou 'Gnome' Shield Upgrades SU-601" perceptionBonus="0" typeID="27104" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Centurion Alpha" perceptionBonus="3" typeID="28790" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="3" name="Mid-grade Centurion Beta" perceptionBonus="0" typeID="28791" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="3" memoryBonus="0" name="Mid-grade Centurion Delta" perceptionBonus="0" typeID="28792" willpowerBonus="0"/>
+  <implant charismaBonus="3" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Centurion Epsilon" perceptionBonus="0" typeID="28793" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Centurion Gamma" perceptionBonus="0" typeID="28794" willpowerBonus="3"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Centurion Omega" perceptionBonus="0" typeID="28795" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Nomad Alpha" perceptionBonus="3" typeID="28796" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="3" name="Mid-grade Nomad Beta" perceptionBonus="0" typeID="28797" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="3" memoryBonus="0" name="Mid-grade Nomad Delta" perceptionBonus="0" typeID="28798" willpowerBonus="0"/>
+  <implant charismaBonus="3" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Nomad Epsilon" perceptionBonus="0" typeID="28799" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Nomad Gamma" perceptionBonus="0" typeID="28800" willpowerBonus="3"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Nomad Omega" perceptionBonus="0" typeID="28801" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Harvest Alpha" perceptionBonus="3" typeID="28802" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="3" name="Mid-grade Harvest Beta" perceptionBonus="0" typeID="28803" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="3" memoryBonus="0" name="Mid-grade Harvest Delta" perceptionBonus="0" typeID="28804" willpowerBonus="0"/>
+  <implant charismaBonus="3" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Harvest Epsilon" perceptionBonus="0" typeID="28805" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Harvest Gamma" perceptionBonus="0" typeID="28806" willpowerBonus="3"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Harvest Omega" perceptionBonus="0" typeID="28807" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Virtue Alpha" perceptionBonus="3" typeID="28808" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="3" name="Mid-grade Virtue Beta" perceptionBonus="0" typeID="28809" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="3" memoryBonus="0" name="Mid-grade Virtue Delta" perceptionBonus="0" typeID="28810" willpowerBonus="0"/>
+  <implant charismaBonus="3" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Virtue Epsilon" perceptionBonus="0" typeID="28811" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Virtue Gamma" perceptionBonus="0" typeID="28812" willpowerBonus="3"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Virtue Omega" perceptionBonus="0" typeID="28813" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Edge Alpha" perceptionBonus="3" typeID="28814" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="3" name="Mid-grade Edge Beta" perceptionBonus="0" typeID="28815" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="3" memoryBonus="0" name="Mid-grade Edge Delta" perceptionBonus="0" typeID="28816" willpowerBonus="0"/>
+  <implant charismaBonus="3" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Edge Epsilon" perceptionBonus="0" typeID="28817" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Edge Gamma" perceptionBonus="0" typeID="28818" willpowerBonus="3"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Edge Omega" perceptionBonus="0" typeID="28819" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Grail Alpha" perceptionBonus="4" typeID="31954" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="4" name="High-grade Grail Beta" perceptionBonus="0" typeID="31955" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="4" memoryBonus="0" name="High-grade Grail Delta" perceptionBonus="0" typeID="31956" willpowerBonus="0"/>
+  <implant charismaBonus="4" intelligenceBonus="0" memoryBonus="0" name="High-grade Grail Epsilon" perceptionBonus="0" typeID="31957" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Grail Gamma" perceptionBonus="0" typeID="31958" willpowerBonus="4"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Grail Omega" perceptionBonus="0" typeID="31959" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Talon Alpha" perceptionBonus="4" typeID="31962" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="4" name="High-grade Talon Beta" perceptionBonus="0" typeID="31963" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="4" memoryBonus="0" name="High-grade Talon Delta" perceptionBonus="0" typeID="31964" willpowerBonus="0"/>
+  <implant charismaBonus="4" intelligenceBonus="0" memoryBonus="0" name="High-grade Talon Epsilon" perceptionBonus="0" typeID="31965" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Talon Gamma" perceptionBonus="0" typeID="31966" willpowerBonus="4"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Talon Omega" perceptionBonus="0" typeID="31967" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Spur Alpha" perceptionBonus="4" typeID="31968" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="4" name="High-grade Spur Beta" perceptionBonus="0" typeID="31969" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="4" memoryBonus="0" name="High-grade Spur Delta" perceptionBonus="0" typeID="31970" willpowerBonus="0"/>
+  <implant charismaBonus="4" intelligenceBonus="0" memoryBonus="0" name="High-grade Spur Epsilon" perceptionBonus="0" typeID="31971" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Spur Gamma" perceptionBonus="0" typeID="31972" willpowerBonus="4"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Spur Omega" perceptionBonus="0" typeID="31973" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Jackal Alpha" perceptionBonus="4" typeID="31974" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="4" name="High-grade Jackal Beta" perceptionBonus="0" typeID="31975" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="4" memoryBonus="0" name="High-grade Jackal Delta" perceptionBonus="0" typeID="31976" willpowerBonus="0"/>
+  <implant charismaBonus="4" intelligenceBonus="0" memoryBonus="0" name="High-grade Jackal Epsilon" perceptionBonus="0" typeID="31977" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Jackal Gamma" perceptionBonus="0" typeID="31978" willpowerBonus="4"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Jackal Omega" perceptionBonus="0" typeID="31979" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Grail Alpha" perceptionBonus="2" typeID="32101" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="2" name="Low-grade Grail Beta" perceptionBonus="0" typeID="32102" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="2" memoryBonus="0" name="Low-grade Grail Delta" perceptionBonus="0" typeID="32103" willpowerBonus="0"/>
+  <implant charismaBonus="2" intelligenceBonus="0" memoryBonus="0" name="Low-grade Grail Epsilon" perceptionBonus="0" typeID="32104" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Grail Gamma" perceptionBonus="0" typeID="32105" willpowerBonus="2"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Spur Alpha" perceptionBonus="2" typeID="32107" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="2" name="Low-grade Spur Beta" perceptionBonus="0" typeID="32108" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="2" memoryBonus="0" name="Low-grade Spur Delta" perceptionBonus="0" typeID="32109" willpowerBonus="0"/>
+  <implant charismaBonus="2" intelligenceBonus="0" memoryBonus="0" name="Low-grade Spur Epsilon" perceptionBonus="0" typeID="32110" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Spur Gamma" perceptionBonus="0" typeID="32111" willpowerBonus="2"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Talon Alpha" perceptionBonus="2" typeID="32112" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="2" name="Low-grade Talon Beta" perceptionBonus="0" typeID="32113" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="2" memoryBonus="0" name="Low-grade Talon Delta" perceptionBonus="0" typeID="32114" willpowerBonus="0"/>
+  <implant charismaBonus="2" intelligenceBonus="0" memoryBonus="0" name="Low-grade Talon Epsilon" perceptionBonus="0" typeID="32115" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Talon Gamma" perceptionBonus="0" typeID="32116" willpowerBonus="2"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Jackal Alpha" perceptionBonus="2" typeID="32117" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="2" name="Low-grade Jackal Beta" perceptionBonus="0" typeID="32118" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="2" memoryBonus="0" name="Low-grade Jackal Delta" perceptionBonus="0" typeID="32119" willpowerBonus="0"/>
+  <implant charismaBonus="2" intelligenceBonus="0" memoryBonus="0" name="Low-grade Jackal Epsilon" perceptionBonus="0" typeID="32120" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Jackal Gamma" perceptionBonus="0" typeID="32121" willpowerBonus="2"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Grail Omega" perceptionBonus="0" typeID="32122" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Jackal Omega" perceptionBonus="0" typeID="32123" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Spur Omega" perceptionBonus="0" typeID="32124" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Talon Omega" perceptionBonus="0" typeID="32125" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Genolution Core Augmentation CA-3" perceptionBonus="0" typeID="33393" willpowerBonus="3"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="3" name="Genolution Core Augmentation CA-4" perceptionBonus="0" typeID="33394" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Ascendancy Alpha" perceptionBonus="4" typeID="33516" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="4" name="High-grade Ascendancy Beta" perceptionBonus="0" typeID="33525" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="4" memoryBonus="0" name="High-grade Ascendancy Delta" perceptionBonus="0" typeID="33526" willpowerBonus="0"/>
+  <implant charismaBonus="4" intelligenceBonus="0" memoryBonus="0" name="High-grade Ascendancy Epsilon" perceptionBonus="0" typeID="33527" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="High-grade Ascendancy Gamma" perceptionBonus="0" typeID="33528" willpowerBonus="4"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Ascendancy Alpha" perceptionBonus="3" typeID="33555" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="3" name="Mid-grade Ascendancy Beta" perceptionBonus="0" typeID="33557" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="3" memoryBonus="0" name="Mid-grade Ascendancy Delta" perceptionBonus="0" typeID="33559" willpowerBonus="0"/>
+  <implant charismaBonus="3" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Ascendancy Epsilon" perceptionBonus="0" typeID="33561" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Mid-grade Ascendancy Gamma" perceptionBonus="0" typeID="33563" willpowerBonus="3"/>
+  <implant charismaBonus="0" intelligenceBonus="4" memoryBonus="0" name="Cybernetic 'Source' Subprocessor" perceptionBonus="0" typeID="33807" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Neural 'Source' Boost" perceptionBonus="0" typeID="33808" willpowerBonus="4"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Centurion Alpha" perceptionBonus="2" typeID="33917" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="2" name="Low-grade Centurion Beta" perceptionBonus="0" typeID="33918" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="2" memoryBonus="0" name="Low-grade Centurion Delta" perceptionBonus="0" typeID="33919" willpowerBonus="0"/>
+  <implant charismaBonus="2" intelligenceBonus="0" memoryBonus="0" name="Low-grade Centurion Epsilon" perceptionBonus="0" typeID="33920" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Centurion Gamma" perceptionBonus="0" typeID="33921" willpowerBonus="2"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Centurion Omega" perceptionBonus="0" typeID="33922" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Crystal Alpha" perceptionBonus="2" typeID="33923" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="2" name="Low-grade Crystal Beta" perceptionBonus="0" typeID="33924" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="2" memoryBonus="0" name="Low-grade Crystal Delta" perceptionBonus="0" typeID="33925" willpowerBonus="0"/>
+  <implant charismaBonus="2" intelligenceBonus="0" memoryBonus="0" name="Low-grade Crystal Epsilon" perceptionBonus="0" typeID="33926" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Crystal Gamma" perceptionBonus="0" typeID="33927" willpowerBonus="2"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Crystal Omega" perceptionBonus="0" typeID="33928" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Edge Alpha" perceptionBonus="2" typeID="33929" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="2" name="Low-grade Edge Beta" perceptionBonus="0" typeID="33930" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="2" memoryBonus="0" name="Low-grade Edge Delta" perceptionBonus="0" typeID="33931" willpowerBonus="0"/>
+  <implant charismaBonus="2" intelligenceBonus="0" memoryBonus="0" name="Low-grade Edge Epsilon" perceptionBonus="0" typeID="33932" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Edge Gamma" perceptionBonus="0" typeID="33933" willpowerBonus="2"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Edge Omega" perceptionBonus="0" typeID="33934" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Halo Alpha" perceptionBonus="2" typeID="33935" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="2" name="Low-grade Halo Beta" perceptionBonus="0" typeID="33936" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="2" memoryBonus="0" name="Low-grade Halo Delta" perceptionBonus="0" typeID="33937" willpowerBonus="0"/>
+  <implant charismaBonus="2" intelligenceBonus="0" memoryBonus="0" name="Low-grade Halo Epsilon" perceptionBonus="0" typeID="33938" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Halo Gamma" perceptionBonus="0" typeID="33939" willpowerBonus="2"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Halo Omega" perceptionBonus="0" typeID="33940" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Harvest Alpha" perceptionBonus="2" typeID="33941" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="2" name="Low-grade Harvest Beta" perceptionBonus="0" typeID="33942" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="2" memoryBonus="0" name="Low-grade Harvest Delta" perceptionBonus="0" typeID="33943" willpowerBonus="0"/>
+  <implant charismaBonus="2" intelligenceBonus="0" memoryBonus="0" name="Low-grade Harvest Epsilon" perceptionBonus="0" typeID="33944" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Harvest Gamma" perceptionBonus="0" typeID="33945" willpowerBonus="2"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Harvest Omega" perceptionBonus="0" typeID="33946" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Nomad Alpha" perceptionBonus="2" typeID="33947" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="2" name="Low-grade Nomad Beta" perceptionBonus="0" typeID="33948" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="2" memoryBonus="0" name="Low-grade Nomad Delta" perceptionBonus="0" typeID="33949" willpowerBonus="0"/>
+  <implant charismaBonus="2" intelligenceBonus="0" memoryBonus="0" name="Low-grade Nomad Epsilon" perceptionBonus="0" typeID="33950" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Nomad Gamma" perceptionBonus="0" typeID="33951" willpowerBonus="2"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Nomad Omega" perceptionBonus="0" typeID="33952" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Slave Alpha" perceptionBonus="2" typeID="33953" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="2" name="Low-grade Slave Beta" perceptionBonus="0" typeID="33954" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="2" memoryBonus="0" name="Low-grade Slave Delta" perceptionBonus="0" typeID="33955" willpowerBonus="0"/>
+  <implant charismaBonus="2" intelligenceBonus="0" memoryBonus="0" name="Low-grade Slave Epsilon" perceptionBonus="0" typeID="33956" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Slave Gamma" perceptionBonus="0" typeID="33957" willpowerBonus="2"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Slave Omega" perceptionBonus="0" typeID="33958" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Snake Alpha" perceptionBonus="2" typeID="33959" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="2" name="Low-grade Snake Beta" perceptionBonus="0" typeID="33960" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="2" memoryBonus="0" name="Low-grade Snake Delta" perceptionBonus="0" typeID="33961" willpowerBonus="0"/>
+  <implant charismaBonus="2" intelligenceBonus="0" memoryBonus="0" name="Low-grade Snake Epsilon" perceptionBonus="0" typeID="33962" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Snake Gamma" perceptionBonus="0" typeID="33963" willpowerBonus="2"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Snake Omega" perceptionBonus="0" typeID="33964" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Talisman Alpha" perceptionBonus="2" typeID="33965" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="2" name="Low-grade Talisman Beta" perceptionBonus="0" typeID="33966" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="2" memoryBonus="0" name="Low-grade Talisman Delta" perceptionBonus="0" typeID="33967" willpowerBonus="0"/>
+  <implant charismaBonus="2" intelligenceBonus="0" memoryBonus="0" name="Low-grade Talisman Epsilon" perceptionBonus="0" typeID="33968" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Talisman Gamma" perceptionBonus="0" typeID="33969" willpowerBonus="2"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Talisman Omega" perceptionBonus="0" typeID="33970" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Virtue Alpha" perceptionBonus="2" typeID="33971" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="2" name="Low-grade Virtue Beta" perceptionBonus="0" typeID="33972" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="2" memoryBonus="0" name="Low-grade Virtue Delta" perceptionBonus="0" typeID="33973" willpowerBonus="0"/>
+  <implant charismaBonus="2" intelligenceBonus="0" memoryBonus="0" name="Low-grade Virtue Epsilon" perceptionBonus="0" typeID="33974" willpowerBonus="0"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Virtue Gamma" perceptionBonus="0" typeID="33975" willpowerBonus="2"/>
+  <implant charismaBonus="0" intelligenceBonus="0" memoryBonus="0" name="Low-grade Virtue Omega" perceptionBonus="0" typeID="33976" willpowerBonus="0"/>
+</implants>
