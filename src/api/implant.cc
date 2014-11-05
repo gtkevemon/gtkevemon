@@ -7,18 +7,6 @@
 
 ImplantsPtr Implants::instance;
 
-static
-ImplantMap implants;
-
-void
-readImplantData() {
-  implants[10226] = Implant(10226,"X",5,0,0,0,0);
-  implants[10208] = Implant(10208,"X",0,0,4,0,0);
-  implants[10216] = Implant(10216,"X",0,0,0,4,0);
-  implants[10221] = Implant(10221,"X",0,4,0,0,0);
-  implants[10213] = Implant(10213,"X",0,0,0,0,5);
-}
-
 std::string
 Implants::get_filename (void) const
 {
@@ -38,12 +26,59 @@ Implants::request (void)
 }
 
 void
+Implants::parse_xml (std::string const& filename)
+{
+  /* Try to read the document. */
+  XmlDocumentPtr xml = XmlDocument::create_from_file(filename);
+  xmlNodePtr root = xml->get_root_element();
+
+  std::cout << "Parsing XML: " IMPLANTS_FN "... ";
+  std::cout.flush();
+
+  /* Document was parsed. Reset information. */
+  this->implants.clear();
+
+  this->parse_implants_tag(root);
+  std::cout << this->implants.size() << " implants." << std::endl;
+}
+
+void
+Implants::parse_implants_tag (xmlNodePtr node)
+{
+  if (node->type != XML_ELEMENT_NODE
+      || xmlStrcmp(node->name, (xmlChar const*)"implants"))
+    throw Exception("Invalid XML root. Expecting <implants> node.");
+
+  for (node = node->children; node != 0; node = node->next)
+  {
+    if (node->type == XML_ELEMENT_NODE
+        && !xmlStrcmp(node->name, (xmlChar const*)"implant"))
+    {
+      this->parse_implant_tag(node);
+    }
+  }
+}
+
+void
+Implants::parse_implant_tag (xmlNodePtr node)
+{
+  std::string name = this->get_property(node, "name");
+  int typeID = this->get_property_int(node, "typeID");
+  int charismaBonus = this->get_property_int(node, "charismaBonus");
+  int intelligenceBonus = this->get_property_int(node, "intelligenceBonus");
+  int memoryBonus = this->get_property_int(node, "memoryBonus");
+  int willpowerBonus = this->get_property_int(node, "willpowerBonus");
+  int perceptionBonus = this->get_property_int(node, "perceptionBonus");
+  this->implants[typeID] = Implant(typeID, name, charismaBonus, intelligenceBonus,
+                             memoryBonus, perceptionBonus, willpowerBonus);
+}
+
+void
 Implants::refresh (void)
 {
   try
   {
-    //    this->parse_xml(this->get_filename());
-    readImplantData();
+    this->parse_xml(this->get_filename());
     return;
   }
   catch (Exception& e)
@@ -59,12 +94,14 @@ Implants::refresh (void)
 Implants::Implants (void)
 {
 }
+
 const Implant *
 Implants::getImplant(int typeID) const
 {
-  ImplantMap::iterator it = implants.find(typeID);
-  if(it == implants.end())
+  ImplantMap::const_iterator it = this->implants.find(typeID);
+  if(it == this->implants.end())
     return 0;
   else
     return &it->second;
 }
+

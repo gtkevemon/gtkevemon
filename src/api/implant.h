@@ -52,13 +52,16 @@ class Implants;
 
 typedef ref_ptr<Implants> ImplantsPtr;
 
-class Implants
+class Implants : public XmlBase
 {
   private:
     static ImplantsPtr instance;
   protected:
     Implants();
-    void readImplantsData();
+    void parse_xml (const std::string &filename);
+    void parse_implants_tag (xmlNodePtr node);
+    void parse_implant_tag (xmlNodePtr node);
+    ImplantMap implants;
   public:
     static ImplantsPtr request (void);
     void refresh (void);
@@ -66,4 +69,4 @@ class Implants
     const Implant *getImplant(int typeID) const;
 };
   
-#endif /* API_BASE_HEADER */
+#endif /* IMPLANT_HEADER */
