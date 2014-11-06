@@ -85,10 +85,20 @@ ssl_context (void)
     X509* x509_entrust = PEM_read_bio_X509_AUX(cert_bio, 0, 0, 0);
     BIO_free(cert_bio);
 
+    cert_bio = BIO_new_mem_buf((void*)cert_digitrust, -1);
+    X509* x509_digitrust = PEM_read_bio_X509_AUX(cert_bio, 0, 0, 0);
+    BIO_free(cert_bio);
+
+    cert_bio = BIO_new_mem_buf((void*)cert_github, -1);
+    X509* x509_github = PEM_read_bio_X509_AUX(cert_bio, 0, 0, 0);
+    BIO_free(cert_bio);
+
     /* Add certificate to store. */
     X509_STORE* store = SSL_CTX_get_cert_store(ctx);
     X509_STORE_add_cert(store, x509_geotrust);
     X509_STORE_add_cert(store, x509_entrust);
+    X509_STORE_add_cert(store, x509_digitrust);
+    X509_STORE_add_cert(store, x509_github);
 
 #if 0
     /* Read certificate from file. */
