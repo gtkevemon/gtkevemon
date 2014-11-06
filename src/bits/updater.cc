@@ -33,8 +33,8 @@ UpdaterBase::UpdaterBase (void)
     this->files.push_back(file);
 
     file.file_name = "implants.xml";
-    file.server_host = "raw.githubusercontent.com";
-    file.server_path = "/ecraven/gtkevemon/fix-implants/data/implants.xml";
+    file.server_host = "www.nexoid.at";
+    file.server_path = "/tmp/implants.xml";
     file.local_path = conf_dir + "/" + file.file_name;
     this->files.push_back(file);
 }
