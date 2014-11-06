@@ -62,11 +62,14 @@ class Implants : public XmlBase
     void parse_implants_tag (xmlNodePtr node);
     void parse_implant_tag (xmlNodePtr node);
     ImplantMap implants;
+    std::string data;
   public:
+    bool valid;
     static ImplantsPtr request (void);
     void refresh (void);
     std::string get_filename (void) const;
     const Implant *getImplant(int typeID) const;
+    const char *get_data() const;
 };
   
 #endif /* IMPLANT_HEADER */

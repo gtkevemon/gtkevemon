@@ -34,10 +34,19 @@ GuiXmlSource::GuiXmlSource (void)
 void
 GuiXmlSource::append (HttpDataPtr data, std::string const& title)
 {
+  if (data.get() != 0 && !data->data.empty())
+    append(&data->data[0], title);
+  else
+    append(0, title);
+}
+
+void
+GuiXmlSource::append (const char *data, std::string const& title)
+{
   Glib::RefPtr<Gtk::TextBuffer> buffer = Gtk::TextBuffer::create();
 
-  if (data.get() != 0 && !data->data.empty())
-    buffer->set_text(&data->data[0]);
+  if (data != 0)
+    buffer->set_text(data);
   else
     buffer->set_text("There is no data available!");
 

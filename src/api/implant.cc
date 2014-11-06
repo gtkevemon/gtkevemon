@@ -2,6 +2,7 @@
 #include "bits/config.h"
 #include <iostream>
 #include <cstdlib>
+#include "util/helpers.h"
 
 #define IMPLANTS_FN "implants.xml"
 
@@ -28,8 +29,10 @@ Implants::request (void)
 void
 Implants::parse_xml (std::string const& filename)
 {
+  // cache into data
+  Helpers::read_file(filename, &data);
   /* Try to read the document. */
-  XmlDocumentPtr xml = XmlDocument::create_from_file(filename);
+  XmlDocumentPtr xml = XmlDocument::create(data);
   xmlNodePtr root = xml->get_root_element();
 
   std::cout << "Parsing XML: " IMPLANTS_FN "... ";
@@ -40,6 +43,7 @@ Implants::parse_xml (std::string const& filename)
 
   this->parse_implants_tag(root);
   std::cout << this->implants.size() << " implants." << std::endl;
+  valid = true;
 }
 
 void
@@ -91,7 +95,7 @@ Implants::refresh (void)
   std::exit(EXIT_FAILURE);
 }
 
-Implants::Implants (void)
+Implants::Implants (void) : valid(false)
 {
 }
 
@@ -105,3 +109,7 @@ Implants::getImplant(int typeID) const
     return &it->second;
 }
 
+const char *Implants::get_data() const
+{
+  return data.c_str();
+}
