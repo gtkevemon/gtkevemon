@@ -111,6 +111,15 @@ class ApiCharSheet : public ApiBase
     std::string corp;
     std::string balance;
 
+    /* Clone and respec info. */
+    std::string clone_name;
+    unsigned int clone_sp;
+    unsigned int free_sp;
+    std::string last_respec;
+    std::string last_timed_respec;
+    unsigned int free_respecs;
+    std::string last_clone_jump;
+
     /* Attribute values for the character. */
     ApiCharAttribs base;
     ApiCharAttribs implant;

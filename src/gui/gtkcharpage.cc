@@ -1096,24 +1096,41 @@ GtkCharPage::on_info_clicked (void)
   //this->on_skill_completed();
   //return;
 
-  std::string char_cached("<unknown>");
-  std::string train_cached("<unknown>");
+  Gtk::MessageDialog md("",
+      false, Gtk::MESSAGE_INFO, Gtk::BUTTONS_OK);
+  md.set_title("Character Information - GtkEveMon");
+  md.set_transient_for(*this->parent_window);
 
-  if (this->character->cs->valid)
-    char_cached = EveTime::get_gm_time_string
-        (this->character->cs->get_cached_until_t(), false);
+  if (!this->character->cs->valid)
+  {
+    md.set_message("<big><b>Character sheet is invalid!</b></big>", true);
+    md.run();
+    return;
+  }
+
+  std::stringstream ss;
+
+  ss << "<big><b>Clone Information</b></big>\n\n";
+  ss << "Last timed respec: " << this->character->cs->last_timed_respec << "\n";
+  ss << "Last respec: " << this->character->cs->last_respec << "\n";
+  ss << "Free respecs: " << this->character->cs->free_respecs << "\n";
+  ss << "Free skill points: " << this->character->cs->free_sp << "\n";
+  ss << "Last clone jump: " << this->character->cs->last_clone_jump << "\n";
+
+  ss << "\n\n";
+  ss << "<big><b>Sheet Cache Status</b></big>\n\n";
+  ss << "Character sheet expires at " <<
+      EveTime::get_gm_time_string(this->character->cs->get_cached_until_t(),
+      false) << "\n";
 
   if (this->character->valid_training_sheet())
-    train_cached = EveTime::get_gm_time_string
-        (this->character->sq->get_cached_until_t(), false);
+  {
+    ss << "Skill queue sheet expires at "
+        << EveTime::get_gm_time_string
+        (this->character->sq->get_cached_until_t(), false);;
+  }
 
-  Gtk::MessageDialog md("Information about cached sheets",
-      false, Gtk::MESSAGE_INFO, Gtk::BUTTONS_OK);
-  md.set_secondary_text(
-      "Character sheet expires at " + char_cached + "\n"
-      "Skill queue sheet expires at " + train_cached);
-  md.set_title("Cache Status - GtkEveMon");
-  md.set_transient_for(*this->parent_window);
+  md.set_message(ss.str(), true);
   md.run();
 }
 
