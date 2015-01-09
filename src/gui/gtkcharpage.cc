@@ -57,6 +57,11 @@ GtkCharPage::GtkCharPage (CharacterPtr character)
   this->attr_per_label.set_alignment(Gtk::ALIGN_LEFT);
   this->attr_mem_label.set_alignment(Gtk::ALIGN_LEFT);
   this->attr_wil_label.set_alignment(Gtk::ALIGN_LEFT);
+  this->last_respec_label.set_alignment(Gtk::ALIGN_LEFT);
+  this->last_timed_respec_label.set_alignment(Gtk::ALIGN_LEFT);
+  this->free_respecs_label.set_alignment(Gtk::ALIGN_LEFT);
+  this->free_sp_label.set_alignment(Gtk::ALIGN_LEFT);
+  this->last_clone_jump_label.set_alignment(Gtk::ALIGN_LEFT);
   this->training_label.set_alignment(Gtk::ALIGN_LEFT);
   this->remaining_label.set_alignment(Gtk::ALIGN_LEFT);
   this->finish_eve_label.set_alignment(Gtk::ALIGN_LEFT);
@@ -118,6 +123,11 @@ GtkCharPage::GtkCharPage (CharacterPtr character)
   Gtk::Label* attr_perception_desc = MK_LABEL("Perception:");
   Gtk::Label* attr_memory_desc = MK_LABEL("Memory:");
   Gtk::Label* attr_willpower_desc = MK_LABEL("Willpower:");
+  Gtk::Label* last_timed_respec_desc = MK_LABEL("Last timed respec:");
+  Gtk::Label* last_respec_desc = MK_LABEL("Last respec:");
+  Gtk::Label* free_respecs_desc = MK_LABEL("Free respecs:");
+  Gtk::Label* free_sp_desc = MK_LABEL("Free skill points:");
+  Gtk::Label* last_clone_jump_desc = MK_LABEL("Last clone jump:");
   corp_desc->set_alignment(Gtk::ALIGN_LEFT);
   isk_desc->set_alignment(Gtk::ALIGN_LEFT);
   skillpoints_desc->set_alignment(Gtk::ALIGN_LEFT);
@@ -127,6 +137,11 @@ GtkCharPage::GtkCharPage (CharacterPtr character)
   attr_perception_desc->set_alignment(Gtk::ALIGN_LEFT);
   attr_memory_desc->set_alignment(Gtk::ALIGN_LEFT);
   attr_willpower_desc->set_alignment(Gtk::ALIGN_LEFT);
+  last_timed_respec_desc->set_alignment(Gtk::ALIGN_LEFT);
+  last_respec_desc->set_alignment(Gtk::ALIGN_LEFT);
+  free_respecs_desc->set_alignment(Gtk::ALIGN_LEFT);
+  free_sp_desc->set_alignment(Gtk::ALIGN_LEFT);
+  last_clone_jump_desc->set_alignment(Gtk::ALIGN_LEFT);
 
   Gtk::Button* close_but = MK_BUT0;
   close_but->set_relief(Gtk::RELIEF_NONE);
@@ -168,7 +183,20 @@ GtkCharPage::GtkCharPage (CharacterPtr character)
   info_table->attach(this->attr_per_label, 5, 6, 2, 3, Gtk::FILL, Gtk::FILL);
   info_table->attach(this->attr_mem_label, 5, 6, 3, 4, Gtk::FILL, Gtk::FILL);
   info_table->attach(this->attr_wil_label, 5, 6, 4, 5, Gtk::FILL, Gtk::FILL);
-  info_table->attach(*char_buts_hbox, 6, 7, 0, 5,
+  info_table->attach(*MK_VSEP, 6, 7, 0, 5, Gtk::FILL, Gtk::FILL);
+  info_table->attach(*last_timed_respec_desc, 7, 8, 0, 1, Gtk::FILL, Gtk::FILL);
+  info_table->attach(*last_respec_desc, 7, 8, 1, 2, Gtk::FILL, Gtk::FILL);
+  info_table->attach(*last_clone_jump_desc, 7, 8, 2, 3, Gtk::FILL, Gtk::FILL);
+  info_table->attach(*free_respecs_desc, 7, 8, 3, 4, Gtk::FILL, Gtk::FILL);
+  info_table->attach(*free_sp_desc, 7, 8, 4, 5, Gtk::FILL, Gtk::FILL);
+
+  info_table->attach(this->last_timed_respec_label, 8, 9, 0, 1, Gtk::FILL, Gtk::FILL);
+  info_table->attach(this->last_respec_label, 8, 9, 1, 2, Gtk::FILL, Gtk::FILL);
+  info_table->attach(this->last_clone_jump_label, 8, 9, 2, 3, Gtk::FILL, Gtk::FILL);
+  info_table->attach(this->free_respecs_label, 8, 9, 3, 4, Gtk::FILL, Gtk::FILL);
+  info_table->attach(this->free_sp_label, 8, 9, 4, 5, Gtk::FILL, Gtk::FILL);
+
+  info_table->attach(*char_buts_hbox, 9, 10, 0, 5,
       Gtk::FILL | Gtk::EXPAND, Gtk::SHRINK | Gtk::FILL);
 
   /* Prepare training table. */
@@ -304,7 +332,11 @@ GtkCharPage::update_charsheet_details (void)
     this->attr_per_label.set_text("---");
     this->attr_mem_label.set_text("---");
     this->attr_wil_label.set_text("---");
-
+    this->last_respec_label.set_text("---");
+    this->last_timed_respec_label.set_text("---");
+    this->free_respecs_label.set_text("---");
+    this->free_sp_label.set_text("---");
+    this->last_clone_jump_label.set_text("---");
     this->known_skills_label.set_has_tooltip(false);
     this->skill_points_label.set_has_tooltip(false);
     this->attr_cha_label.set_has_tooltip(false);
@@ -346,6 +378,12 @@ GtkCharPage::update_charsheet_details (void)
         (cs->total.mem, 2));
     this->attr_wil_label.set_text(Helpers::get_string_from_double
         (cs->total.wil, 2));
+    this->last_respec_label.set_text(cs->last_respec);
+    this->last_timed_respec_label.set_text(cs->last_timed_respec);
+    this->last_clone_jump_label.set_text(cs->last_clone_jump);
+    this->free_respecs_label.set_text(Helpers::get_string_from_uint(cs->free_respecs));
+    this->free_sp_label.set_text(Helpers::get_string_from_uint(cs->free_sp));
+
 
     /* Build list of known skills per level (tooltip). */
     Glib::ustring skills_at_tt;

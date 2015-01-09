@@ -76,6 +76,11 @@ class GtkCharPage : public Gtk::VBox
     Gtk::Label attr_per_label;
     Gtk::Label attr_mem_label;
     Gtk::Label attr_wil_label;
+    Gtk::Label last_respec_label;
+    Gtk::Label last_timed_respec_label;
+    Gtk::Label free_respecs_label;
+    Gtk::Label free_sp_label;
+    Gtk::Label last_clone_jump_label;
     Gtk::Label training_label;
     Gtk::Label remaining_label;
     Gtk::Label finish_eve_label;
