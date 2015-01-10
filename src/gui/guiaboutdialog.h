@@ -13,28 +13,13 @@
 #ifndef GUI_ABOUT_DIALOG_HEADER
 #define GUI_ABOUT_DIALOG_HEADER
 
-#include <gtkmm/image.h>
-#include <gtkmm/label.h>
-
 #include "net/asynchttp.h"
 #include "winbase.h"
 
-#define SVN_VERSION_HOST "gtkevemon.battleclinic.com"
-#define SVN_VERSION_PATH "/svn_version.txt"
-
 class GuiAboutDialog : public WinBase
 {
-  private:
-    Gtk::Label version_label;
-    sigc::connection request;
-    Gtk::Image version_status_image;
-
   public:
     GuiAboutDialog (void);
-    ~GuiAboutDialog (void);
-
-    void request_version_label (void);
-    void set_version_label (AsyncHttpData result);
 };
 
 #endif /* GUI_ABOUT_DIALOG_HEADER */
