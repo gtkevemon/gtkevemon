@@ -165,8 +165,11 @@ Http::initialize_connection (Net::TCPSocket* sock)
 
   if (this->proxy.empty())
   {
-    in_addr_t host_addr = Net::DNSLookup::get_hostname(this->host);
-    sock->connect(host_addr, this->port);
+    /*
+     * TODO: Why was this using it's own dns lookup?
+     * in_addr_t host_addr = Net::DNSLookup::get_hostname(this->host);
+     */
+    sock->connect(this->host, this->port);
   }
   else
   {

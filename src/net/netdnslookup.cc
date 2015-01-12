@@ -1,7 +1,7 @@
 #ifndef WIN32
 # include <sys/types.h> // for netdb.h
 # include <sys/socket.h> // for netdb.h
-# include <netinet/in.h> // sockaddr_in
+# include <netinet/in.h> // sockaddr_storage
 # include <netdb.h> // ::getaddrinfo, ::freeaddrinfo
 #else
 # include <ws2tcpip.h>
@@ -15,7 +15,7 @@
 
 NET_NAMESPACE_BEGIN
 
-in_addr_t
+struct addrinfo*
 DNSLookup::get_hostname (char const* dnsname)
 {
   struct addrinfo hints;
@@ -31,15 +31,12 @@ DNSLookup::get_hostname (char const* dnsname)
         + std::string(::gai_strerror(retval)));
   }
 
-  in_addr_t result = ((struct sockaddr_in*)res->ai_addr)->sin_addr.s_addr;
-  ::freeaddrinfo(res);
-
-  return result;
+  return res;
 }
 
 /* ---------------------------------------------------------------- */
 
-in_addr_t
+struct addrinfo*
 DNSLookup::get_hostname (std::string const& dnsname)
 {
   return DNSLookup::get_hostname(dnsname.c_str());

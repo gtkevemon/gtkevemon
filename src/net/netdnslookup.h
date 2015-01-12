@@ -20,8 +20,8 @@ NET_NAMESPACE_BEGIN
 class DNSLookup
 {
   public:
-    static in_addr_t get_hostname (char const* dnsname);
-    static in_addr_t get_hostname (std::string const& dnsname);
+    static struct addrinfo* get_hostname (char const* dnsname);
+    static struct addrinfo* get_hostname (std::string const& dnsname);
 };
 
 NET_NAMESPACE_END

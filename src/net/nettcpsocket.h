@@ -29,8 +29,8 @@ NET_NAMESPACE_BEGIN
 class TCPSocket : public Socket
 {
   protected:
-    struct sockaddr_in remote;
-    struct sockaddr_in local;
+    struct sockaddr_storage remote;
+    struct sockaddr_storage local;
     std::size_t timeout;
 
   public:
@@ -73,7 +73,7 @@ class TCPSocket : public Socket
     /**
      * Same as the function above but it uses another host format.
      */
-    virtual void connect (in_addr_t host, int port);
+    void connect (struct addrinfo *addr);
 
     /**
      * The `set_connect_timeout' function allows to define a timeout in
@@ -81,42 +81,6 @@ class TCPSocket : public Socket
      * fail if no connection has been established if the timeout expires.
      */
     void set_connect_timeout (std::size_t timeout_ms);
-
-    /**
-     * The `get_local_port' function returns the remote port.
-     */
-    int get_local_port (void) const;
-
-    /**
-     * The `get_remote_port' function returns the remote port.
-     */
-    int get_remote_port (void) const;
-
-    /**
-     * The `get_local_address' function returns the local address in the
-     * standard numbers-and-dots notation.
-     */
-    std::string get_local_address (void) const;
-
-    /**
-     * The `get_remote_address' function returns the remote address in the
-     * standard numbers-and-dots notation.
-     */
-    std::string get_remote_address (void) const;
-
-    /*
-     * The `get_full_local' function returns the local address in the
-     * standard numbers-and-dots notation, followed by a colon (":") and
-     * the local port.
-     */
-    std::string get_full_local (void) const;
-
-    /*
-     * The `get_full_remote' function returns the remote address in the
-     * standard numbers-and-dots notation, followed by a colon (":") and
-     * the remote port.
-     */
-    std::string get_full_remote (void) const;
 };
 
 NET_NAMESPACE_END

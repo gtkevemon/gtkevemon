@@ -55,7 +55,6 @@ SSLTCPSocket::ssl_handshake (void)
         this->close();
         throw Exception("SSL error connecting.");
     }
-
     this->check_cert();
 }
 
