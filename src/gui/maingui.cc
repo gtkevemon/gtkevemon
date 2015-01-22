@@ -11,6 +11,7 @@
 #include "util/helpers.h"
 #include "api/evetime.h"
 #include "api/eveapi.h"
+#include "api/implant.h"
 #include "bits/config.h"
 #include "bits/server.h"
 #include "bits/serverlist.h"
@@ -724,8 +725,9 @@ MainGui::view_xml_source (void)
 
   ApiCharSheetPtr cs = character->cs;
   ApiSkillQueuePtr sq = character->sq;
-
-  if (!cs->valid && !sq->valid)
+  ImplantsPtr imp = Implants::request();
+  
+  if (!cs->valid && !sq->valid && !imp->valid)
   {
     this->info_display.append(INFO_WARNING, "Cannot open the source "
         "viewer without a valid sheet!");
@@ -738,6 +740,8 @@ MainGui::view_xml_source (void)
     window->append(cs->get_http_data(), "CharacterSheet.xml");
   if (sq->valid)
     window->append(sq->get_http_data(), "SkillQueue.xml");
+  if (imp->valid)
+    window->append(imp->get_data(), "Implants.xml");
 }
 
 /* ---------------------------------------------------------------- */

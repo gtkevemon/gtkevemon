@@ -28,6 +28,7 @@ class GuiXmlSource : public WinBase
     GuiXmlSource (void);
 
     void append (HttpDataPtr data, std::string const& title);
+    void append (const char *data, std::string const& title);
 };
 
 #endif /* GUI_XML_SOURCE_HEADER */

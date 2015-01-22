@@ -90,7 +90,7 @@ ssl_context (void)
     //BIO* bio_err = BIO_new_fp(stderr, BIO_NOCLOSE);
 
     /* Create SSL Context. */
-    SSL_CTX* ctx = SSL_CTX_new(SSLv3_client_method());
+    SSL_CTX* ctx = SSL_CTX_new(TLSv1_2_client_method());
 
     /* Load CAs we trust. */
 
@@ -103,10 +103,15 @@ ssl_context (void)
     X509* x509_entrust = PEM_read_bio_X509_AUX(cert_bio, 0, 0, 0);
     BIO_free(cert_bio);
 
+    cert_bio = BIO_new_mem_buf((void*)cert_startcom, -1);
+    X509* x509_startcom = PEM_read_bio_X509_AUX(cert_bio, 0, 0, 0);
+    BIO_free(cert_bio);
+
     /* Add certificate to store. */
     X509_STORE* store = SSL_CTX_get_cert_store(ctx);
     X509_STORE_add_cert(store, x509_geotrust);
     X509_STORE_add_cert(store, x509_entrust);
+    X509_STORE_add_cert(store, x509_startcom);
 
 #if 0
     /* Read certificate from file. */

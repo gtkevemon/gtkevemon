@@ -10,6 +10,7 @@
 #include "apiskilltree.h"
 #include "apicerttree.h"
 #include "apicharsheet.h"
+#include "implant.h"
 
 void
 ApiCharSheet::set_api_data (EveApiData const& data)
@@ -152,9 +153,6 @@ ApiCharSheet::parse_result_tag (xmlNodePtr node)
     if (!xmlStrcmp(node->name, (xmlChar const*)"attributes"))
       this->parse_attribute_tag(node->children);
 
-    if (!xmlStrcmp(node->name, (xmlChar const*)"attributeEnhancers"))
-      this->parse_attrib_enhancers_tag(node->children);
-
     if (!xmlStrcmp(node->name, (xmlChar const*)"rowset"))
     {
       std::string name = this->get_property(node, "name");
@@ -162,6 +160,8 @@ ApiCharSheet::parse_result_tag (xmlNodePtr node)
         this->parse_skills_tag(node->children);
       else if (name == "certificates")
         this->parse_certificates_tag(node->children);
+      else if (name == "implants")
+        this->parse_implants_tag(node->children);
     }
   }
 }
@@ -187,18 +187,14 @@ ApiCharSheet::parse_attribute_tag (xmlNodePtr node)
 /* ---------------------------------------------------------------- */
 
 void
-ApiCharSheet::parse_attrib_enhancers_tag (xmlNodePtr node)
+ApiCharSheet::parse_implants_tag (xmlNodePtr node)
 {
   for (; node != 0; node = node->next)
   {
     if (node->type != XML_ELEMENT_NODE)
       continue;
-
-    this->find_implant_bonus(node, "memoryBonus", this->implant.mem);
-    this->find_implant_bonus(node, "willpowerBonus", this->implant.wil);
-    this->find_implant_bonus(node, "perceptionBonus", this->implant.per);
-    this->find_implant_bonus(node, "intelligenceBonus", this->implant.intl);
-    this->find_implant_bonus(node, "charismaBonus", this->implant.cha);
+    
+    this->find_implant_bonus(node, this->implant);
   }
 }
 
@@ -280,16 +276,20 @@ ApiCharSheet::parse_certificates_tag (xmlNodePtr node)
 /* ---------------------------------------------------------------- */
 
 void
-ApiCharSheet::find_implant_bonus (xmlNodePtr node, char const* name, double& v)
+ApiCharSheet::find_implant_bonus (xmlNodePtr node, ApiCharAttribs &attribs)
 {
-  if (node->type == XML_ELEMENT_NODE
-      && !xmlStrcmp(node->name, (xmlChar const*)name))
+  if (node->type == XML_ELEMENT_NODE)
   {
-    node = node->children;
-    while (node != 0)
-    {
-      this->set_double_if_node_text(node, "augmentatorValue", v);
-      node = node->next;
+    int typeID = get_property_int(node, "typeID");
+    const Implant *implant = Implants::request()->getImplant(typeID);
+    if (implant != 0) {
+      attribs.intl += implant->intelligenceBonus;
+      attribs.mem += implant->memoryBonus;
+      attribs.cha += implant->charismaBonus;
+      attribs.per += implant->perceptionBonus;
+      attribs.wil += implant->willpowerBonus;
+    } else {
+      std::cerr << "Unable to find implant data for implant typeID: " << typeID << std::endl;
     }
   }
 }

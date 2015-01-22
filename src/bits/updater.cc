@@ -5,6 +5,7 @@
 #include "api/evetime.h"
 #include "api/apicerttree.h"
 #include "api/apiskilltree.h"
+#include "api/implant.h"
 #include "bits/config.h"
 #include "util/os.h"
 #include "util/helpers.h"
@@ -28,6 +29,12 @@ UpdaterBase::UpdaterBase (void)
     file.file_name = "CertificateTree.xml";
     file.server_host = "api.eveonline.com";
     file.server_path = "/eve/CertificateTree.xml.aspx";
+    file.local_path = conf_dir + "/" + file.file_name;
+    this->files.push_back(file);
+
+    file.file_name = "implants.xml";
+    file.server_host = "www.nexoid.at";
+    file.server_path = "/tmp/implants.xml";
     file.local_path = conf_dir + "/" + file.file_name;
     this->files.push_back(file);
 }
@@ -107,6 +114,8 @@ Updater::background_check_intern (void)
                 ApiCertTree::request()->refresh();
             else if (ApiSkillTree::request()->get_filename() == file_path)
                 ApiSkillTree::request()->refresh();
+            else if (Implants::request()->get_filename() == file_path)
+                Implants::request()->refresh();
             else
                 std::cout << "Updater: File association failed!" << std::endl;
         }

@@ -91,11 +91,11 @@ class ApiCharSheet : public ApiBase
     void parse_eveapi_tag (xmlNodePtr node);
     void parse_result_tag (xmlNodePtr node);
     void parse_attribute_tag (xmlNodePtr node);
-    void parse_attrib_enhancers_tag (xmlNodePtr node);
+    void parse_implants_tag (xmlNodePtr node);
     void parse_skills_tag (xmlNodePtr node);
     void parse_certificates_tag (xmlNodePtr node);
 
-    void find_implant_bonus (xmlNodePtr node, char const* name, double& var);
+    void find_implant_bonus (xmlNodePtr node, ApiCharAttribs &attribs);
     void debug_dump (void);
 
   /* Publicly available collection of gathered data. */
