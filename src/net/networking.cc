@@ -90,7 +90,8 @@ ssl_context (void)
     //BIO* bio_err = BIO_new_fp(stderr, BIO_NOCLOSE);
 
     /* Create SSL Context. */
-    SSL_CTX* ctx = SSL_CTX_new(SSLv3_client_method());
+    SSL_CTX* ctx = SSL_CTX_new(SSLv23_client_method());
+    SSL_CTX_set_options(ctx, SSL_OP_NO_SSLv3);
 
     /* Load CAs we trust. */
 
