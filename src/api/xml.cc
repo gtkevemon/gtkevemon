@@ -33,7 +33,7 @@ void
 XmlDocument::parse_from_file (std::string const& filename)
 {
   std::string contents;
-  Helpers::read_file(filename, &contents);
+  Helpers::read_file(filename, &contents, true);
   this->parse(contents);
 }
 

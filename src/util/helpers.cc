@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iomanip>
 #include <sstream>
+#include <zlib.h>
 
 #include "exception.h"
 #include "helpers.h"
@@ -270,17 +271,40 @@ Helpers::delete_argv (char** argv)
 /* ---------------------------------------------------------------- */
 
 void
-Helpers::read_file (std::string const& filename, std::string* data)
+Helpers::read_file (std::string const& filename, std::string* data,
+    bool auto_gunzip)
 {
-  std::ifstream in(filename.c_str(), std::ios::binary);
-  if (!in)
-    throw FileException(filename, ::strerror(errno));
+  if (auto_gunzip == false)
+  {
+    /* Read standard binary file. */
+    std::ifstream in(filename.c_str(), std::ios::binary);
+    if (!in)
+      throw FileException(filename, ::strerror(errno));
 
-  in.seekg(0, std::ios::end);
-  data->resize(in.tellg());
-  in.seekg(0, std::ios::beg);
-  in.read(&data->at(0), data->size());
-  in.close();
+    in.seekg(0, std::ios::end);
+    data->resize(in.tellg());
+    in.seekg(0, std::ios::beg);
+    in.read(&data->at(0), data->size());
+    in.close();
+  }
+  else
+  {
+    /* Read file and transparently uncompress if gzipped. */
+    ::gzFile file = ::gzopen(filename.c_str(), "r");
+    if (file == NULL)
+     throw FileException(filename, ::strerror(errno));
+
+    while (true)
+    {
+      unsigned char buffer[1024];
+      int bytes_read = ::gzread(file, buffer, 1024);
+      if (bytes_read > 0)
+          data->append(buffer, buffer + bytes_read);
+      else
+        break;
+    }
+    ::gzclose(file);
+  }
 }
 
 /* ---------------------------------------------------------------- */
