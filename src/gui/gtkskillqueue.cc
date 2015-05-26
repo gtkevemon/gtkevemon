@@ -21,7 +21,8 @@ GtkSkillQueueViewCols::GtkSkillQueueViewCols (Gtk::TreeView* view,
     start_time("Start time", cols->start_time),
     end_time("Finish time", cols->end_time),
     duration("Duration", cols->duration),
-    training("Training", cols->training)
+    training("Training", cols->training),
+    attribs("Attribs", cols->attribs)
 {
   this->skill_name.set_title("Skill name");
   this->skill_name.pack_start(cols->skill_icon, false);
@@ -38,6 +39,7 @@ GtkSkillQueueViewCols::GtkSkillQueueViewCols (Gtk::TreeView* view,
   this->append_column(&this->end_time, GtkColumnOptions(true, false, true));
   this->append_column(&this->duration, GtkColumnOptions(true, false, true));
   this->append_column(&this->training, GtkColumnOptions(true, false, true));
+  this->append_column(&this->attribs, GtkColumnOptions(true, false, true));
 
   this->position.get_first_cell_renderer()->set_property("xalign", 1.0f);
   this->skill_name.set_expand(true);
@@ -170,6 +172,14 @@ GtkSkillQueue::on_apidata_available (void)
         = EveTime::get_string_for_timediff(duration, true);
     row[this->queue_cols.training]
         = EveTime::get_string_for_timediff(training, true);
+
+    Glib::ustring attribs;
+    attribs += ApiSkillTree::get_attrib_short_name(skill->primary);
+    attribs += " / ";
+    attribs += ApiSkillTree::get_attrib_short_name(skill->secondary);
+    row[this->queue_cols.attribs]
+      = attribs;
+
     row[this->queue_cols.skill_id] = item.skill_id;
   }
 }
