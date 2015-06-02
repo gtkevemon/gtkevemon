@@ -63,16 +63,16 @@ class TCPSocket
      * Read bytes from the socket. Waits until data is available, or until
      * timeout ms, before returning.
      */
-    size_t read (unsigned char * buffer, size_t max_bytes);
+    std::size_t read (unsigned char * buffer, std::size_t max_bytes);
     
     /**
      * Writes bytes to the socket. Waits until socket is ready for writing,
      * or until timeout ms, before returning.
      */
-    size_t write (const unsigned char * buffer, size_t bytes);
+    std::size_t write (const unsigned char * buffer, std::size_t bytes);
 
   private:
-    size_t timeout; // In milliseconds
+    std::size_t timeout; // In milliseconds
     CURL * curl_handle;
     bool is_connected;
 };

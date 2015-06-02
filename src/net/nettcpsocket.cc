@@ -40,7 +40,7 @@ TCPSocket::init()
 /* ---------------------------------------------------------------- */
 
 void
-TCPSocket::set_connect_timeout (size_t timeout)
+TCPSocket::set_connect_timeout (std::size_t timeout)
 {
   this->timeout = timeout;
 }
@@ -64,15 +64,15 @@ TCPSocket::connect (std::string const & host, int port)
 
 /* ---------------------------------------------------------------- */
 
-size_t
-TCPSocket::read (unsigned char * buffer, size_t max_bytes)
+std::size_t
+TCPSocket::read (unsigned char * buffer, std::size_t max_bytes)
 {
   CURLcode res;
-  size_t bytes_received;
+  std::size_t bytes_received;
 
   // This timer could be off by up to one second.
   // Make sure that local timeout is at least 1 second.
-  size_t timeout = ((this->timeout / 1000) > 2) ? (this->timeout / 1000) : 2;
+  std::size_t timeout = ((this->timeout / 1000) > 2) ? (this->timeout / 1000) : 2;
   time_t now_time;
   time_t begin_time = time(NULL);
   do {
@@ -88,15 +88,15 @@ TCPSocket::read (unsigned char * buffer, size_t max_bytes)
 
 /* ---------------------------------------------------------------- */
 
-size_t
-TCPSocket::write (const unsigned char * buffer, size_t bytes)
+std::size_t
+TCPSocket::write (const unsigned char * buffer, std::size_t bytes)
 {
   CURLcode res;
-  size_t bytes_sent;
+  std::size_t bytes_sent;
 
   // This timer could be off by up to one second.
   // Make sure that local timeout is at least 1 second.
-  size_t timeout = ((this->timeout / 1000) > 2) ? (this->timeout / 1000) : 2;
+  std::size_t timeout = ((this->timeout / 1000) > 2) ? (this->timeout / 1000) : 2;
   time_t now_time;
   time_t begin_time = time(NULL);
   do {

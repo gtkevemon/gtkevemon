@@ -83,8 +83,8 @@ class Http
 
     /* Tracking the HTTP state. */
     HttpState http_state;
-    size_t bytes_read;
-    size_t bytes_total;
+    std::size_t bytes_read;
+    std::size_t bytes_total;
 
   private:
     void initialize_defaults (void);
@@ -115,13 +115,13 @@ class Http
     std::string const& get_path (void) const;
 
     /* Information about the progress. */
-    size_t get_bytes_read (void) const;
+    std::size_t get_bytes_read (void) const;
     /* Information about the total size. This may be zero! */
-    size_t get_bytes_total (void) const;
+    std::size_t get_bytes_total (void) const;
 
     /* Static callback functions for libcurl */
-    static size_t data_callback(char * buffer, size_t size, size_t nmemb, void * combo);
-    static size_t header_callback(char * buffer, size_t size, size_t nitems, void * combo);
+    static std::size_t data_callback(char * buffer, std::size_t size, std::size_t nmemb, void * combo);
+    static std::size_t header_callback(char * buffer, std::size_t size, std::size_t nitems, void * combo);
 
     /* Request the document. This will block until transfer is completed. */
     HttpDataPtr request (void);
@@ -204,13 +204,13 @@ Http::get_path (void) const
     return this->path;
 }
 
-inline size_t
+inline std::size_t
 Http::get_bytes_read (void) const
 {
   return this->bytes_read;
 }
 
-inline size_t
+inline std::size_t
 Http::get_bytes_total (void) const
 {
   return this->bytes_total;

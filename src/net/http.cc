@@ -173,37 +173,33 @@ Http::get_uint_from_str (std::string const& str)
 
 /* ---------------------------------------------------------------- */
 
-size_t
-Http::header_callback(char * buffer, size_t size, size_t nitems, void * combo)
+std::size_t
+Http::header_callback(char * buffer, std::size_t size, std::size_t nitems, void * combo)
 {
-  size_t buffer_size = size * nitems;
+  std::size_t buffer_size = size * nitems;
   if (buffer_size > 2) {
     Http * http = ((HttpCombo *) combo)->http;
     HttpDataPtr result = *((HttpCombo *) combo)->httpdataptr;
 
     http->http_state = HTTP_STATE_RECEIVING;
 
-    char * header_line = (char *) malloc(buffer_size + 1);
-    memcpy(header_line, buffer, buffer_size);
-    header_line[buffer_size] = 0;
+    std::string header_line;
+    header_line.assign(buffer, buffer_size);
     if (header_line[buffer_size - 2] == '\r')
-      header_line[buffer_size - 2] = 0;
+      header_line.erase(buffer_size - 2);
 
     result->headers.push_back(header_line);
 
-    if (buffer_size >= 16 && !strncmp(header_line, "Content-Length: ", 16)) {
-      http->bytes_total = (size_t) http->get_uint_from_str(header_line + 16);
-    }
-
-    free(header_line);
+    if (header_line.substr(0, 16) == "Content-Length: ")
+      http->bytes_total = http->get_uint_from_str(header_line.substr(16));
   }
   return buffer_size;
 }
 
 /* ---------------------------------------------------------------- */
 
-size_t
-Http::data_callback(char * buffer, size_t size, size_t nmemb, void * combo)
+std::size_t
+Http::data_callback(char * buffer, std::size_t size, std::size_t nmemb, void * combo)
 {
   Http * http = ((HttpCombo *) combo)->http;
   HttpDataPtr result = *((HttpCombo *) combo)->httpdataptr;

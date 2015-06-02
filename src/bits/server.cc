@@ -53,11 +53,8 @@ Server::refresh_intern (void)
   TCPSocket sock;
   try
   {
-    // Init connection
     sock.init();
-    // Set timeout
     sock.set_connect_timeout(SERVER_TIMEOUT * 1000);
-    // Connect to host
     sock.connect(this->host, this->port);
   }
   catch (Exception& e)
