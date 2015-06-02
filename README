@@ -19,7 +19,7 @@ using your distribution's package management) are:
 
 	libxml++ (with headers)
 	libgtkmm (with headers, at least version 2.4)
-	libssl (with headers)
+	libcurl (with headers, compiled with encryption support)
 
 The source does not come with a configure script. Just execute:
 

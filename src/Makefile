@@ -12,7 +12,7 @@ endif
 GCC_FLAGS = -Wall -Wextra -ansi -Wundef -Wconversion -pedantic -Os
 ifdef DEBUG
     GCC_FLAGS := $(filter-out -Os,$(GCC_FLAGS))
-    GCC_FLAGS += -g
+    GCC_FLAGS += -g -O0
 endif
 
 GCC_INCL = -I.
@@ -25,7 +25,7 @@ XML_LIBS = $(shell pkg-config --libs libxml-2.0)
 SSL_LIBS = $(shell pkg-config --libs openssl)
 PTH_LIBS = -lpthread
 ZLIB_LIBS = -lz
-
+CURL_LIBS = $(shell pkg-config --libs libcurl)
 
 # Platform specific configuration
 ifeq (${PLATFORM},darwin)
@@ -50,7 +50,7 @@ endif
 
 ifeq (${PLATFORM},linux)
   CXX ?= g++
-  LDFLAGS = ${GTK_LIBS} ${PTH_LIBS} ${XML_LIBS} ${ZLIB_LIBS} ${SSL_LIBS}
+  LDFLAGS = ${GTK_LIBS} ${PTH_LIBS} ${XML_LIBS} ${ZLIB_LIBS} ${SSL_LIBS} ${CURL_LIBS}
 
   CORES = $(shell grep processor /proc/cpuinfo | wc -l)
   SOURCES = util/pipedexec_posix.cc util/os_unix.cc

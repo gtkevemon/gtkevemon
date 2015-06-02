@@ -14,7 +14,6 @@
 #include <cstdlib> // for EXIT_SUCCESS
 #include <gtkmm/main.h>
 
-#include "net/networking.h"
 #include "api/evetime.h"
 #include "bits/argumentsettings.h"
 #include "bits/serverlist.h"
@@ -42,7 +41,6 @@ main (int argc, char* argv[])
 
   Gtk::Main kit(&argc, &argv);
   ArgumentSettings::init(argc, argv);
-  Net::init();
   Config::init_defaults();
   Config::init_config_path();
   Config::init_user_config();
@@ -67,7 +65,6 @@ main (int argc, char* argv[])
   ImageStore::unload();
 
   Config::unload();
-  Net::unload();
 
   return EXIT_SUCCESS;
 }

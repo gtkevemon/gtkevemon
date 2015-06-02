@@ -1,4 +1,5 @@
 #include <iostream>
+#include <curl/curl.h>
 
 #include "util/os.h"
 #include "util/exception.h"
@@ -49,17 +50,19 @@ Server::refresh_intern (void)
   this->online = false;
   this->players = 0;
 
-  Net::TCPSocket sock;
+  TCPSocket sock;
   try
   {
-    /* Connect and see if it's online or not. */
+    // Init connection
+    sock.init();
+    // Set timeout
     sock.set_connect_timeout(SERVER_TIMEOUT * 1000);
+    // Connect to host
     sock.connect(this->host, this->port);
   }
   catch (Exception& e)
   {
     /* Nope. Not online or some error occured. */
-    sock.close();
     this->refreshing = false;
     this->online = false;
     this->players = 0;
@@ -78,7 +81,8 @@ Server::refresh_intern (void)
 
   try
   {
-    std::size_t nbytes = sock.full_read(buffer, SERVER_READ_BYTES);
+    // Read the bytes into a buffer
+    std::size_t nbytes = sock.read(buffer, SERVER_READ_BYTES);
     buffer[SERVER_READ_BYTES] = '\0';
 
     if (nbytes < SERVER_READ_BYTES)
@@ -86,7 +90,6 @@ Server::refresh_intern (void)
   }
   catch (Exception& e)
   {
-    sock.close();
     this->refreshing = false;
     this->players = -2;
 
@@ -96,7 +99,7 @@ Server::refresh_intern (void)
     return;
   }
 
-  sock.close();
+  // Analyze contents of buffer to determine number of players
 
   // Amended usercount checks, info from clef on iRC
   // [16:01] <clef> BradStone: for the moment, take that byte[19]

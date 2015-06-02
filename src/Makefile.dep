@@ -6,69 +6,52 @@ util/bgprocess.o: util/bgprocess.cc util/exception.h util/helpers.h \
 util/conf.o: util/conf.cc util/exception.h util/conf.h util/ref_ptr.h
 util/helpers.o: util/helpers.cc util/exception.h util/helpers.h
 api/apibase.o: api/apibase.cc util/helpers.h util/exception.h \
- api/evetime.h api/apibase.h net/http.h util/ref_ptr.h net/nettcpsocket.h \
- net/netdefines.h net/netsocket.h net/httpstatus.h api/eveapi.h \
- net/asynchttp.h util/thread.h util/thread_posix.h net/http.h api/xml.h
+ api/evetime.h api/apibase.h net/http.h util/ref_ptr.h net/httpstatus.h \
+ api/eveapi.h net/asynchttp.h util/thread.h util/thread_posix.h \
+ net/http.h api/xml.h
 api/apicerttree.o: api/apicerttree.cc util/os.h util/helpers.h \
  util/exception.h bits/config.h util/conf.h util/ref_ptr.h \
  net/asynchttp.h util/thread.h util/thread_posix.h net/http.h \
- util/ref_ptr.h net/nettcpsocket.h net/netdefines.h net/netsocket.h \
- net/httpstatus.h api/xml.h api/apicerttree.h api/apibase.h net/http.h \
- api/eveapi.h
+ util/ref_ptr.h net/httpstatus.h api/xml.h api/apicerttree.h \
+ api/apibase.h net/http.h api/eveapi.h
 api/apicharlist.o: api/apicharlist.cc util/exception.h api/xml.h \
- util/ref_ptr.h api/apicharlist.h net/http.h net/nettcpsocket.h \
- net/netdefines.h net/netsocket.h net/httpstatus.h api/apibase.h \
- api/eveapi.h net/asynchttp.h util/thread.h util/thread_posix.h \
- net/http.h
+ util/ref_ptr.h api/apicharlist.h net/http.h net/httpstatus.h \
+ api/apibase.h api/eveapi.h net/asynchttp.h util/thread.h \
+ util/thread_posix.h net/http.h
 api/apicharsheet.o: api/apicharsheet.cc util/exception.h util/helpers.h \
- api/xml.h util/ref_ptr.h api/apibase.h net/http.h net/nettcpsocket.h \
- net/netdefines.h net/netsocket.h net/httpstatus.h api/eveapi.h \
- net/asynchttp.h util/thread.h util/thread_posix.h net/http.h \
- api/apiskilltree.h api/apicerttree.h api/apicharsheet.h
+ api/xml.h util/ref_ptr.h api/apibase.h net/http.h net/httpstatus.h \
+ api/eveapi.h net/asynchttp.h util/thread.h util/thread_posix.h \
+ net/http.h api/apiskilltree.h api/apicerttree.h api/apicharsheet.h
 api/apiskillqueue.o: api/apiskillqueue.cc util/helpers.h api/xml.h \
  util/ref_ptr.h api/evetime.h api/apiskillqueue.h api/eveapi.h \
  net/asynchttp.h util/thread.h util/thread_posix.h util/exception.h \
- net/http.h net/nettcpsocket.h net/netdefines.h net/netsocket.h \
- net/httpstatus.h api/apibase.h net/http.h
+ net/http.h net/httpstatus.h api/apibase.h net/http.h
 api/apiskilltree.o: api/apiskilltree.cc util/helpers.h util/exception.h \
  bits/config.h util/conf.h util/ref_ptr.h net/asynchttp.h util/thread.h \
- util/thread_posix.h net/http.h util/ref_ptr.h net/nettcpsocket.h \
- net/netdefines.h net/netsocket.h net/httpstatus.h api/xml.h \
+ util/thread_posix.h net/http.h util/ref_ptr.h net/httpstatus.h api/xml.h \
  api/apiskilltree.h api/apibase.h net/http.h api/eveapi.h
 api/eveapi.o: api/eveapi.cc util/os.h bits/config.h util/conf.h \
  util/ref_ptr.h net/asynchttp.h util/thread.h util/thread_posix.h \
- util/exception.h net/http.h util/ref_ptr.h net/nettcpsocket.h \
- net/netdefines.h net/netsocket.h net/httpstatus.h api/eveapi.h
+ util/exception.h net/http.h util/ref_ptr.h net/httpstatus.h api/eveapi.h
 api/evetime.o: api/evetime.cc util/os.h bits/config.h util/conf.h \
  util/ref_ptr.h net/asynchttp.h util/thread.h util/thread_posix.h \
- util/exception.h net/http.h util/ref_ptr.h net/nettcpsocket.h \
- net/netdefines.h net/netsocket.h net/httpstatus.h api/evetime.h
+ util/exception.h net/http.h util/ref_ptr.h net/httpstatus.h \
+ api/evetime.h
 api/xml.o: api/xml.cc util/exception.h util/helpers.h api/xml.h \
  util/ref_ptr.h
 net/asynchttp.o: net/asynchttp.cc net/httpstatus.h net/asynchttp.h \
  util/thread.h util/thread_posix.h util/exception.h net/http.h \
- util/ref_ptr.h net/nettcpsocket.h net/netdefines.h net/netsocket.h
-net/http.o: net/http.cc util/exception.h net/netdnslookup.h \
- net/netdefines.h net/netssltcpsocket.h net/nettcpsocket.h \
- net/netsocket.h net/http.h util/ref_ptr.h net/httpstatus.h
-net/netdnslookup.o: net/netdnslookup.cc util/exception.h \
- net/netdnslookup.h net/netdefines.h
-net/netsocket.o: net/netsocket.cc util/exception.h net/networking.h \
- net/netdefines.h net/netsocket.h
-net/netssltcpsocket.o: net/netssltcpsocket.cc util/helpers.h \
- util/exception.h net/networking.h net/netdefines.h net/netssltcpsocket.h \
- net/nettcpsocket.h net/netsocket.h
-net/nettcpsocket.o: net/nettcpsocket.cc util/exception.h net/networking.h \
- net/netdefines.h net/nettcpsocket.h net/netsocket.h
-net/networking.o: net/networking.cc net/certificates.h net/netdefines.h \
- net/networking.h
+ util/ref_ptr.h
+net/http.o: net/http.cc util/exception.h net/http.h util/ref_ptr.h \
+ net/httpstatus.h
+net/nettcpsocket.o: net/nettcpsocket.cc util/exception.h \
+ net/nettcpsocket.h
 gui/gtkcharpage.o: gui/gtkcharpage.cc util/helpers.h util/exception.h \
  api/evetime.h api/apicharsheet.h util/ref_ptr.h net/http.h \
- net/nettcpsocket.h net/netdefines.h net/netsocket.h net/httpstatus.h \
- api/apibase.h api/eveapi.h net/asynchttp.h util/thread.h \
- util/thread_posix.h net/http.h api/xml.h api/apiskilltree.h \
- api/apicerttree.h api/apiskilltree.h bits/config.h util/conf.h \
- util/ref_ptr.h bits/notifier.h bits/character.h api/eveapi.h \
+ net/httpstatus.h api/apibase.h api/eveapi.h net/asynchttp.h \
+ util/thread.h util/thread_posix.h net/http.h api/xml.h \
+ api/apiskilltree.h api/apicerttree.h api/apiskilltree.h bits/config.h \
+ util/conf.h util/ref_ptr.h bits/notifier.h bits/character.h api/eveapi.h \
  api/apiskillqueue.h bits/characterlist.h gui/imagestore.h \
  gui/gtkdefines.h gui/gtkhelpers.h bits/character.h gui/guiskill.h \
  gui/winbase.h gui/guiskillqueue.h gui/gtkskillqueue.h \
@@ -78,41 +61,35 @@ gui/gtkcolumnsbase.o: gui/gtkcolumnsbase.cc util/exception.h \
  util/helpers.h gui/gtkcolumnsbase.h
 gui/gtkconfwidgets.o: gui/gtkconfwidgets.cc bits/config.h util/conf.h \
  util/ref_ptr.h net/asynchttp.h util/thread.h util/thread_posix.h \
- util/exception.h net/http.h util/ref_ptr.h net/nettcpsocket.h \
- net/netdefines.h net/netsocket.h net/httpstatus.h gui/gtkportrait.h \
- gui/gtkconfwidgets.h
+ util/exception.h net/http.h util/ref_ptr.h net/httpstatus.h \
+ gui/gtkportrait.h gui/gtkconfwidgets.h
 gui/gtkdownloader.o: gui/gtkdownloader.cc util/helpers.h net/http.h \
- util/ref_ptr.h net/nettcpsocket.h net/netdefines.h net/netsocket.h \
- net/httpstatus.h bits/config.h util/conf.h util/ref_ptr.h \
+ util/ref_ptr.h net/httpstatus.h bits/config.h util/conf.h util/ref_ptr.h \
  net/asynchttp.h util/thread.h util/thread_posix.h util/exception.h \
  net/http.h gui/gtkdefines.h gui/gtkdownloader.h
 gui/gtkhelpers.o: gui/gtkhelpers.cc util/helpers.h api/evetime.h \
  gui/imagestore.h gui/gtkhelpers.h api/apiskilltree.h util/ref_ptr.h \
- api/apibase.h net/http.h net/nettcpsocket.h net/netdefines.h \
- net/netsocket.h net/httpstatus.h api/eveapi.h net/asynchttp.h \
+ api/apibase.h net/http.h net/httpstatus.h api/eveapi.h net/asynchttp.h \
  util/thread.h util/thread_posix.h util/exception.h net/http.h api/xml.h \
  api/apicharsheet.h api/apiskilltree.h api/apicerttree.h bits/character.h \
  api/eveapi.h api/apiskillqueue.h
 gui/gtkinfodisplay.o: gui/gtkinfodisplay.cc api/evetime.h \
  util/exception.h gui/gtkdefines.h gui/gtkhelpers.h api/apiskilltree.h \
- util/ref_ptr.h api/apibase.h net/http.h net/nettcpsocket.h \
- net/netdefines.h net/netsocket.h net/httpstatus.h api/eveapi.h \
+ util/ref_ptr.h api/apibase.h net/http.h net/httpstatus.h api/eveapi.h \
  net/asynchttp.h util/thread.h util/thread_posix.h net/http.h api/xml.h \
  api/apicharsheet.h api/apiskilltree.h api/apicerttree.h bits/character.h \
  api/eveapi.h api/apiskillqueue.h gui/gtkinfodisplay.h gui/winbase.h
 gui/gtkitembrowser.o: gui/gtkitembrowser.cc util/helpers.h bits/config.h \
  util/conf.h util/ref_ptr.h net/asynchttp.h util/thread.h \
  util/thread_posix.h util/exception.h net/http.h util/ref_ptr.h \
- net/nettcpsocket.h net/netdefines.h net/netsocket.h net/httpstatus.h \
- gui/imagestore.h gui/gtkhelpers.h api/apiskilltree.h api/apibase.h \
- net/http.h api/eveapi.h api/xml.h api/apicharsheet.h api/apiskilltree.h \
- api/apicerttree.h bits/character.h api/eveapi.h api/apiskillqueue.h \
- gui/gtkdefines.h gui/gtkitembrowser.h gui/gtkplannerbase.h \
- api/apicerttree.h
+ net/httpstatus.h gui/imagestore.h gui/gtkhelpers.h api/apiskilltree.h \
+ api/apibase.h net/http.h api/eveapi.h api/xml.h api/apicharsheet.h \
+ api/apiskilltree.h api/apicerttree.h bits/character.h api/eveapi.h \
+ api/apiskillqueue.h gui/gtkdefines.h gui/gtkitembrowser.h \
+ gui/gtkplannerbase.h api/apicerttree.h
 gui/gtkitemdetails.o: gui/gtkitemdetails.cc util/helpers.h api/evetime.h \
  gui/imagestore.h gui/gtkhelpers.h api/apiskilltree.h util/ref_ptr.h \
- api/apibase.h net/http.h net/nettcpsocket.h net/netdefines.h \
- net/netsocket.h net/httpstatus.h api/eveapi.h net/asynchttp.h \
+ api/apibase.h net/http.h net/httpstatus.h api/eveapi.h net/asynchttp.h \
  util/thread.h util/thread_posix.h util/exception.h net/http.h api/xml.h \
  api/apicharsheet.h api/apiskilltree.h api/apicerttree.h bits/character.h \
  api/eveapi.h api/apiskillqueue.h gui/gtkdefines.h gui/gtkitemdetails.h \
@@ -120,80 +97,70 @@ gui/gtkitemdetails.o: gui/gtkitemdetails.cc util/helpers.h api/evetime.h \
 gui/gtkplannerbase.o: gui/gtkplannerbase.cc util/helpers.h \
  gui/imagestore.h gui/gtkdefines.h gui/gtkplannerbase.h \
  api/apiskilltree.h util/ref_ptr.h api/apibase.h net/http.h \
- net/nettcpsocket.h net/netdefines.h net/netsocket.h net/httpstatus.h \
- api/eveapi.h net/asynchttp.h util/thread.h util/thread_posix.h \
- util/exception.h net/http.h api/xml.h api/apicerttree.h
+ net/httpstatus.h api/eveapi.h net/asynchttp.h util/thread.h \
+ util/thread_posix.h util/exception.h net/http.h api/xml.h \
+ api/apicerttree.h
 gui/gtkportrait.o: gui/gtkportrait.cc util/os.h net/http.h util/ref_ptr.h \
- net/nettcpsocket.h net/netdefines.h net/netsocket.h net/httpstatus.h \
- bits/config.h util/conf.h util/ref_ptr.h net/asynchttp.h util/thread.h \
- util/thread_posix.h util/exception.h net/http.h gui/imagestore.h \
- gui/gtkportrait.h
+ net/httpstatus.h bits/config.h util/conf.h util/ref_ptr.h \
+ net/asynchttp.h util/thread.h util/thread_posix.h util/exception.h \
+ net/http.h gui/imagestore.h gui/gtkportrait.h
 gui/gtkserver.o: gui/gtkserver.cc util/exception.h util/helpers.h \
  util/thread.h util/thread_posix.h bits/serverlist.h bits/server.h \
  util/ref_ptr.h gui/gtkserver.h bits/server.h
 gui/gtkskillqueue.o: gui/gtkskillqueue.cc util/helpers.h api/evetime.h \
  api/apiskilltree.h util/ref_ptr.h api/apibase.h net/http.h \
- net/nettcpsocket.h net/netdefines.h net/netsocket.h net/httpstatus.h \
- api/eveapi.h net/asynchttp.h util/thread.h util/thread_posix.h \
- util/exception.h net/http.h api/xml.h api/apiskillqueue.h bits/config.h \
- util/conf.h util/ref_ptr.h gui/imagestore.h gui/gtkhelpers.h \
- api/apicharsheet.h api/apiskilltree.h api/apicerttree.h bits/character.h \
- api/eveapi.h gui/gtkdefines.h gui/gtkskillqueue.h gui/gtkcolumnsbase.h \
- gui/guiskill.h gui/winbase.h
+ net/httpstatus.h api/eveapi.h net/asynchttp.h util/thread.h \
+ util/thread_posix.h util/exception.h net/http.h api/xml.h \
+ api/apiskillqueue.h bits/config.h util/conf.h util/ref_ptr.h \
+ gui/imagestore.h gui/gtkhelpers.h api/apicharsheet.h api/apiskilltree.h \
+ api/apicerttree.h bits/character.h api/eveapi.h gui/gtkdefines.h \
+ gui/gtkskillqueue.h gui/gtkcolumnsbase.h gui/guiskill.h gui/winbase.h
 gui/gtktrainingplan.o: gui/gtktrainingplan.cc util/helpers.h \
  api/evetime.h bits/xmltrainingplan.h api/xml.h util/ref_ptr.h \
- api/apiskilltree.h api/apibase.h net/http.h net/nettcpsocket.h \
- net/netdefines.h net/netsocket.h net/httpstatus.h api/eveapi.h \
- net/asynchttp.h util/thread.h util/thread_posix.h util/exception.h \
- net/http.h api/xml.h gui/imagestore.h gui/gtkcolumnsbase.h \
- gui/gtkportrait.h gui/gtkhelpers.h api/apicharsheet.h api/apiskilltree.h \
- api/apicerttree.h bits/character.h api/eveapi.h api/apiskillqueue.h \
- gui/gtkconfwidgets.h bits/config.h util/conf.h util/ref_ptr.h \
- gui/gtkdefines.h gui/gtktrainingplan.h gui/guiplanattribopt.h \
- gui/winbase.h
+ api/apiskilltree.h api/apibase.h net/http.h net/httpstatus.h \
+ api/eveapi.h net/asynchttp.h util/thread.h util/thread_posix.h \
+ util/exception.h net/http.h api/xml.h gui/imagestore.h \
+ gui/gtkcolumnsbase.h gui/gtkportrait.h gui/gtkhelpers.h \
+ api/apicharsheet.h api/apiskilltree.h api/apicerttree.h bits/character.h \
+ api/eveapi.h api/apiskillqueue.h gui/gtkconfwidgets.h bits/config.h \
+ util/conf.h util/ref_ptr.h gui/gtkdefines.h gui/gtktrainingplan.h \
+ gui/guiplanattribopt.h gui/winbase.h
 gui/guiaboutdialog.o: gui/guiaboutdialog.cc net/asynchttp.h util/thread.h \
  util/thread_posix.h util/exception.h net/http.h util/ref_ptr.h \
- net/nettcpsocket.h net/netdefines.h net/netsocket.h net/httpstatus.h \
- bits/config.h util/conf.h util/ref_ptr.h defines.h gui/imagestore.h \
- gui/gtkdefines.h gui/guiaboutdialog.h gui/winbase.h
+ net/httpstatus.h bits/config.h util/conf.h util/ref_ptr.h defines.h \
+ gui/imagestore.h gui/gtkdefines.h gui/guiaboutdialog.h gui/winbase.h
 gui/guicharexport.o: gui/guicharexport.cc util/helpers.h gui/gtkdefines.h \
  gui/guicharexport.h api/apicharsheet.h util/ref_ptr.h net/http.h \
- net/nettcpsocket.h net/netdefines.h net/netsocket.h net/httpstatus.h \
- api/apibase.h api/eveapi.h net/asynchttp.h util/thread.h \
- util/thread_posix.h util/exception.h net/http.h api/xml.h \
+ net/httpstatus.h api/apibase.h api/eveapi.h net/asynchttp.h \
+ util/thread.h util/thread_posix.h util/exception.h net/http.h api/xml.h \
  api/apiskilltree.h api/apicerttree.h gui/winbase.h
 gui/guiconfiguration.o: gui/guiconfiguration.cc util/helpers.h defines.h \
  gui/imagestore.h gui/gtkdefines.h gui/guiconfiguration.h gui/winbase.h \
  gui/gtkconfwidgets.h bits/config.h util/conf.h util/ref_ptr.h \
  net/asynchttp.h util/thread.h util/thread_posix.h util/exception.h \
- net/http.h util/ref_ptr.h net/nettcpsocket.h net/netdefines.h \
- net/netsocket.h net/httpstatus.h
+ net/http.h util/ref_ptr.h net/httpstatus.h
 gui/guievelauncher.o: gui/guievelauncher.cc util/exception.h \
  util/helpers.h util/bgprocess.h util/thread.h util/thread_posix.h \
  bits/config.h util/conf.h util/ref_ptr.h net/asynchttp.h util/thread.h \
- net/http.h util/ref_ptr.h net/nettcpsocket.h net/netdefines.h \
- net/netsocket.h net/httpstatus.h defines.h gui/gtkdefines.h \
+ net/http.h util/ref_ptr.h net/httpstatus.h defines.h gui/gtkdefines.h \
  gui/guievelauncher.h gui/winbase.h
 gui/guiplanattribopt.o: gui/guiplanattribopt.cc util/helpers.h \
  api/evetime.h gui/guiplanattribopt.h gui/winbase.h gui/gtktrainingplan.h \
  bits/config.h util/conf.h util/ref_ptr.h net/asynchttp.h util/thread.h \
  util/thread_posix.h util/exception.h net/http.h util/ref_ptr.h \
- net/nettcpsocket.h net/netdefines.h net/netsocket.h net/httpstatus.h \
- bits/character.h api/eveapi.h api/apicharsheet.h net/http.h \
- api/apibase.h api/eveapi.h api/xml.h api/apiskilltree.h \
+ net/httpstatus.h bits/character.h api/eveapi.h api/apicharsheet.h \
+ net/http.h api/apibase.h api/eveapi.h api/xml.h api/apiskilltree.h \
  api/apicerttree.h api/apiskillqueue.h gui/gtkportrait.h \
  gui/gtkcolumnsbase.h gui/gtkconfwidgets.h gui/gtkdefines.h \
  gui/imagestore.h
 gui/guiskill.o: gui/guiskill.cc util/helpers.h api/apiskilltree.h \
- util/ref_ptr.h api/apibase.h net/http.h net/nettcpsocket.h \
- net/netdefines.h net/netsocket.h net/httpstatus.h api/eveapi.h \
+ util/ref_ptr.h api/apibase.h net/http.h net/httpstatus.h api/eveapi.h \
  net/asynchttp.h util/thread.h util/thread_posix.h util/exception.h \
  net/http.h api/xml.h gui/gtkdefines.h gui/guiskill.h gui/winbase.h
 gui/guiskillplanner.o: gui/guiskillplanner.cc util/helpers.h \
  bits/config.h util/conf.h util/ref_ptr.h net/asynchttp.h util/thread.h \
  util/thread_posix.h util/exception.h net/http.h util/ref_ptr.h \
- net/nettcpsocket.h net/netdefines.h net/netsocket.h net/httpstatus.h \
- gui/imagestore.h gui/gtkportrait.h gui/gtkdefines.h \
+ net/httpstatus.h gui/imagestore.h gui/gtkportrait.h gui/gtkdefines.h \
  gui/guiskillplanner.h bits/character.h api/eveapi.h api/apicharsheet.h \
  net/http.h api/apibase.h api/eveapi.h api/xml.h api/apiskilltree.h \
  api/apicerttree.h api/apiskillqueue.h gui/winbase.h gui/gtkitemdetails.h \
@@ -203,29 +170,26 @@ gui/guiskillplanner.o: gui/guiskillplanner.cc util/helpers.h \
 gui/guiskillqueue.o: gui/guiskillqueue.cc gui/gtkdefines.h \
  gui/guiskillqueue.h bits/character.h util/ref_ptr.h api/eveapi.h \
  net/asynchttp.h util/thread.h util/thread_posix.h util/exception.h \
- net/http.h net/nettcpsocket.h net/netdefines.h net/netsocket.h \
- net/httpstatus.h api/apicharsheet.h net/http.h api/apibase.h \
+ net/http.h net/httpstatus.h api/apicharsheet.h net/http.h api/apibase.h \
  api/eveapi.h api/xml.h api/apiskilltree.h api/apicerttree.h \
  api/apiskillqueue.h gui/winbase.h gui/gtkskillqueue.h \
  gui/gtkcolumnsbase.h
 gui/guiupdater.o: gui/guiupdater.cc api/evetime.h util/helpers.h \
  util/os.h bits/config.h util/conf.h util/ref_ptr.h net/asynchttp.h \
  util/thread.h util/thread_posix.h util/exception.h net/http.h \
- util/ref_ptr.h net/nettcpsocket.h net/netdefines.h net/netsocket.h \
- net/httpstatus.h gui/gtkdefines.h gui/imagestore.h \
+ util/ref_ptr.h net/httpstatus.h gui/gtkdefines.h gui/imagestore.h \
  gui/guiconfiguration.h gui/winbase.h gui/gtkconfwidgets.h \
  gui/guiupdater.h bits/updater.h net/http.h gui/gtkdownloader.h
 gui/guiuserdata.o: gui/guiuserdata.cc util/exception.h api/apicharlist.h \
- util/ref_ptr.h net/http.h net/nettcpsocket.h net/netdefines.h \
- net/netsocket.h net/httpstatus.h api/apibase.h api/eveapi.h \
+ util/ref_ptr.h net/http.h net/httpstatus.h api/apibase.h api/eveapi.h \
  net/asynchttp.h util/thread.h util/thread_posix.h net/http.h api/xml.h \
  bits/config.h util/conf.h util/ref_ptr.h bits/characterlist.h \
  bits/character.h api/eveapi.h api/apicharsheet.h api/apiskilltree.h \
  api/apicerttree.h api/apiskillqueue.h gui/gtkdefines.h gui/gtkhelpers.h \
  api/apiskilltree.h bits/character.h gui/guiuserdata.h gui/winbase.h
 gui/guixmlsource.o: gui/guixmlsource.cc gui/gtkdefines.h \
- gui/guixmlsource.h net/http.h util/ref_ptr.h net/nettcpsocket.h \
- net/netdefines.h net/netsocket.h net/httpstatus.h gui/winbase.h
+ gui/guixmlsource.h net/http.h util/ref_ptr.h net/httpstatus.h \
+ gui/winbase.h
 gui/imagestore.o: gui/imagestore.cc images/skill.h images/img_skill.h \
  images/certificate.h images/img_certificate.h images/skillstatus.h \
  images/img_skillstatus_at0.xpm images/img_skillstatus_at1.xpm \
@@ -254,8 +218,7 @@ gui/imagestore.o: gui/imagestore.cc images/skill.h images/img_skill.h \
  images/img_columnconf_faded.h util/exception.h gui/imagestore.h
 gui/maingui.o: gui/maingui.cc util/helpers.h api/evetime.h api/eveapi.h \
  net/asynchttp.h util/thread.h util/thread_posix.h util/exception.h \
- net/http.h util/ref_ptr.h net/nettcpsocket.h net/netdefines.h \
- net/netsocket.h net/httpstatus.h bits/config.h util/conf.h \
+ net/http.h util/ref_ptr.h net/httpstatus.h bits/config.h util/conf.h \
  util/ref_ptr.h bits/server.h bits/serverlist.h bits/server.h \
  bits/argumentsettings.h gui/imagestore.h gui/gtkdefines.h \
  gui/gtkserver.h gui/gtkcharpage.h bits/character.h api/apicharsheet.h \
@@ -273,52 +236,46 @@ bits/argumentsettings.o: bits/argumentsettings.cc defines.h \
 bits/character.o: bits/character.cc util/helpers.h api/evetime.h \
  bits/character.h util/ref_ptr.h api/eveapi.h net/asynchttp.h \
  util/thread.h util/thread_posix.h util/exception.h net/http.h \
- net/nettcpsocket.h net/netdefines.h net/netsocket.h net/httpstatus.h \
- api/apicharsheet.h net/http.h api/apibase.h api/eveapi.h api/xml.h \
- api/apiskilltree.h api/apicerttree.h api/apiskillqueue.h
+ net/httpstatus.h api/apicharsheet.h net/http.h api/apibase.h \
+ api/eveapi.h api/xml.h api/apiskilltree.h api/apicerttree.h \
+ api/apiskillqueue.h
 bits/characterlist.o: bits/characterlist.cc util/helpers.h bits/config.h \
  util/conf.h util/ref_ptr.h net/asynchttp.h util/thread.h \
  util/thread_posix.h util/exception.h net/http.h util/ref_ptr.h \
- net/nettcpsocket.h net/netdefines.h net/netsocket.h net/httpstatus.h \
- bits/characterlist.h bits/character.h api/eveapi.h api/apicharsheet.h \
- net/http.h api/apibase.h api/eveapi.h api/xml.h api/apiskilltree.h \
- api/apicerttree.h api/apiskillqueue.h
+ net/httpstatus.h bits/characterlist.h bits/character.h api/eveapi.h \
+ api/apicharsheet.h net/http.h api/apibase.h api/eveapi.h api/xml.h \
+ api/apiskilltree.h api/apicerttree.h api/apiskillqueue.h
 bits/config.o: bits/config.cc util/os.h bits/argumentsettings.h defines.h \
  bits/config.h util/conf.h util/ref_ptr.h net/asynchttp.h util/thread.h \
  util/thread_posix.h util/exception.h net/http.h util/ref_ptr.h \
- net/nettcpsocket.h net/netdefines.h net/netsocket.h net/httpstatus.h
+ net/httpstatus.h
 bits/notifier.o: bits/notifier.cc api/evetime.h api/apiskilltree.h \
- util/ref_ptr.h api/apibase.h net/http.h net/nettcpsocket.h \
- net/netdefines.h net/netsocket.h net/httpstatus.h api/eveapi.h \
+ util/ref_ptr.h api/apibase.h net/http.h net/httpstatus.h api/eveapi.h \
  net/asynchttp.h util/thread.h util/thread_posix.h util/exception.h \
  net/http.h api/xml.h util/pipedexec.h util/helpers.h bits/config.h \
  util/conf.h util/ref_ptr.h bits/notifier.h bits/character.h api/eveapi.h \
  api/apicharsheet.h api/apiskilltree.h api/apicerttree.h \
  api/apiskillqueue.h
 bits/server.o: bits/server.cc util/os.h util/exception.h \
- net/nettcpsocket.h net/netdefines.h net/netsocket.h bits/server.h \
- util/ref_ptr.h
+ net/nettcpsocket.h bits/server.h util/ref_ptr.h
 bits/serverlist.o: bits/serverlist.cc util/exception.h util/thread.h \
  util/thread_posix.h bits/serverlist.h bits/server.h util/ref_ptr.h \
  bits/config.h util/conf.h util/ref_ptr.h net/asynchttp.h net/http.h \
- net/nettcpsocket.h net/netdefines.h net/netsocket.h net/httpstatus.h
+ net/httpstatus.h
 bits/updater.o: bits/updater.cc api/evetime.h api/apicerttree.h \
- util/ref_ptr.h api/apibase.h net/http.h net/nettcpsocket.h \
- net/netdefines.h net/netsocket.h net/httpstatus.h api/eveapi.h \
+ util/ref_ptr.h api/apibase.h net/http.h net/httpstatus.h api/eveapi.h \
  net/asynchttp.h util/thread.h util/thread_posix.h util/exception.h \
  net/http.h api/xml.h api/apiskilltree.h bits/config.h util/conf.h \
  util/ref_ptr.h util/os.h util/helpers.h gui/guiupdater.h bits/updater.h \
  gui/gtkdownloader.h gui/winbase.h bits/config.h bits/updater.h
 bits/xmltrainingplan.o: bits/xmltrainingplan.cc bits/xmltrainingplan.h \
  api/xml.h util/ref_ptr.h api/apiskilltree.h api/apibase.h net/http.h \
- net/nettcpsocket.h net/netdefines.h net/netsocket.h net/httpstatus.h \
- api/eveapi.h net/asynchttp.h util/thread.h util/thread_posix.h \
- util/exception.h net/http.h api/xml.h
-gtkevemon.o: gtkevemon.cc net/networking.h net/netdefines.h api/evetime.h \
- bits/argumentsettings.h bits/serverlist.h bits/server.h util/ref_ptr.h \
- bits/config.h util/conf.h util/ref_ptr.h net/asynchttp.h util/thread.h \
- util/thread_posix.h util/exception.h net/http.h net/nettcpsocket.h \
- net/netdefines.h net/netsocket.h net/httpstatus.h bits/server.h \
+ net/httpstatus.h api/eveapi.h net/asynchttp.h util/thread.h \
+ util/thread_posix.h util/exception.h net/http.h api/xml.h
+gtkevemon.o: gtkevemon.cc api/evetime.h bits/argumentsettings.h \
+ bits/serverlist.h bits/server.h util/ref_ptr.h bits/config.h util/conf.h \
+ util/ref_ptr.h net/asynchttp.h util/thread.h util/thread_posix.h \
+ util/exception.h net/http.h net/httpstatus.h bits/server.h \
  bits/updater.h net/http.h gui/imagestore.h gui/maingui.h \
  bits/character.h api/eveapi.h api/apicharsheet.h api/apibase.h \
  api/eveapi.h api/xml.h api/apiskilltree.h api/apicerttree.h \

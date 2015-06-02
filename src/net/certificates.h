@@ -13,10 +13,6 @@
 #ifndef NET_CERTIFICATES_HEADER
 #define NET_CERTIFICATES_HEADER
 
-#include "netdefines.h"
-
-NET_NAMESPACE_BEGIN
-
 /*
  * This is the root CA certificate for
  * CN = GeoTrust Global CA, O = GeoTrust Inc., C = US
@@ -70,7 +66,5 @@ char const* cert_entrust =
     "B/L/CNDi3tm/Kq+4h4YhPATKt5Rof8886ZjXOP/swNlQ8C5LWK5Gb9Auw2DaclVy\n"
     "vUxFnmG6v4SBkgPR0ml8xQ==\n"
     "-----END CERTIFICATE-----\n";
-
-NET_NAMESPACE_END
 
 #endif /* NET_CERTIFICATES_HEADER */

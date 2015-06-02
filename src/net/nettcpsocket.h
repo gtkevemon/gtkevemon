@@ -14,25 +14,10 @@
 #define NET_TCP_SOCKET_HEADER
 
 #include <string>
-#ifndef WIN32
-#  include <netinet/in.h>
-#else
-#  include <winsock2.h>
-#  include <ws2tcpip.h>
-#endif
+#include <curl/curl.h>
 
-#include "netdefines.h"
-#include "netsocket.h"
-
-NET_NAMESPACE_BEGIN
-
-class TCPSocket : public Socket
+class TCPSocket
 {
-  protected:
-    struct sockaddr_storage remote;
-    struct sockaddr_storage local;
-    std::size_t timeout;
-
   public:
     /**
      * This constructor creates an unconnected TCPSocket object. The results
@@ -48,15 +33,12 @@ class TCPSocket : public Socket
      */
     TCPSocket (std::string const& host, int port);
 
-    /**
-     * This constructor creates a connected TCPSocket object from an already
-     * connected socket file descriptor. All members are updated with the
-     * appropriate data. This constructor is mainly used by the
-     * TCPServerSocket for newly accepted connections.
-     */
-    TCPSocket (int sock_fd);
+    ~TCPSocket (void);
 
-    virtual ~TCPSocket (void);
+    /**
+     * Sets private class variables to default values.
+     */
+    void init();
 
     /**
      * The `connect' function initiates a connection to the socket whose
@@ -65,15 +47,10 @@ class TCPSocket : public Socket
      * up as a server. The "host" argument is assumed to be in the
      * standard dots-and-numbers format.
      *
-     * The `connect' function waits until the server responds to the
-     * request before it returns.
+     * Might return before socket is ready for send or receive. The send
+     * and receive functions will wait if necessary.
      */
-    virtual void connect (std::string const& host, int port);
-
-    /**
-     * Same as the function above but it uses another host format.
-     */
-    void connect (struct addrinfo *addr);
+    void connect (std::string const& host, int port);
 
     /**
      * The `set_connect_timeout' function allows to define a timeout in
@@ -81,8 +58,23 @@ class TCPSocket : public Socket
      * fail if no connection has been established if the timeout expires.
      */
     void set_connect_timeout (std::size_t timeout_ms);
-};
 
-NET_NAMESPACE_END
+    /**
+     * Read bytes from the socket. Waits until data is available, or until
+     * timeout ms, before returning.
+     */
+    size_t read (unsigned char * buffer, size_t max_bytes);
+    
+    /**
+     * Writes bytes to the socket. Waits until socket is ready for writing,
+     * or until timeout ms, before returning.
+     */
+    size_t write (const unsigned char * buffer, size_t bytes);
+
+  private:
+    size_t timeout; // In milliseconds
+    CURL * curl_handle;
+    bool is_connected;
+};
 
 #endif /* NET_TCP_SOCKET_HEADER */
