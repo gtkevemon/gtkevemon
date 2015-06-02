@@ -18,11 +18,9 @@ endif
 GCC_INCL = -I.
 GTK_FLAGS = $(shell pkg-config --cflags gtkmm-2.4)
 XML_FLAGS = $(shell pkg-config --cflags libxml-2.0)
-SSL_FLAGS = $(shell pkg-config --cflags openssl)
 
 GTK_LIBS = $(shell pkg-config --libs gtkmm-2.4)
 XML_LIBS = $(shell pkg-config --libs libxml-2.0)
-SSL_LIBS = $(shell pkg-config --libs openssl)
 PTH_LIBS = -lpthread
 ZLIB_LIBS = -lz
 CURL_LIBS = $(shell pkg-config --libs libcurl)
@@ -30,7 +28,7 @@ CURL_LIBS = $(shell pkg-config --libs libcurl)
 # Platform specific configuration
 ifeq (${PLATFORM},darwin)
   CXX ?= g++
-  LDFLAGS = ${GTK_LIBS} ${PTH_LIBS} ${XML_LIBS} ${ZLIB_LIBS} ${SSL_LIBS}
+  LDFLAGS = ${GTK_LIBS} ${PTH_LIBS} ${XML_LIBS} ${ZLIB_LIBS}
 
   CORES_LINE = $(shell system_profiler SPHardwareDataType | grep Cores)
   CORES = $(lastword $(CORES_LINE))
@@ -41,7 +39,7 @@ endif
 ifeq (${PLATFORM},freebsd)
   CXX ?= g++
   PTH_LIBS = -pthread
-  LDFLAGS = ${GTK_LIBS} ${PTH_LIBS} ${XML_LIBS} ${ZLIB_LIBS} ${SSL_LIBS}
+  LDFLAGS = ${GTK_LIBS} ${PTH_LIBS} ${XML_LIBS} ${ZLIB_LIBS}
 
   CORES = $(shell sysctl -n hw.ncpu)
   SOURCES = util/pipedexec_posix.cc util/os_unix.cc
@@ -50,7 +48,7 @@ endif
 
 ifeq (${PLATFORM},linux)
   CXX ?= g++
-  LDFLAGS = ${GTK_LIBS} ${PTH_LIBS} ${XML_LIBS} ${ZLIB_LIBS} ${SSL_LIBS} ${CURL_LIBS}
+  LDFLAGS = ${GTK_LIBS} ${PTH_LIBS} ${XML_LIBS} ${ZLIB_LIBS} ${CURL_LIBS}
 
   CORES = $(shell grep processor /proc/cpuinfo | wc -l)
   SOURCES = util/pipedexec_posix.cc util/os_unix.cc
@@ -61,7 +59,7 @@ ifeq (${PLATFORM},sunos)
   CXX ?= sunCC
   GCC_FLAGS = +w +w2 -g
   SOLARIS_LIBS = -lnsl -lresolv -lsocket
-  LDFLAGS = ${GTK_LIBS} ${PTH_LIBS} ${SOLARIS_LIBS} ${XML_LIBS} ${ZLIB_LIBS} ${SSL_LIBS}
+  LDFLAGS = ${GTK_LIBS} ${PTH_LIBS} ${SOLARIS_LIBS} ${XML_LIBS} ${ZLIB_LIBS}
 
   CORES = $(shell psrinfo -p)
   SOURCES = util/pipedexec_posix.cc util/os_unix.cc util/timegm.cc
@@ -70,7 +68,7 @@ endif
 
 ifeq (${PLATFORM},win32)
   CXX ?= i586-mingw32msvc-g++
-  LDFLAGS = ${GTK_LIBS} ${PTH_LIBS} ${XML_LIBS} ${SSL_LIBS}
+  LDFLAGS = ${GTK_LIBS} ${PTH_LIBS} ${XML_LIBS}
   CORES = 1
 
   SOURCES = util/pipedexec_win32.cc util/os_win32.cc util/strptime.cc util/timegm.cc
@@ -79,7 +77,7 @@ endif
 
 # Generic compiler flags
 CXXFLAGS ?= ${GCC_FLAGS}
-CXXFLAGS += ${GTK_FLAGS} ${XML_FLAGS} ${SSL_FLAGS} ${GCC_INCL}
+CXXFLAGS += ${GTK_FLAGS} ${XML_FLAGS} ${GCC_INCL}
 
 # Source and object files
 SOURCES += util/bgprocess.cc util/conf.cc util/helpers.cc \
