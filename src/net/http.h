@@ -16,9 +16,9 @@
 #include <vector>
 #include <string>
 #include <stdint.h>
+#include <curl/curl.h>
 
 #include "util/ref_ptr.h"
-#include "nettcpsocket.h"
 #include "httpstatus.h"
 
 enum HttpMethod
@@ -83,33 +83,17 @@ class Http
 
     /* Tracking the HTTP state. */
     HttpState http_state;
-    size_t bytes_read;
-    size_t bytes_total;
+    std::size_t bytes_read;
+    std::size_t bytes_total;
 
   private:
     void initialize_defaults (void);
-
-    /* Stages of the HTTP request. */
-    void initialize_connection (Net::TCPSocket* sock);
-    void send_http_headers (Net::TCPSocket* sock);
-    void send_proxy_connect (Net::TCPSocket* sock);
-    HttpDataPtr read_http_reply (Net::TCPSocket* sock);
-
-    /* Helpers. */
-    unsigned int get_uint_from_hex (std::string const& str);
     unsigned int get_uint_from_str (std::string const& str);
-    //ssize_t socket_read_line (int sock, std::string& line);
-    std::size_t http_data_read (Net::TCPSocket* sock, char* buf,
-        std::size_t size);
-    HttpStatusCode get_http_status_code (std::string const& header);
 
   public:
     Http (void);
-    Http (std::string const& url);
     Http (std::string const& host, std::string const& path);
 
-    /* Set host and path with a single URL. */
-    void set_url (std::string const& url);
     /* Set host and path separately. */
     void set_host (std::string const& host);
     void set_path (std::string const& path);
@@ -131,12 +115,24 @@ class Http
     std::string const& get_path (void) const;
 
     /* Information about the progress. */
-    size_t get_bytes_read (void) const;
+    std::size_t get_bytes_read (void) const;
     /* Information about the total size. This may be zero! */
-    size_t get_bytes_total (void) const;
+    std::size_t get_bytes_total (void) const;
+
+    /* Static callback functions for libcurl */
+    static std::size_t data_callback(char * buffer, std::size_t size, std::size_t nmemb, void * combo);
+    static std::size_t header_callback(char * buffer, std::size_t size, std::size_t nitems, void * combo);
 
     /* Request the document. This will block until transfer is completed. */
     HttpDataPtr request (void);
+};
+
+/* ---------------------------------------------------------------- */
+
+struct HttpCombo // A combo struct to pass to libcurl's C callback functions
+{
+  Http * http;
+  HttpDataPtr * httpdataptr;
 };
 
 /* ---------------------------------------------------------------- */
@@ -208,13 +204,13 @@ Http::get_path (void) const
     return this->path;
 }
 
-inline size_t
+inline std::size_t
 Http::get_bytes_read (void) const
 {
   return this->bytes_read;
 }
 
-inline size_t
+inline std::size_t
 Http::get_bytes_total (void) const
 {
   return this->bytes_total;
