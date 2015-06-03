@@ -67,11 +67,6 @@ Http::request (void)
   std::stringstream url;
   unsigned int i;
 
-/*  // Just exit early
-  result->http_code = 500;
-  http_state = HTTP_STATE_ERROR;
-  return result;
-*/
   CURL * curl_handle = NULL;
   CURLcode res = CURLE_OK;
   try
@@ -117,8 +112,6 @@ Http::request (void)
       curl_easy_setopt(curl_handle, CURLOPT_HTTPHEADER, list);
     }
   
-    // std::cout << "URL: " << url.str() << std::endl;
-  
     http_state = HTTP_STATE_CONNECTING;
     res = curl_easy_perform(curl_handle);
     
@@ -143,19 +136,6 @@ Http::request (void)
     throw Exception(e);
   }
 
-
-/*  // Debugging:
-  // Print headers
-  for (i = 0; i < result->headers.size(); i++) {
-   printf("Header: %s\n", result->headers[i].c_str());
-  }
-  // Print data
-  printf("bytes_total: %lu\n", bytes_total);
-  printf("Data: \n");
-  for (i = 0; i < (int) result->data.size(); i++)
-   printf("%c", result->data[i]);
-*/
-  
   curl_easy_cleanup(curl_handle);
   return result;
 }
@@ -185,8 +165,9 @@ Http::header_callback(char * buffer, std::size_t size, std::size_t nitems, void 
 
     std::string header_line;
     header_line.assign(buffer, buffer_size);
-    if (header_line[buffer_size - 2] == '\r')
-      header_line.erase(buffer_size - 2);
+    while (!header_line.empty() && (*header_line.rbegin() == '\r' || *header_line.rbegin() == '\n'))
+      header_line.resize(header_line.size() - 1);
+
 
     result->headers.push_back(header_line);
 
