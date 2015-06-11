@@ -28,7 +28,7 @@ CURL_LIBS = $(shell pkg-config --libs libcurl)
 # Platform specific configuration
 ifeq (${PLATFORM},darwin)
   CXX ?= g++
-  LDFLAGS = ${GTK_LIBS} ${PTH_LIBS} ${XML_LIBS} ${ZLIB_LIBS}
+  LDFLAGS = ${GTK_LIBS} ${PTH_LIBS} ${XML_LIBS} ${ZLIB_LIBS} ${CURL_LIBS}
 
   CORES_LINE = $(shell system_profiler SPHardwareDataType | grep Cores)
   CORES = $(lastword $(CORES_LINE))
@@ -39,7 +39,7 @@ endif
 ifeq (${PLATFORM},freebsd)
   CXX ?= g++
   PTH_LIBS = -pthread
-  LDFLAGS = ${GTK_LIBS} ${PTH_LIBS} ${XML_LIBS} ${ZLIB_LIBS}
+  LDFLAGS = ${GTK_LIBS} ${PTH_LIBS} ${XML_LIBS} ${ZLIB_LIBS} ${CURL_LIBS}
 
   CORES = $(shell sysctl -n hw.ncpu)
   SOURCES = util/pipedexec_posix.cc util/os_unix.cc
