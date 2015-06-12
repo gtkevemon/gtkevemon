@@ -1,3 +1,4 @@
+PREFIX = $(DESTDIR)/usr/local
 DATAROOTDIR = $(PREFIX)/share
 PIXMAPDIR = $(DATAROOTDIR)/pixmaps
 DESKTOPDIR = $(DATAROOTDIR)/applications
