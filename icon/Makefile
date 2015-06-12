@@ -1,10 +1,11 @@
-INSTALL_DIR_ICON = /usr/share/pixmaps/
-INSTALL_DIR_DESK = /usr/share/applications/
+DATAROOTDIR = $(PREFIX)/share
+PIXMAPDIR = $(DATAROOTDIR)/pixmaps
+DESKTOPDIR = $(DATAROOTDIR)/applications
 
 install:
-	install -Dm 644 gtkevemon.svg ${INSTALL_DIR_ICON}/gtkevemon.svg
-	install -Dm 644 gtkevemon.desktop ${INSTALL_DIR_DESK}/gtkevemon.desktop
+	install -Dm 644 gtkevemon.svg $(PIXMAPDIR)/gtkevemon.svg
+	install -Dm 644 gtkevemon.desktop $(DESKTOPDIR)/gtkevemon.desktop
 
 uninstall:
-	rm ${INSTALL_DIR_ICON}/gtkevemon.svg
-	rm ${INSTALL_DIR_DESK}/gtkevemon.desktop
+	rm $(PIXMAPDIR)/gtkevemon.svg
+	rm $(DESKTOPDIR)/gtkevemon.desktop
