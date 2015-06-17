@@ -55,8 +55,12 @@ and the default locations for the icon and .desktop file are
 respectively.
 
 If you want to change the default location, use the PREFIX environment
-variable, or edit the Makefile directly. eg, set PREFIX to "/usr" to
-install in "/usr/bin", "/usr/share/pixmaps", etc.
+variable, or edit the Makefile directly. If unset, PREFIX Will default
+to "/usr/local".
+
+The Makefile also supports the DESTDIR variable. DESTDIR will be
+prepended to PREFIX, preserving the directory structure of the
+installation while installing to a non-standard location.
 
 Configuration files as well as data files (SkillTree.xml and
 CertificateTree.xml) are placed in "~/.gtkevemon" whether you
