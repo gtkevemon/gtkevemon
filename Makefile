@@ -1,4 +1,5 @@
-INSTALL_BIN = /usr/local/bin
+PREFIX ?= /usr/local
+BINDIR ?= $(PREFIX)/bin
 
 all:
 	$(MAKE) -C src
@@ -10,9 +11,9 @@ clean:
 	$(MAKE) -C src clean
 
 install:
-	install -Dm 755 src/gtkevemon ${INSTALL_BIN}/gtkevemon
+	install -Dm 755 src/gtkevemon $(DESTDIR)$(BINDIR)/gtkevemon
 	$(MAKE) -C icon
 
 uninstall:
-	${RM} ${INSTALL_BIN}/gtkevemon
+	${RM} $(DESTDIR)$(BINDIR)/gtkevemon
 	$(MAKE) -C icon uninstall

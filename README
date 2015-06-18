@@ -49,12 +49,22 @@ To install GtkEveMon execute the following command (as super user):
 
     # make install
 
-The files will be installed to "/usr/local/bin". If you want to change
-that, edit the Makefile.
+The default location for the gtkevemon executable is "/usr/local/bin",
+and the default locations for the icon and .desktop file are
+"/usr/local/share/pixmaps" and "/usr/local/share/applications",
+respectively.
+
+If you want to change the default location, use the PREFIX environment
+variable, or edit the Makefile directly. If unset, PREFIX Will default
+to "/usr/local".
+
+The Makefile also supports the DESTDIR variable. DESTDIR will be
+prepended to PREFIX, preserving the directory structure of the
+installation while installing to a non-standard location.
 
 Configuration files as well as data files (SkillTree.xml and
 CertificateTree.xml) are placed in "~/.gtkevemon" whether you
-install GtkEveMon or not.
+install GtkEveMon or not. This is not changeable at runtime.
 
 
 OPTION: UNINSTALLING
