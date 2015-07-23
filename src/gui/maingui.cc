@@ -1,12 +1,17 @@
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
 #include <iostream>
 #include <sstream>
-#include <gtkmm/button.h>
-#include <gtkmm/main.h>
-#include <gtkmm/frame.h>
-#include <gtkmm/box.h>
-#include <gtkmm/separator.h>
-#include <gtkmm/stock.h>
-#include <gtkmm/messagedialog.h>
+
+#include <gtkmm.h>
 
 #include "util/helpers.h"
 #include "api/evetime.h"
@@ -42,39 +47,28 @@ MainGui::MainGui (void)
   this->actions = Gtk::ActionGroup::create();
   this->uiman = Gtk::UIManager::create();
 
-  this->actions->add(Gtk::Action::create("MenuEveMon",
-      Gtk::Stock::OK, "_EveMon"));
-  this->actions->add(Gtk::Action::create("SetupProfile",
-      Gtk::Stock::ADD, "_Add characters..."),
+  this->actions->add(Gtk::Action::create("MenuEveMon", "_EveMon"));
+  this->actions->add(Gtk::Action::create("SetupProfile", "_Add characters..."),
       sigc::mem_fun(*this, &MainGui::setup_profile));
-  this->actions->add(Gtk::Action::create("Configuration",
-      Gtk::Stock::PREFERENCES, "_Configuration..."),
+  this->actions->add(Gtk::Action::create("Configuration", "_Configuration..."),
       sigc::mem_fun(*this, &MainGui::configuration));
-  this->actions->add(Gtk::Action::create("CheckUpdates",
-      Gtk::Stock::NETWORK, "Check for _updates..."),
+  this->actions->add(Gtk::Action::create("CheckUpdates", "Check for _updates..."),
       sigc::mem_fun(*this, &MainGui::version_checker));
-  this->actions->add(Gtk::Action::create("QuitEveMon", Gtk::Stock::QUIT),
+  this->actions->add(Gtk::Action::create("QuitEveMon", "Quit"),
       sigc::mem_fun(*this, &MainGui::close));
-  this->actions->add(Gtk::Action::create("LaunchEVE",
-      Gtk::Stock::EXECUTE, "_Launch EVE-Online"),
+  this->actions->add(Gtk::Action::create("LaunchEVE", "_Launch EVE-Online"),
       sigc::mem_fun(*this, &MainGui::launch_eve));
 
-  this->actions->add(Gtk::Action::create("MenuCharacter",
-      Gtk::Stock::JUSTIFY_FILL, "_Character"));
-  this->actions->add(Gtk::Action::create("MenuCharPlanning",
-      Gtk::Stock::OK, "_Training planner..."),
+  this->actions->add(Gtk::Action::create("MenuCharacter", "_Character"));
+  this->actions->add(Gtk::Action::create("MenuCharPlanning", "_Training planner..."),
       sigc::mem_fun(*this, &MainGui::create_skillplan));
-  this->actions->add(Gtk::Action::create("MenuCharXMLSource",
-      Gtk::Stock::OK, "View _XML source..."),
+  this->actions->add(Gtk::Action::create("MenuCharXMLSource", "View _XML source..."),
       sigc::mem_fun(*this, &MainGui::view_xml_source));
-  this->actions->add(Gtk::Action::create("MenuCharInfoExport",
-      Gtk::Stock::PRINT, "_Export character..."),
+  this->actions->add(Gtk::Action::create("MenuCharInfoExport", "_Export character..."),
       sigc::mem_fun(*this, &MainGui::export_char_info));
 
-  this->actions->add(Gtk::Action::create("MenuHelp",
-      Gtk::Stock::HELP, "_Help"));
-  this->actions->add(Gtk::Action::create("AboutDialog",
-      Gtk::Stock::ABOUT, "_About..."),
+  this->actions->add(Gtk::Action::create("MenuHelp", "_Help"));
+  this->actions->add(Gtk::Action::create("AboutDialog", "_About..."),
       sigc::mem_fun(*this, &MainGui::about_dialog));
 
   this->uiman->insert_action_group(this->actions);
@@ -134,8 +128,6 @@ MainGui::MainGui (void)
   /* Set the Stock item separately to avoid getting a shortcut key. */
   tmp_item = (Gtk::ImageMenuItem*)this->uiman->get_widget
       ("/MenuBar/MenuCharacter/MenuCharXMLSource");
-  tmp_item->set_image(*Gtk::manage(new Gtk::Image
-      (Gtk::Stock::FIND, Gtk::ICON_SIZE_MENU)));
 
   /* Right-justify the help menu. */
   Gtk::MenuItem* help_menu = (Gtk::MenuItem*)this->uiman->get_widget
@@ -143,7 +135,7 @@ MainGui::MainGui (void)
   help_menu->set_right_justified(true);
 
   /* Create the GUI part of server list. */
-  Gtk::HBox* server_box = Gtk::manage(new Gtk::HBox(false, 5));
+  Gtk::Box* server_box = Gtk::manage(new Gtk::Box);
   server_box->pack_start(*MK_LABEL0, true, true, 0);
 
   for (unsigned int i = 0; i < ServerList::list.size(); ++i)
@@ -157,13 +149,13 @@ MainGui::MainGui (void)
   server_box->pack_start(*MK_LABEL0, true, true, 0);
 
   /* The box with the local and EVE time. */
-  Gtk::HBox* time_hbox = MK_HBOX;
+  Gtk::Box* time_hbox = MK_HBOX(5);
   time_hbox->pack_start(this->evetime_label, false, false, 0);
   time_hbox->pack_end(this->localtime_label, false, false, 0);
 
   /* Build the server monitor with the time box. Ommit the server
    * box if there are no servers to monitor. */
-  Gtk::VBox* server_info_box = Gtk::manage(new Gtk::VBox(false, 2));
+  Gtk::Box* server_info_box = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 2));
   server_info_box->set_border_width(5);
   if (ServerList::list.size() > 0)
   {
@@ -177,13 +169,13 @@ MainGui::MainGui (void)
   server_frame->add(*server_info_box);
 
   /* Pack content area together. */
-  Gtk::VBox* content_vbox = MK_VBOX;
+  Gtk::Box* content_vbox = MK_VBOX(5);
   content_vbox->set_border_width(5);
   content_vbox->pack_start(this->notebook, true, true, 0);
   content_vbox->pack_end(*server_frame, false, false, 0);
 
   /* Pack window contents together. */
-  Gtk::VBox* main_vbox = MK_VBOX0;
+  Gtk::Box* main_vbox = MK_VBOX(0);
   main_vbox->pack_start(*menu_bar, false, false, 0);
   main_vbox->pack_start(this->info_display, false, false, 0);
   main_vbox->pack_start(*content_vbox, true, true, 0);
@@ -268,7 +260,7 @@ MainGui::update_tooltip (void)
     }
   }
 
-  this->tray->set_tooltip(tooltip);
+  this->tray->set_tooltip_text(tooltip);
   return true;
 }
 
@@ -289,13 +281,6 @@ MainGui::init_from_charlist (void)
 void
 MainGui::add_character (CharacterPtr character)
 {
-  /* If tabs are not shown, the welcome page is visible. */
-  if (this->notebook.get_show_tabs() == false)
-  {
-    this->notebook.pages().clear();
-    this->notebook.set_show_tabs(true);
-  }
-
   /* Create the new character page for the notebook. */
   GtkCharPage* page = Gtk::manage(new GtkCharPage(character));
   page->set_parent_window(this);
@@ -335,12 +320,12 @@ MainGui::remove_character (std::string char_id)
 void
 MainGui::check_if_no_pages (void)
 {
-  if (this->notebook.pages().empty())
+  if (this->notebook.get_n_pages() == 0)
   {
-    Gtk::HBox* info_hbox = Gtk::manage(new Gtk::HBox(false, 15));
-    Gtk::Image* info_image = Gtk::manage(new Gtk::Image
-        (Gtk::Stock::DIALOG_INFO, Gtk::ICON_SIZE_DIALOG));
-    info_image->set_alignment(Gtk::ALIGN_RIGHT);
+    Gtk::Box* info_hbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 15));
+    Gtk::Image* info_image = MK_IMG0;
+    info_image->set_from_icon_name("dialog-information", Gtk::ICON_SIZE_DIALOG);
+    info_image->set_halign(Gtk::ALIGN_END);
     Gtk::Label* info_label = MK_LABEL
         ("GtkEveMon needs to connect to the EVE API in order to "
         "retrieve information about your character. "
@@ -348,26 +333,24 @@ MainGui::check_if_no_pages (void)
         "You also need to select some characters to be monitored. "
         "Go ahead and add some characters.");
     info_label->set_line_wrap(true);
-    info_label->set_alignment(Gtk::ALIGN_LEFT);
+    info_label->set_halign(Gtk::ALIGN_START);
     info_hbox->pack_start(*info_image, true, true, 0);
     info_hbox->pack_start(*info_label, true, true, 0);
 
-    Gtk::HBox* button_hbox = MK_HBOX;
-    Gtk::Button* add_characters_but = Gtk::manage
-        (new Gtk::Button("Add characters"));
-    add_characters_but->set_image(*Gtk::manage
-        (new Gtk::Image(Gtk::Stock::ADD, Gtk::ICON_SIZE_BUTTON)));
+    Gtk::Box* button_hbox = MK_HBOX(5);
+    Gtk::Button* add_characters_but = MK_BUT("Add characters");
+    add_characters_but->set_image_from_icon_name("list-add", Gtk::ICON_SIZE_BUTTON);
 
     button_hbox->pack_start(*MK_HSEP, true, true, 0);
     button_hbox->pack_start(*add_characters_but, false, false, 0);
     button_hbox->pack_end(*MK_HSEP, true, true, 0);
 
-    Gtk::VBox* upper_vbox = MK_VBOX0;
+    Gtk::Box* upper_vbox = MK_VBOX(0);
     upper_vbox->pack_end(*info_hbox, false, false, 0);
-    Gtk::VBox* bottom_vbox = MK_VBOX0;
+    Gtk::Box* bottom_vbox = MK_VBOX(0);
     bottom_vbox->pack_start(*button_hbox, false, false, 0);
 
-    Gtk::VBox* main_vbox = Gtk::manage(new Gtk::VBox(false, 15));
+    Gtk::Box* main_vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 15));
     main_vbox->set_border_width(5);
     main_vbox->pack_start(*upper_vbox, true, true, 0);
     main_vbox->pack_start(*bottom_vbox, true, true, 0);
@@ -412,7 +395,7 @@ MainGui::update_windowtitle (void)
     return true;
   }
 
-  GtkCharPage* page = (GtkCharPage*)this->notebook.pages()[current].get_child();
+  GtkCharPage* page = (GtkCharPage*)this->notebook.get_nth_page(this->notebook.get_current_page());
   CharacterPtr character = page->get_character();
   Glib::ustring title;
 
@@ -517,7 +500,7 @@ MainGui::on_delete_event (GdkEventAny* /*event*/)
 /* ---------------------------------------------------------------- */
 
 void
-MainGui::on_pages_changed (Gtk::Widget* /*widget*/, guint /*pnum*/)
+MainGui::on_pages_changed (Widget*, guint)
 {
   Gtk::MenuItem* char_menu = (Gtk::MenuItem*)this->uiman->get_widget
       ("/MenuBar/MenuCharacter");
@@ -531,7 +514,7 @@ MainGui::on_pages_changed (Gtk::Widget* /*widget*/, guint /*pnum*/)
 /* ---------------------------------------------------------------- */
 
 void
-MainGui::on_pages_switched (GtkNotebookPage* /*page*/, guint /*pnum*/)
+MainGui::on_pages_switched (Widget*, guint)
 {
   this->update_windowtitle();
 }

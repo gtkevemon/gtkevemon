@@ -13,9 +13,7 @@
 #ifndef GUI_SKILL_HEADER
 #define GUI_SKILL_HEADER
 
-#include <gtkmm/label.h>
-#include <gtkmm/textbuffer.h>
-#include <gtkmm/textview.h>
+#include <gtkmm.h>
 
 #include "winbase.h"
 

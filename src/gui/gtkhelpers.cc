@@ -1,6 +1,18 @@
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
 #include <string>
 #include <sstream>
-#include <gtkmm/image.h>
+
+#include <glibmm.h>
+#include <gtkmm.h>
 
 #include "util/helpers.h"
 #include "api/evetime.h"
@@ -75,18 +87,18 @@ GtkHelpers::create_tooltip (Glib::RefPtr<Gtk::Tooltip> const& tooltip,
       ss << EveTime::get_string_for_timediff(time_remaining, false) << "\n";
     }
 
-    for (int level = cskill->level + 2; level <= 5; level++) 
+    for (int level = cskill->level + 2; level <= 5; level++)
     {
       time_remaining = (time_t)(3600.0
         * (double)(ApiCharSheet::calc_dest_sp(
-        level - 1, cskill->details->rank) 
+        level - 1, cskill->details->rank)
         - ApiCharSheet::calc_start_sp(level - 1,
         cskill->details->rank)) / spph);
-      ss << "Training time to level " 
+      ss << "Training time to level "
         << Helpers::get_roman_from_int(level) << ": "
         << EveTime::get_string_for_timediff(time_remaining, false) << "\n";
     }
-    
+
     if (completed != 0.0)
       ss << "Completed: " << Helpers::get_string_from_double
           (completed * 100.0, 2) << "%\n";
@@ -170,7 +182,7 @@ GtkHelpers::create_tooltip_from_view (int x, int y,
 
 /* ---------------------------------------------------------------- */
 
-std::string
+Glib::ustring
 GtkHelpers::locale_to_utf8 (Glib::ustring const& opsys_string)
 {
   /* We don't throw the error further away, we'll handle it here. */

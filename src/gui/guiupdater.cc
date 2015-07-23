@@ -1,14 +1,19 @@
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
 #include <cerrno>
 #include <cstring>
 #include <iostream>
 #include <fstream>
 
-#include <gtkmm/messagedialog.h>
-#include <gtkmm/table.h>
-#include <gtkmm/frame.h>
-#include <gtkmm/stock.h>
-#include <gtkmm/separator.h>
-#include <gtkmm/main.h>
+#include <gtkmm.h>
 
 #include "api/evetime.h"
 #include "util/helpers.h"
@@ -21,23 +26,22 @@
 
 GuiUpdater::GuiUpdater (bool startup_mode)
 {
+
   this->startup_mode = startup_mode;
   this->is_updated = false;
   this->download_error = false;
   if (startup_mode)
-    this->close_but = MK_BUT(Gtk::Stock::QUIT);
+    this->close_but = MK_BUT("Quit");
   else
-    this->close_but = MK_BUT(Gtk::Stock::CLOSE);
-  this->update_but = MK_BUT(Gtk::Stock::REFRESH);
-  this->files_box.set_spacing(5);
+    this->close_but = MK_BUT("Close");
+  this->update_but = MK_BUT("Refresh");
 
   Gtk::Button* config_but = MK_BUT0;
-  config_but->set_image(*MK_IMG
-      (Gtk::Stock::PREFERENCES, Gtk::ICON_SIZE_BUTTON));
+  config_but->set_image_from_icon_name("preferences-system", Gtk::ICON_SIZE_BUTTON);
 
   Gtk::Label* info_label = MK_LABEL0;
   info_label->set_line_wrap(true);
-  info_label->set_alignment(Gtk::ALIGN_LEFT);
+  info_label->set_halign(Gtk::ALIGN_START);
   if (startup_mode)
     info_label->set_text("Some data files are not available on your system. "
         "All of the following files are required for GtkEveMon to run. "
@@ -47,24 +51,23 @@ GuiUpdater::GuiUpdater (bool startup_mode)
         "recent versions of the data files and keep them up-to-date. "
         "After downloading a new version, the application will exit.");
 
-  Gtk::VBox* frame_box = MK_VBOX;
-  frame_box->set_border_width(5);
-  frame_box->pack_start(*info_label, false, false, 0);
-  frame_box->pack_start(*MK_HSEP, false, false, 0);
-  frame_box->pack_start(this->files_box, false, false, 0);
-  frame_box->pack_end(this->downloader, false, false, 0);
+  this->frame_box = MK_VBOX(5);
+  this->frame_box->set_border_width(5);
+  this->frame_box->pack_start(*info_label, false, false, 0);
+  this->frame_box->pack_start(*MK_HSEP, false, false, 0);
+  this->frame_box->pack_end(this->downloader, false, false, 0);
 
   Gtk::Frame* main_frame = MK_FRAME0;
   main_frame->set_shadow_type(Gtk::SHADOW_OUT);
   main_frame->add(*frame_box);
 
-  Gtk::HBox* button_box = MK_HBOX;
+  Gtk::Box* button_box = MK_HBOX(5);
   button_box->pack_start(*this->close_but, false, false, 0);
   button_box->pack_end(*this->update_but, false, false, 0);
   if (this->startup_mode)
     button_box->pack_start(*config_but, false, false, 0);
 
-  Gtk::VBox* main_vbox = MK_VBOX;
+  Gtk::Box* main_vbox = MK_VBOX(5);
   main_vbox->pack_start(*main_frame, true, true, 0);
   main_vbox->pack_end(*button_box, false, false);
 
@@ -73,7 +76,7 @@ GuiUpdater::GuiUpdater (bool startup_mode)
   logo_frame->add(*logo_img);
   logo_frame->set_shadow_type(Gtk::SHADOW_IN);
 
-  Gtk::HBox* main_hbox = MK_HBOX;
+  Gtk::Box* main_hbox = MK_HBOX(5);
   main_hbox->set_border_width(5);
   main_hbox->pack_start(*logo_frame, false, false, 0);
   main_hbox->pack_start(*main_vbox, true, true, 0);
@@ -95,6 +98,7 @@ GuiUpdater::GuiUpdater (bool startup_mode)
   this->show_all();
   this->downloader.hide();
 
+  this->files_box = MK_BOX0;
   this->rebuild_files_box();
 
   //if (startup_mode)
@@ -120,7 +124,12 @@ GuiUpdater::~GuiUpdater (void)
 void
 GuiUpdater::rebuild_files_box (void)
 {
-  this->files_box.children().clear();
+    delete files_box;
+
+    this->files_box = MK_BOX0;
+    this->files_box->set_orientation(Gtk::ORIENTATION_VERTICAL);
+    this->files_box->set_spacing(5);
+    this->frame_box->pack_start(*files_box, false, false, 0);
 
   for (std::size_t i = 0; i < this->files.size(); ++i)
   {
@@ -142,23 +151,27 @@ GuiUpdater::rebuild_files_box (void)
         last_updated_str = EveTime::get_local_time_string(last_updated, false);
 
 
-    Gtk::Image* status_image;
+    Gtk::Image* status_image = MK_IMG0;
     if (file_exists)
-        status_image = MK_IMG(Gtk::Stock::YES, Gtk::ICON_SIZE_BUTTON);
+    {
+        status_image->set_from_icon_name("gtk-yes", Gtk::ICON_SIZE_BUTTON);
+    }
     else
-        status_image = MK_IMG(Gtk::Stock::NO, Gtk::ICON_SIZE_BUTTON);
+    {
+        status_image->set_from_icon_name("gtk-no", Gtk::ICON_SIZE_BUTTON);
+    }
 
     Gtk::Label* filename_label = MK_LABEL("<b>" + file.file_name + "</b>");
     filename_label->set_use_markup(true);
-    filename_label->set_alignment(Gtk::ALIGN_LEFT);
+    filename_label->set_halign(Gtk::ALIGN_START);
 
     Gtk::Label* size_label = MK_LABEL(info_size);
-    size_label->set_alignment(Gtk::ALIGN_LEFT);
+    size_label->set_halign(Gtk::ALIGN_START);
 
     Gtk::Label* last_update = MK_LABEL("Last Update");
-    last_update->set_alignment(Gtk::ALIGN_RIGHT);
+    last_update->set_halign(Gtk::ALIGN_END);
     Gtk::Label* update_date = MK_LABEL(last_updated_str);
-    update_date->set_alignment(Gtk::ALIGN_RIGHT);
+    update_date->set_halign(Gtk::ALIGN_END);
 
     Gtk::Table* entry = MK_TABLE(2, 3);
     entry->set_col_spacings(10);
@@ -168,11 +181,11 @@ GuiUpdater::rebuild_files_box (void)
     entry->attach(*last_update, 2, 3, 0, 1, Gtk::EXPAND | Gtk::FILL);
     entry->attach(*update_date, 2, 3, 1, 2, Gtk::EXPAND | Gtk::FILL);
 
-    this->files_box.pack_start(*entry, false, false, 0);
-    this->files_box.pack_start(*MK_HSEP, false, false, 0);
+    this->files_box->pack_start(*entry, false, false, 0);
+    this->files_box->pack_start(*MK_HSEP, false, false, 0);
   }
 
-  this->files_box.show_all();
+  this->files_box->show_all();
 }
 
 /* ---------------------------------------------------------------- */
@@ -318,8 +331,7 @@ GuiUpdater::on_update_done (void)
   if (this->startup_mode)
   {
     this->update_but->set_sensitive(true);
-    this->update_but->set_image(*MK_IMG(Gtk::Stock::MEDIA_PLAY,
-        Gtk::ICON_SIZE_BUTTON));
+    this->update_but->set_image_from_icon_name("media-playback-start", Gtk::ICON_SIZE_BUTTON);
     this->update_but->set_label("Continue");
     this->append_ui_info("Update successful.");
   }
@@ -327,8 +339,7 @@ GuiUpdater::on_update_done (void)
   {
     this->close_but->set_sensitive(false);
     this->update_but->set_sensitive(true);
-    this->update_but->set_image(*MK_IMG(Gtk::Stock::QUIT,
-         Gtk::ICON_SIZE_BUTTON));
+    this->update_but->set_image_from_icon_name("application-exit", Gtk::ICON_SIZE_BUTTON);
     this->update_but->set_label("Quit");
 
     this->append_ui_info(
@@ -350,14 +361,16 @@ GuiUpdater::append_ui_info (std::string const& message)
 {
   Gtk::Label* error_label = MK_LABEL(message);
   error_label->set_line_wrap(true);
-  error_label->set_alignment(Gtk::ALIGN_LEFT);
+  error_label->set_halign(Gtk::ALIGN_START);
 
-  Gtk::HBox* error_box = MK_HBOX;
+  Gtk::Box* error_box = MK_HBOX(5);
+  Gtk::Image* info_image = MK_IMG0;
+  info_image->set_from_icon_name("dialog-information",
+      Gtk::ICON_SIZE_DIALOG);
   error_box->set_border_width(5);
-  error_box->pack_start(*MK_IMG(Gtk::Stock::DIALOG_INFO,
-      Gtk::ICON_SIZE_DIALOG), false, false, 0);
+  error_box->pack_start(*info_image, false, false, 0);
   error_box->pack_start(*error_label, true, true, 0);
 
-  this->files_box.pack_start(*error_box, false, false, 0);
-  this->files_box.show_all();
+  this->files_box->pack_start(*error_box, false, false, 0);
+  this->files_box->show_all();
 }

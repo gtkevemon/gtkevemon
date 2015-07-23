@@ -1,13 +1,16 @@
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
 #include <iostream>
-#include <gtkmm/table.h>
-#include <gtkmm/main.h>
-#include <gtkmm/box.h>
-#include <gtkmm/label.h>
-#include <gtkmm/stock.h>
-#include <gtkmm/image.h>
-#include <gtkmm/paned.h>
-#include <gtkmm/separator.h>
-#include <gtkmm/scrolledwindow.h>
+
+#include <gtkmm.h>
 
 #include "util/helpers.h"
 #include "bits/config.h"
@@ -28,19 +31,19 @@ GuiSkillPlanner::GuiSkillPlanner (void)
   this->details_nb.append_page(this->plan_gui, "Training plan");
   this->details_nb.append_page(this->details_gui, "Item details");
 
-  Gtk::Button* close_but = MK_BUT(Gtk::Stock::CLOSE);
-  Gtk::HBox* button_hbox = MK_HBOX;
+  Gtk::Button* close_but = MK_BUT("Close");
+  Gtk::Box* button_hbox = MK_HBOX(5);
   button_hbox->pack_start(*MK_HSEP, true, true, 0);
   button_hbox->pack_start(*close_but, false, false, 0);
 
-  Gtk::VBox* details_panechild = MK_VBOX;
+  Gtk::Box* details_panechild = MK_VBOX(5);
   details_panechild->pack_start(this->details_nb, true, true, 0);
   details_panechild->pack_start(*button_hbox, false, false, 0);
 
   this->main_pane.add1(this->browser_nb);
   this->main_pane.add2(*details_panechild);
 
-  Gtk::VBox* main_vbox = MK_VBOX;
+  Gtk::Box* main_vbox = MK_VBOX(5);
   main_vbox->set_border_width(5);
   main_vbox->pack_start(this->main_pane, true, true, 0);
 
@@ -63,8 +66,6 @@ GuiSkillPlanner::GuiSkillPlanner (void)
       (*this, &GuiSkillPlanner::on_element_activated));
   this->details_gui.signal_planning_requested().connect(sigc::mem_fun
       (*this, &GuiSkillPlanner::on_planning_requested));
-  Gtk::Main::signal_quit().connect(sigc::mem_fun
-      (*this, &GuiSkillPlanner::on_gtkmain_quit));
 
   this->add(*main_vbox);
   this->set_title("Skill browser - GtkEveMon");
@@ -157,13 +158,4 @@ GuiSkillPlanner::on_planning_requested (ApiElement const* elem, int level)
 {
   this->details_nb.set_current_page(0);
   this->plan_gui.append_element(elem, level);
-}
-
-/* ---------------------------------------------------------------- */
-
-bool
-GuiSkillPlanner::on_gtkmain_quit (void)
-{
-  this->close();
-  return false;
 }

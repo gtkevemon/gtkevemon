@@ -1,6 +1,16 @@
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
 #include <iostream>
-#include <gtkmm/stock.h>
-#include <gtkmm/scrolledwindow.h>
+
+#include <gtkmm.h>
 
 #include "util/helpers.h"
 #include "bits/config.h"
@@ -164,32 +174,32 @@ enum ComboBoxSkillFilterAttribute
 };
 
 GtkSkillBrowser::GtkSkillBrowser (void)
-  : Gtk::VBox(false, 5)
+  : Gtk::Box(Gtk::ORIENTATION_VERTICAL, 5)
 {
   this->store->set_sort_column(this->cols.name, Gtk::SORT_ASCENDING);
 
-  this->filter_cb.append_text("Show all skills");
-  this->filter_cb.append_text("Only show unknown skills");
-  this->filter_cb.append_text("Only show partial skills");
-  this->filter_cb.append_text("Only show enabled skills");
-  this->filter_cb.append_text("Only show known skills");
-  this->filter_cb.append_text("Only show known skills not at V");
+  this->filter_cb.append("Show all skills");
+  this->filter_cb.append("Only show unknown skills");
+  this->filter_cb.append("Only show partial skills");
+  this->filter_cb.append("Only show enabled skills");
+  this->filter_cb.append("Only show known skills");
+  this->filter_cb.append("Only show known skills not at V");
   this->filter_cb.set_active(0);
 
-  this->primary_cb.append_text("Any");
-  this->primary_cb.append_text("Intelligence");
-  this->primary_cb.append_text("Memory");
-  this->primary_cb.append_text("Charisma");
-  this->primary_cb.append_text("Perception");
-  this->primary_cb.append_text("Willpower");
+  this->primary_cb.append("Any");
+  this->primary_cb.append("Intelligence");
+  this->primary_cb.append("Memory");
+  this->primary_cb.append("Charisma");
+  this->primary_cb.append("Perception");
+  this->primary_cb.append("Willpower");
   this->primary_cb.set_active(0);
 
-  this->secondary_cb.append_text("Any");
-  this->secondary_cb.append_text("Intelligence");
-  this->secondary_cb.append_text("Memory");
-  this->secondary_cb.append_text("Charisma");
-  this->secondary_cb.append_text("Perception");
-  this->secondary_cb.append_text("Willpower");
+  this->secondary_cb.append("Any");
+  this->secondary_cb.append("Intelligence");
+  this->secondary_cb.append("Memory");
+  this->secondary_cb.append("Charisma");
+  this->secondary_cb.append("Perception");
+  this->secondary_cb.append("Willpower");
   this->secondary_cb.set_active(0);
 
   Gtk::ScrolledWindow* scwin = MK_SCWIN;
@@ -198,17 +208,17 @@ GtkSkillBrowser::GtkSkillBrowser (void)
   scwin->add(this->view);
 
   Gtk::Button* clear_filter_but = MK_BUT0;
-  clear_filter_but->set_image(*MK_IMG(Gtk::Stock::CLEAR, Gtk::ICON_SIZE_MENU));
+  clear_filter_but->set_image_from_icon_name("edit-clear", Gtk::ICON_SIZE_MENU);
   clear_filter_but->set_relief(Gtk::RELIEF_NONE);
   clear_filter_but->set_tooltip_text("Clear filter");
 
-  Gtk::HBox* filter_box = MK_HBOX;
+  Gtk::Box* filter_box = MK_HBOX(5);
   filter_box->pack_start(*MK_LABEL("Filter:"), false, false, 0);
   filter_box->pack_start(this->filter_entry, true, true, 0);
   filter_box->pack_start(*clear_filter_but, false, false, 0);
 
-  Gtk::HBox* attributes_box = MK_HBOX;
-  Gtk::HBox* attributes_label_box = MK_HBOX;
+  Gtk::Box* attributes_box = MK_HBOX(5);
+  Gtk::Box* attributes_label_box = MK_HBOX(5);
   attributes_label_box->pack_start(*MK_LABEL("Primary Attribute"), true, true, 0);
   attributes_label_box->pack_start(*MK_LABEL("Secondary Attribute"), true, true, 0);
   attributes_box->pack_start(this->primary_cb, true, true, 0);
@@ -344,7 +354,7 @@ GtkSkillBrowser::fill_store (void)
       /* Check if the skill is partially trained. */
       if (only_partial && cskill->points == cskill->points_start)
         continue;
-      
+
       /* The skill is known and already trained to level v */
       if (only_known_but_v && cskill->level == 5)
         continue;
@@ -430,13 +440,13 @@ enum ComboBoxCertFilter
 };
 
 GtkCertBrowser::GtkCertBrowser (void)
-  : Gtk::VBox(false, 5)
+  : Gtk::Box(Gtk::ORIENTATION_VERTICAL, 5)
 {
-  this->filter_cb.append_text("Show all certificates");
-  this->filter_cb.append_text("Only show claimed certs");
-  this->filter_cb.append_text("Only show claimable certs");
-  this->filter_cb.append_text("Only show partial certs");
-  this->filter_cb.append_text("Only show unknown certs");
+  this->filter_cb.append("Show all certificates");
+  this->filter_cb.append("Only show claimed certs");
+  this->filter_cb.append("Only show claimable certs");
+  this->filter_cb.append("Only show partial certs");
+  this->filter_cb.append("Only show unknown certs");
   this->filter_cb.set_active(0);
 
   Gtk::ScrolledWindow* scwin = MK_SCWIN;
@@ -445,11 +455,11 @@ GtkCertBrowser::GtkCertBrowser (void)
   scwin->add(this->view);
 
   Gtk::Button* clear_filter_but = MK_BUT0;
-  clear_filter_but->set_image(*MK_IMG(Gtk::Stock::CLEAR, Gtk::ICON_SIZE_MENU));
+  clear_filter_but->set_image_from_icon_name("edit-clear", Gtk::ICON_SIZE_MENU);
   clear_filter_but->set_relief(Gtk::RELIEF_NONE);
   clear_filter_but->set_tooltip_text("Clear filter");
 
-  Gtk::HBox* filter_box = MK_HBOX;
+  Gtk::Box* filter_box = MK_HBOX(5);
   filter_box->pack_start(*MK_LABEL("Filter:"), false, false, 0);
   filter_box->pack_start(this->filter_entry, true, true, 0);
   filter_box->pack_start(*clear_filter_but, false, false, 0);

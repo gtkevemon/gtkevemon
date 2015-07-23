@@ -1,11 +1,14 @@
-#include <gtkmm/stock.h>
-#include <gtkmm/button.h>
-#include <gtkmm/separator.h>
-#include <gtkmm/box.h>
-#include <gtkmm/label.h>
-#include <gtkmm/table.h>
-#include <gtkmm/scrolledwindow.h>
-#include <gtkmm/frame.h>
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
+#include <gtkmm.h>
 
 #include "util/helpers.h"
 #include "api/apiskilltree.h"
@@ -18,20 +21,20 @@ GuiSkill::GuiSkill (void)
   this->skill_desc.set_wrap_mode(Gtk::WRAP_WORD);
   this->skill_desc.set_editable(false);
   this->skill_name.set_selectable(true);
-  this->skill_name.set_alignment(Gtk::ALIGN_LEFT);
+  this->skill_name.set_halign(Gtk::ALIGN_START);
   this->group_name.set_selectable(true);
-  this->group_name.set_alignment(Gtk::ALIGN_LEFT);
+  this->group_name.set_halign(Gtk::ALIGN_START);
   this->skill_attribs.set_selectable(true);
-  this->skill_attribs.set_alignment(Gtk::ALIGN_LEFT);
-  this->skill_id.set_alignment(Gtk::ALIGN_RIGHT);
-  this->group_id.set_alignment(Gtk::ALIGN_RIGHT);
+  this->skill_attribs.set_halign(Gtk::ALIGN_START);
+  this->skill_id.set_halign(Gtk::ALIGN_END);
+  this->group_id.set_halign(Gtk::ALIGN_END);
 
   Gtk::Label* skill_name_desc = MK_LABEL("Skill name:");
   Gtk::Label* group_name_desc = MK_LABEL("Skill group:");
   Gtk::Label* skill_attribs_desc = MK_LABEL("Attributes:");
-  skill_name_desc->set_alignment(Gtk::ALIGN_LEFT);
-  group_name_desc->set_alignment(Gtk::ALIGN_LEFT);
-  skill_attribs_desc->set_alignment(Gtk::ALIGN_LEFT);
+  skill_name_desc->set_halign(Gtk::ALIGN_START);
+  group_name_desc->set_halign(Gtk::ALIGN_START);
+  skill_attribs_desc->set_halign(Gtk::ALIGN_START);
 
   Gtk::Table* info_table = MK_TABLE(3, 3);
   info_table->set_col_spacings(5);
@@ -48,7 +51,7 @@ GuiSkill::GuiSkill (void)
   info_table->attach(this->skill_id, 2, 3, 0, 1, Gtk::FILL);
   info_table->attach(this->group_id, 2, 3, 1, 2, Gtk::FILL);
 
-  Gtk::HBox* desc_separator = MK_HBOX;
+  Gtk::Box* desc_separator = MK_HBOX(5);
   desc_separator->pack_start(*MK_HSEP, true, true, 0);
   desc_separator->pack_start(*MK_LABEL("Description"), false, false, 0);
   desc_separator->pack_start(*MK_HSEP, true, true, 0);
@@ -58,7 +61,7 @@ GuiSkill::GuiSkill (void)
   desc_scwin->set_policy(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_ALWAYS);
   desc_scwin->add(this->skill_desc);
 
-  Gtk::VBox* skill_vbox = MK_VBOX;
+  Gtk::Box* skill_vbox = MK_VBOX(5);
   skill_vbox->set_border_width(5);
   skill_vbox->pack_start(*info_table, false, false, 0);
   skill_vbox->pack_start(*desc_separator, false, false, 0);
@@ -68,12 +71,13 @@ GuiSkill::GuiSkill (void)
   info_frame->set_shadow_type(Gtk::SHADOW_OUT);
   info_frame->add(*skill_vbox);
 
-  Gtk::Button* close_but = MK_BUT(Gtk::Stock::CLOSE);
-  Gtk::HBox* button_box = MK_HBOX;
+  Gtk::Button* close_but = MK_BUT0;
+  close_but->set_image_from_icon_name("window-close", Gtk::ICON_SIZE_BUTTON);
+  Gtk::Box* button_box = MK_HBOX(5);
   button_box->pack_start(*MK_HSEP, true, true, 0);
   button_box->pack_start(*close_but, false, false, 0);
 
-  Gtk::VBox* main_vbox = MK_VBOX;
+  Gtk::Box* main_vbox = MK_VBOX(5);
   main_vbox->set_border_width(5);
   main_vbox->pack_start(*info_frame, true, true, 0);
   main_vbox->pack_end(*button_box, false, false, 0);

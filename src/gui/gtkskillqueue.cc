@@ -1,5 +1,14 @@
-#include <gtkmm/messagedialog.h>
-#include <gtkmm/scrolledwindow.h>
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
+#include <gtkmm.h>
 
 #include "util/helpers.h"
 #include "api/evetime.h"
@@ -41,10 +50,10 @@ GtkSkillQueueViewCols::GtkSkillQueueViewCols (Gtk::TreeView* view,
   this->append_column(&this->training, GtkColumnOptions(true, false, true));
   this->append_column(&this->attribs, GtkColumnOptions(true, false, true));
 
-  this->position.get_first_cell_renderer()->set_property("xalign", 1.0f);
+  this->position.get_first_cell()->set_property("xalign", 1.0f);
   this->skill_name.set_expand(true);
-  this->start_sp.get_first_cell_renderer()->set_property("xalign", 1.0f);
-  this->end_sp.get_first_cell_renderer()->set_property("xalign", 1.0f);
+  this->start_sp.get_first_cell()->set_property("xalign", 1.0f);
+  this->end_sp.get_first_cell()->set_property("xalign", 1.0f);
 }
 
 /* ================================================================ */

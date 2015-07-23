@@ -1,23 +1,17 @@
-/*
- * This file is part of GtkEveMon.
- *
- * GtkEveMon is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * You should have received a copy of the GNU General Public License
- * along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
- */
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef GTK_ITEM_DEATILS_HEADER
 #define GTK_ITEM_DEATILS_HEADER
 
-#include <gtkmm/box.h>
-#include <gtkmm/treeview.h>
-#include <gtkmm/treestore.h>
-#include <gtkmm/textbuffer.h>
-#include <gtkmm/scrolledwindow.h>
+#include <gtkmm.h>
 
 #include "api/apiskilltree.h"
 #include "api/apicerttree.h"
@@ -33,7 +27,7 @@
  * with append_element. A signal is then fired to notify the GUI
  * to update to the new element.
  */
-class GtkItemHistory : public Gtk::HBox
+class GtkItemHistory : public Gtk::Box
 {
   private:
     std::vector<ApiElement const*> history;
@@ -116,7 +110,7 @@ class GtkDependencyList : public GtkItemDetailsBase, public Gtk::ScrolledWindow
 /* ---------------------------------------------------------------- */
 
 /* This GUI class shows details for skills. */
-class GtkSkillDetails : public GtkItemDetailsBase, public Gtk::VBox
+class GtkSkillDetails : public GtkItemDetailsBase, public Gtk::Box
 {
   private:
     /* Skill details. */
@@ -134,7 +128,7 @@ class GtkSkillDetails : public GtkItemDetailsBase, public Gtk::VBox
 /* ---------------------------------------------------------------- */
 
 /* This GUI class shows details for certificates. */
-class GtkCertDetails : public GtkItemDetailsBase, public Gtk::VBox
+class GtkCertDetails : public GtkItemDetailsBase, public Gtk::Box
 {
   private:
     Glib::RefPtr<Gtk::TextBuffer> desc_buffer;
@@ -151,7 +145,7 @@ class GtkCertDetails : public GtkItemDetailsBase, public Gtk::VBox
  * This GUI class is a container for detail GUIs. It shows the
  * icon and name of the item and displays the appropriate detail GUI.
  */
-class GtkItemDetails : public GtkItemDetailsBase, public Gtk::VBox
+class GtkItemDetails : public GtkItemDetailsBase, public Gtk::Box
 {
   private:
     ApiElement const* element;
@@ -159,7 +153,7 @@ class GtkItemDetails : public GtkItemDetailsBase, public Gtk::VBox
     Gtk::Label element_path;
     Gtk::Label element_name;
     GtkItemHistory history;
-    Gtk::VBox details_box;
+    Gtk::Box details_box;
     GtkSkillDetails skill_details;
     GtkCertDetails cert_details;
 

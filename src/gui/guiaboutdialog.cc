@@ -1,11 +1,16 @@
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
 #include <iostream>
 
-#include <gtkmm/stock.h>
-#include <gtkmm/box.h>
-#include <gtkmm/button.h>
-#include <gtkmm/label.h>
-#include <gtkmm/image.h>
-#include <gtkmm/frame.h>
+#include <gtkmm.h>
 
 #include "net/asynchttp.h"
 #include "bits/config.h"
@@ -22,14 +27,14 @@ GuiAboutDialog::GuiAboutDialog (void)
   logo_frame->set_shadow_type(Gtk::SHADOW_IN);
 
   Gtk::Label* title_label = MK_LABEL0;
-  title_label->set_alignment(Gtk::ALIGN_LEFT);
+  title_label->set_halign(Gtk::ALIGN_START);
   title_label->set_text("<b>GtkEveMon - a skill monitor for Linux</b>");
   title_label->set_use_markup(true);
 
   Gtk::Label* info_label = MK_LABEL0;
   info_label->set_line_wrap(true);
   info_label->set_justify(Gtk::JUSTIFY_LEFT);
-  info_label->set_alignment(Gtk::ALIGN_LEFT);
+  info_label->set_halign(Gtk::ALIGN_START);
   info_label->set_text(
       "GtkEveMon is a skill monitoring standalone\n"
       "application for GNU/Linux systems. With GtkEveMon\n"
@@ -42,21 +47,21 @@ GuiAboutDialog::GuiAboutDialog (void)
       "GtkEveMon " GTKEVEMON_VERSION_STR);
   info_label->set_use_markup(true);
 
-  Gtk::Button* close_but = MK_BUT(Gtk::Stock::CLOSE);
-  Gtk::HBox* button_box = MK_HBOX;
+  Gtk::Button* close_but = MK_BUT("Close");
+  Gtk::Box* button_box = MK_HBOX(5);
   button_box->pack_end(*close_but, false, false, 0);
 
-  Gtk::VBox* about_label_box = MK_VBOX;
+  Gtk::Box* about_label_box = MK_VBOX(5);
   about_label_box->pack_start(*title_label, false, false, 0);
   about_label_box->pack_start(*info_label, false, false, 0);
   about_label_box->pack_end(*button_box, false, false, 0);
 
-  Gtk::HBox* logo_text_box = MK_HBOX;
+  Gtk::Box* logo_text_box = MK_HBOX(5);
   logo_text_box->set_spacing(10);
   logo_text_box->pack_start(*logo_frame, false, false, 0);
   logo_text_box->pack_start(*about_label_box, true, true, 0);
 
-  Gtk::VBox* main_box = MK_VBOX;
+  Gtk::Box* main_box = MK_VBOX(5);
   main_box->set_border_width(5);
   main_box->pack_start(*logo_text_box, false, false, 0);
 

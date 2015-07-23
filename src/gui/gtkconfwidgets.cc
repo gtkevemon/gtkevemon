@@ -1,3 +1,13 @@
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
 #include <iostream>
 
 #include "bits/config.h"
@@ -91,7 +101,7 @@ GtkConfComboBox::append_conf_row (std::string const& text,
     std::string const& value)
 {
   this->values.push_back(value);
-  this->append_text(text);
+  this->append(text);
 
   if (value == this->value->get_string())
     this->set_active((int)this->values.size() - 1);

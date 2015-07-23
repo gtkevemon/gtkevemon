@@ -1,29 +1,20 @@
-/*
- * This file is part of GtkEveMon.
- *
- * GtkEveMon is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * You should have received a copy of the GNU General Public License
- * along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
- */
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef GTK_CHAR_PAGE_HEADER
 #define GTK_CHAR_PAGE_HEADER
 
 #include <string>
-#include <gdkmm/pixbuf.h>
-#include <gtkmm/box.h>
-#include <gtkmm/label.h>
-#include <gtkmm/button.h>
-#include <gtkmm/treeview.h>
-#include <gtkmm/image.h>
-#include <gtkmm/frame.h>
-#include <gtkmm/treestore.h>
-#include <gtkmm/statusicon.h>
-#include <gtkmm/tooltip.h>
+
+#include <gdkmm.h>
+#include <gtkmm.h>
 
 #include "bits/character.h"
 
@@ -57,7 +48,7 @@ class GtkCharSkillsCols : public Gtk::TreeModel::ColumnRecord
 
 /* ---------------------------------------------------------------- */
 
-class GtkCharPage : public Gtk::VBox
+class GtkCharPage : public Gtk::Box
 {
   private:
     /* Character to be monitored. */

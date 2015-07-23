@@ -1,17 +1,17 @@
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
 #include <iostream>
 #include <sstream>
-#include <gtkmm/main.h>
-#include <gtkmm/messagedialog.h>
-#include <gtkmm/button.h>
-#include <gtkmm/label.h>
-#include <gtkmm/separator.h>
-#include <gtkmm/table.h>
-#include <gtkmm/box.h>
-#include <gtkmm/treeview.h>
-#include <gtkmm/image.h>
-#include <gtkmm/stock.h>
-#include <gtkmm/scrolledwindow.h>
-#include <gtkmm/alignment.h>
+
+#include <gtkmm.h>
 
 #include "util/helpers.h"
 #include "util/exception.h"
@@ -30,42 +30,40 @@
 #include "gtkcharpage.h"
 
 GtkCharPage::GtkCharPage (CharacterPtr character)
-  : Gtk::VBox(false, 5),
+  : Gtk::Box(Gtk::ORIENTATION_VERTICAL, 5),
     character(character),
     info_display(INFO_STYLE_TOP_HSEP)
 {
   /* Setup GUI. */
   this->char_image.set_enable_clicks();
 
-  this->refresh_but.set_image(*Gtk::manage(new Gtk::Image
-      (Gtk::Stock::REFRESH, Gtk::ICON_SIZE_MENU)));
+  this->refresh_but.set_image_from_icon_name("view-refresh", Gtk::ICON_SIZE_MENU);
   this->refresh_but.set_relief(Gtk::RELIEF_NONE);
   this->refresh_but.set_focus_on_click(false);
 
-  this->info_but.set_image(*Gtk::manage(new Gtk::Image
-      (Gtk::Stock::INFO, Gtk::ICON_SIZE_MENU)));
+  this->refresh_but.set_image_from_icon_name("dialog-information", Gtk::ICON_SIZE_MENU);
   this->info_but.set_relief(Gtk::RELIEF_NONE);
 
-  this->char_name_label.set_alignment(Gtk::ALIGN_LEFT);
-  this->char_info_label.set_alignment(Gtk::ALIGN_LEFT);
-  this->corp_label.set_alignment(Gtk::ALIGN_LEFT);
-  this->balance_label.set_alignment(Gtk::ALIGN_LEFT);
-  this->skill_points_label.set_alignment(Gtk::ALIGN_LEFT);
-  this->known_skills_label.set_alignment(Gtk::ALIGN_LEFT);
-  this->attr_cha_label.set_alignment(Gtk::ALIGN_LEFT);
-  this->attr_int_label.set_alignment(Gtk::ALIGN_LEFT);
-  this->attr_per_label.set_alignment(Gtk::ALIGN_LEFT);
-  this->attr_mem_label.set_alignment(Gtk::ALIGN_LEFT);
-  this->attr_wil_label.set_alignment(Gtk::ALIGN_LEFT);
-  this->training_label.set_alignment(Gtk::ALIGN_LEFT);
-  this->remaining_label.set_alignment(Gtk::ALIGN_LEFT);
-  this->finish_eve_label.set_alignment(Gtk::ALIGN_LEFT);
-  this->finish_local_label.set_alignment(Gtk::ALIGN_LEFT);
-  this->spph_label.set_alignment(Gtk::ALIGN_RIGHT);
-  this->live_sp_label.set_alignment(Gtk::ALIGN_RIGHT);
+  this->char_name_label.set_halign(Gtk::ALIGN_START);
+  this->char_info_label.set_halign(Gtk::ALIGN_START);
+  this->corp_label.set_halign(Gtk::ALIGN_START);
+  this->balance_label.set_halign(Gtk::ALIGN_START);
+  this->skill_points_label.set_halign(Gtk::ALIGN_START);
+  this->known_skills_label.set_halign(Gtk::ALIGN_START);
+  this->attr_cha_label.set_halign(Gtk::ALIGN_START);
+  this->attr_int_label.set_halign(Gtk::ALIGN_START);
+  this->attr_per_label.set_halign(Gtk::ALIGN_START);
+  this->attr_mem_label.set_halign(Gtk::ALIGN_START);
+  this->attr_wil_label.set_halign(Gtk::ALIGN_START);
+  this->training_label.set_halign(Gtk::ALIGN_START);
+  this->remaining_label.set_halign(Gtk::ALIGN_START);
+  this->finish_eve_label.set_halign(Gtk::ALIGN_START);
+  this->finish_local_label.set_halign(Gtk::ALIGN_START);
+  this->spph_label.set_halign(Gtk::ALIGN_END);
+  this->live_sp_label.set_halign(Gtk::ALIGN_END);
 
-  this->charsheet_info_label.set_alignment(Gtk::ALIGN_RIGHT);
-  this->skillqueue_info_label.set_alignment(Gtk::ALIGN_RIGHT);
+  this->charsheet_info_label.set_halign(Gtk::ALIGN_END);
+  this->skillqueue_info_label.set_halign(Gtk::ALIGN_END);
 
   /* Setup skill list. */
   Gtk::TreeViewColumn* name_column = Gtk::manage(new Gtk::TreeViewColumn);
@@ -93,9 +91,9 @@ GtkCharPage::GtkCharPage (CharacterPtr character)
   this->skill_view.append_column("Pri.", this->skill_cols.primary);
   this->skill_view.append_column("Sec.", this->skill_cols.secondary);
   this->skill_view.get_column(0)->set_expand(true);
-  this->skill_view.get_column(2)->get_first_cell_renderer()
+  this->skill_view.get_column(2)->get_first_cell()
       ->set_property("xalign", 1.0f);
-  this->skill_view.get_column(3)->get_first_cell_renderer()
+  this->skill_view.get_column(3)->get_first_cell()
       ->set_property("xalign", 1.0f);
 
   //this->skill_view.set_grid_lines(Gtk::TREE_VIEW_GRID_LINES_BOTH);
@@ -118,31 +116,30 @@ GtkCharPage::GtkCharPage (CharacterPtr character)
   Gtk::Label* attr_perception_desc = MK_LABEL("Perception:");
   Gtk::Label* attr_memory_desc = MK_LABEL("Memory:");
   Gtk::Label* attr_willpower_desc = MK_LABEL("Willpower:");
-  corp_desc->set_alignment(Gtk::ALIGN_LEFT);
-  isk_desc->set_alignment(Gtk::ALIGN_LEFT);
-  skillpoints_desc->set_alignment(Gtk::ALIGN_LEFT);
-  knownskills_desc->set_alignment(Gtk::ALIGN_LEFT);
-  attr_charisma_desc->set_alignment(Gtk::ALIGN_LEFT);
-  attr_intelligence_desc->set_alignment(Gtk::ALIGN_LEFT);
-  attr_perception_desc->set_alignment(Gtk::ALIGN_LEFT);
-  attr_memory_desc->set_alignment(Gtk::ALIGN_LEFT);
-  attr_willpower_desc->set_alignment(Gtk::ALIGN_LEFT);
+  corp_desc->set_halign(Gtk::ALIGN_START);
+  isk_desc->set_halign(Gtk::ALIGN_START);
+  skillpoints_desc->set_halign(Gtk::ALIGN_START);
+  knownskills_desc->set_halign(Gtk::ALIGN_START);
+  attr_charisma_desc->set_halign(Gtk::ALIGN_START);
+  attr_intelligence_desc->set_halign(Gtk::ALIGN_START);
+  attr_perception_desc->set_halign(Gtk::ALIGN_START);
+  attr_memory_desc->set_halign(Gtk::ALIGN_START);
+  attr_willpower_desc->set_halign(Gtk::ALIGN_START);
 
   Gtk::Button* close_but = MK_BUT0;
   close_but->set_relief(Gtk::RELIEF_NONE);
-  close_but->set_image(*Gtk::manage(new Gtk::Image
-      (Gtk::Stock::CLOSE, Gtk::ICON_SIZE_MENU)));
+  close_but->set_image_from_icon_name("window-close", Gtk::ICON_SIZE_MENU);
 
-  Gtk::VBox* char_buts_vbox = MK_VBOX0;
+  Gtk::Box* char_buts_vbox = MK_VBOX(0);
   char_buts_vbox->pack_start(*close_but, false, false, 0);
   //char_buts_vbox->pack_start(*MK_HSEP, true, true, 0);
   char_buts_vbox->pack_end(this->refresh_but, false, false, 0);
   char_buts_vbox->pack_end(this->info_but, false, false, 0);
-  Gtk::HBox* char_buts_hbox = MK_HBOX;
+  Gtk::Box* char_buts_hbox = MK_HBOX(5);
   char_buts_hbox->pack_end(*char_buts_vbox, false, false, 0);
 
   /* Character SP */
-  Gtk::HBox* char_skillpoints_box = MK_HBOX;
+  Gtk::Box* char_skillpoints_box = MK_HBOX(5);
   char_skillpoints_box->pack_start(this->skill_points_label, false, false, 0);
 
   info_table->attach(this->char_image, 0, 1, 0, 5, Gtk::SHRINK, Gtk::SHRINK);
@@ -177,17 +174,17 @@ GtkCharPage::GtkCharPage (CharacterPtr character)
   Gtk::Label* finish_eve_desc = MK_LABEL("Finish (EVE time):");
   Gtk::Label* finish_local_desc = MK_LABEL("Finish (local time):");
   train_desc->set_use_markup(true);
-  train_desc->set_alignment(Gtk::ALIGN_LEFT);
-  remain_desc->set_alignment(Gtk::ALIGN_LEFT);
-  finish_eve_desc->set_alignment(Gtk::ALIGN_LEFT);
-  finish_local_desc->set_alignment(Gtk::ALIGN_LEFT);
+  train_desc->set_halign(Gtk::ALIGN_START);
+  remain_desc->set_halign(Gtk::ALIGN_START);
+  finish_eve_desc->set_halign(Gtk::ALIGN_START);
+  finish_local_desc->set_halign(Gtk::ALIGN_START);
 
   Gtk::Label* charsheet_info_desc = MK_LABEL("Character sheet:");
   Gtk::Label* trainsheet_info_desc = MK_LABEL("Skill queue:");
-  Gtk::HBox* charsheet_info_hbox = MK_HBOX;
+  Gtk::Box* charsheet_info_hbox = MK_HBOX(5);
   charsheet_info_hbox->pack_end(this->charsheet_info_label, false, false, 0);
   charsheet_info_hbox->pack_end(*charsheet_info_desc, false, false, 0);
-  Gtk::HBox* trainsheet_info_hbox = MK_HBOX;
+  Gtk::Box* trainsheet_info_hbox = MK_HBOX(5);
   trainsheet_info_hbox->pack_end(this->skillqueue_info_label, false, false, 0);
   trainsheet_info_hbox->pack_end(*trainsheet_info_desc, false, false, 0);
 
@@ -789,7 +786,7 @@ GtkCharPage::create_tray_notify (void)
   this->tray_notify->signal_activate().connect(sigc::mem_fun
      (*this, &GtkCharPage::remove_tray_notify));
   //this->tray_notify->set_blinking(true);
-  this->tray_notify->set_tooltip(this->character->get_char_name() + " has "
+  this->tray_notify->set_tooltip_text(this->character->get_char_name() + " has "
       "completed " + this->training_label.get_text() + "!");
 }
 

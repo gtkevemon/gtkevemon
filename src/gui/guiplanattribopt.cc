@@ -1,7 +1,14 @@
-#include <gtkmm/stock.h>
-#include <gtkmm/scrolledwindow.h>
-#include <gtkmm/separator.h>
-#include <gtkmm/table.h>
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
+#include <gtkmm.h>
 
 #include "util/helpers.h"
 #include "api/evetime.h"
@@ -43,13 +50,13 @@ GuiPlanAttribOpt::GuiPlanAttribOpt (void)
   this->notebook.append_page(*breakdown_page, "Plan breakdown");
 
   /* Button bar. */
-  Gtk::Button* close_but = MK_BUT(Gtk::Stock::CLOSE);
-  Gtk::HBox* button_box = MK_HBOX;
+  Gtk::Button* close_but = MK_BUT("Close");
+  Gtk::Box* button_box = MK_HBOX(5);
   button_box->pack_start(*MK_HSEP, true, true, 0);
   button_box->pack_end(*close_but, false, false, 0);
 
   /* Main box. */
-  Gtk::VBox* mainbox = MK_VBOX;
+  Gtk::Box* mainbox = MK_VBOX(5);
   mainbox->pack_start(this->notebook, true, true, 0);
   mainbox->pack_end(*button_box, false, false, 0);
   mainbox->set_border_width(5);
@@ -70,17 +77,17 @@ Gtk::Widget*
 GuiPlanAttribOpt::create_config_page (void)
 {
   /* Some information on usage of the configuration. */
-  Gtk::Image* info_image = MK_IMG(Gtk::Stock::DIALOG_QUESTION,
-      Gtk::ICON_SIZE_DIALOG);
+  Gtk::Image* info_image = MK_IMG0;
+  info_image->set_from_icon_name("dialog-question", Gtk::ICON_SIZE_DIALOG);
   Gtk::Label* info_label = MK_LABEL("Do you want to optimize the whole plan?\n"
       "Please select whether you want to optimize\n"
       "the whole skill plan or just a part of it.");
   info_label->set_line_wrap(true);
   info_label->set_justify(Gtk::JUSTIFY_LEFT);
-  info_label->set_alignment(Gtk::ALIGN_LEFT);
+  info_label->set_halign(Gtk::ALIGN_START);
   //info_label->set_width_chars(50);
 
-  Gtk::HBox* info_box = MK_HBOX;
+  Gtk::Box* info_box = MK_HBOX(5);
   info_box->set_spacing(10);
   info_box->pack_start(*info_image, false, false, 0);
   info_box->pack_start(*info_label, true, true, 0);
@@ -94,23 +101,23 @@ GuiPlanAttribOpt::create_config_page (void)
   this->set_selection_sensitivity(false);
 
   /* Create a table and add the widgets to it. */
-  Gtk::VBox* dialog_vbox = MK_VBOX;
+  Gtk::Box* dialog_vbox = MK_VBOX(5);
   dialog_vbox->pack_start(this->rb_whole_plan, false, false, 0);
   dialog_vbox->pack_start(this->rb_partial_plan, false, false, 0);
   dialog_vbox->pack_start(this->skill_selection, false, false, 0);
 
   /* Create the button for the next page. */
   Gtk::Button* calculate_but = MK_BUT0;
-  calculate_but->set_image(*MK_IMG(Gtk::Stock::MEDIA_PLAY,
-      Gtk::ICON_SIZE_BUTTON));
+  calculate_but->set_image_from_icon_name("media-playback-start",
+      Gtk::ICON_SIZE_BUTTON);
   calculate_but->set_label("Optimize attributes");
 
   /* The button box. */
-  Gtk::HBox* button_box = MK_HBOX;
+  Gtk::Box* button_box = MK_HBOX(5);
   button_box->pack_end(*calculate_but, false, false, 0);
 
   /* The main box. */
-  Gtk::VBox* main_box = MK_VBOX;
+  Gtk::Box* main_box = MK_VBOX(5);
   main_box->set_border_width(5);
   main_box->pack_start(*info_box, false, false, 0);
   main_box->pack_start(*MK_HSEP, false, false, 0);
@@ -146,7 +153,8 @@ GuiPlanAttribOpt::create_attrib_page (void)
   Gtk::Label* difference_time_name_label = MK_LABEL("Improvement:");
 
   /* Create info and warning box. */
-  Gtk::Image* info_image = MK_IMG(Gtk::Stock::DIALOG_INFO,
+  Gtk::Image* info_image = MK_IMG0;
+  info_image->set_from_icon_name("dialog-information",
       Gtk::ICON_SIZE_DIALOG);
   Gtk::Label* information_label = MK_LABEL("Below you find the attribute "
       "point distribution which will reduce the current plan's training time "
@@ -154,21 +162,21 @@ GuiPlanAttribOpt::create_attrib_page (void)
       "Note: You can only remap your attributes once a year!");
   information_label->set_line_wrap(true);
   information_label->set_justify(Gtk::JUSTIFY_LEFT);
-  information_label->set_alignment(Gtk::ALIGN_LEFT);
+  information_label->set_halign(Gtk::ALIGN_START);
 
-  Gtk::HBox* info_box = MK_HBOX;
+  Gtk::Box* info_box = MK_HBOX(5);
   info_box->set_spacing(10);
   info_box->pack_start(*info_image, false, false, 0);
   info_box->pack_start(*information_label, true, true, 0);
 
-  Gtk::Image* warning_image = MK_IMG(Gtk::Stock::DIALOG_WARNING,
-      Gtk::ICON_SIZE_DIALOG);
+  Gtk::Image* warning_image = MK_IMG0;
+  warning_image->set_from_icon_name("dialog-warning", Gtk::ICON_SIZE_DIALOG);
   Gtk::Label* warning_label = MK_LABEL("The optimized plan's training time "
       "is below one year!\nPlease note that you're allowed to remap your "
       "attributes only once a year.");
   warning_label->set_line_wrap(true);
   warning_label->set_justify(Gtk::JUSTIFY_LEFT);
-  warning_label->set_alignment(Gtk::ALIGN_LEFT);
+  warning_label->set_halign(Gtk::ALIGN_START);
 
   warning_label->show();
   warning_image->show();
@@ -178,38 +186,38 @@ GuiPlanAttribOpt::create_attrib_page (void)
   this->warning_box.set_no_show_all(true);
 
   /* Set the alignments for all the attributes' labels. */
-  cha_name_label->set_alignment(Gtk::ALIGN_LEFT);
-  intl_name_label->set_alignment(Gtk::ALIGN_LEFT);
-  per_name_label->set_alignment(Gtk::ALIGN_LEFT);
-  mem_name_label->set_alignment(Gtk::ALIGN_LEFT);
-  wil_name_label->set_alignment(Gtk::ALIGN_LEFT);
+  cha_name_label->set_halign(Gtk::ALIGN_START);
+  intl_name_label->set_halign(Gtk::ALIGN_START);
+  per_name_label->set_halign(Gtk::ALIGN_START);
+  mem_name_label->set_halign(Gtk::ALIGN_START);
+  wil_name_label->set_halign(Gtk::ALIGN_START);
 
-  this->base_cha_label.set_alignment(Gtk::ALIGN_RIGHT);
-  this->base_intl_label.set_alignment(Gtk::ALIGN_RIGHT);
-  this->base_per_label.set_alignment(Gtk::ALIGN_RIGHT);
-  this->base_mem_label.set_alignment(Gtk::ALIGN_RIGHT);
-  this->base_wil_label.set_alignment(Gtk::ALIGN_RIGHT);
+  this->base_cha_label.set_halign(Gtk::ALIGN_END);
+  this->base_intl_label.set_halign(Gtk::ALIGN_END);
+  this->base_per_label.set_halign(Gtk::ALIGN_END);
+  this->base_mem_label.set_halign(Gtk::ALIGN_END);
+  this->base_wil_label.set_halign(Gtk::ALIGN_END);
 
-  this->total_cha_label.set_alignment(Gtk::ALIGN_RIGHT);
-  this->total_intl_label.set_alignment(Gtk::ALIGN_RIGHT);
-  this->total_per_label.set_alignment(Gtk::ALIGN_RIGHT);
-  this->total_mem_label.set_alignment(Gtk::ALIGN_RIGHT);
-  this->total_wil_label.set_alignment(Gtk::ALIGN_RIGHT);
+  this->total_cha_label.set_halign(Gtk::ALIGN_END);
+  this->total_intl_label.set_halign(Gtk::ALIGN_END);
+  this->total_per_label.set_halign(Gtk::ALIGN_END);
+  this->total_mem_label.set_halign(Gtk::ALIGN_END);
+  this->total_wil_label.set_halign(Gtk::ALIGN_END);
 
   /* Set the alignments for all the times' labels. */
-  best_time_name_label->set_alignment(Gtk::ALIGN_LEFT);
-  original_time_name_label->set_alignment(Gtk::ALIGN_LEFT);
-  difference_time_name_label->set_alignment(Gtk::ALIGN_LEFT);
+  best_time_name_label->set_halign(Gtk::ALIGN_START);
+  original_time_name_label->set_halign(Gtk::ALIGN_START);
+  difference_time_name_label->set_halign(Gtk::ALIGN_START);
 
-  this->best_time_label.set_alignment(Gtk::ALIGN_RIGHT);
-  this->original_time_label.set_alignment(Gtk::ALIGN_RIGHT);
-  this->difference_time_label.set_alignment(Gtk::ALIGN_RIGHT);
+  this->best_time_label.set_halign(Gtk::ALIGN_END);
+  this->original_time_label.set_halign(Gtk::ALIGN_END);
+  this->difference_time_label.set_halign(Gtk::ALIGN_END);
 
   /* Configure the table and add fill it with content. */
   Gtk::Label* base_attr_label = MK_LABEL("Base");
-  base_attr_label->set_alignment(Gtk::ALIGN_RIGHT);
+  base_attr_label->set_halign(Gtk::ALIGN_END);
   Gtk::Label* total_attr_label = MK_LABEL("Total");
-  total_attr_label->set_alignment(Gtk::ALIGN_RIGHT);
+  total_attr_label->set_halign(Gtk::ALIGN_END);
 
   Gtk::Table* attribute_table = MK_TABLE(9, 3);
   attribute_table->set_col_spacings(10);
@@ -242,15 +250,15 @@ GuiPlanAttribOpt::create_attrib_page (void)
 
   /* Configure some buttons. */
   Gtk::Button* view_plan_but = MK_BUT0;
-  view_plan_but->set_image(*MK_IMG(Gtk::Stock::MEDIA_PLAY,
-      Gtk::ICON_SIZE_BUTTON));
+  view_plan_but->set_image_from_icon_name("media-playback-start",
+      Gtk::ICON_SIZE_BUTTON);
   view_plan_but->set_label("View plan breakdown");
 
-  Gtk::HBox* view_plan_box = MK_HBOX;
+  Gtk::Box* view_plan_box = MK_HBOX(5);
   view_plan_box->pack_end(*view_plan_but, false, false, 0);
 
   /* Assemble and configure the widgets. */
-  Gtk::VBox* attribute_box = MK_VBOX;
+  Gtk::Box* attribute_box = MK_VBOX(5);
   attribute_box->set_border_width(5);
   attribute_box->pack_start(*info_box, false, false);
   attribute_box->pack_start(*MK_HSEP, false, false, 0);
@@ -297,7 +305,7 @@ GuiPlanAttribOpt::set_plan (GtkSkillList const& plan)
     GtkSkillInfo& info = this->plan[i];
     Glib::ustring skillname = info.skill->name;
     skillname += " " + Helpers::get_roman_from_int(info.plan_level);
-    this->skill_selection.append_text(skillname);
+    this->skill_selection.append(skillname);
   }
   this->skill_selection.set_active(0);
 }
