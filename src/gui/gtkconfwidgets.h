@@ -1,25 +1,19 @@
-/*
- * This file is part of GtkEveMon.
- *
- * GtkEveMon is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * You should have received a copy of the GNU General Public License
- * along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
- */
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef GTK_CONF_WIDGETS_HEADER
 #define GTK_CONF_WIDGETS_HEADER
 
 #include <string>
-#include <gtkmm/filechooserbutton.h>
-#include <gtkmm/checkbutton.h>
-#include <gtkmm/entry.h>
-#include <gtkmm/combobox.h>
-#include <gtkmm/liststore.h>
-#include <gtkmm/comboboxtext.h>
+
+#include <gtkmm.h>
 
 #include "bits/config.h"
 

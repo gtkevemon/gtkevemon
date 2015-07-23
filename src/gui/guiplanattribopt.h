@@ -1,24 +1,17 @@
-/*
- * This file is part of GtkEveMon.
- *
- * GtkEveMon is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * You should have received a copy of the GNU General Public License
- * along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
- */
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef GUI_PLAN_ATTRIB_OPT_HEADER
 #define	GUI_PLAN_ATTRIB_OPT_HEADER
 
-#include <gtkmm/notebook.h>
-#include <gtkmm/label.h>
-#include <gtkmm/treeview.h>
-#include <gtkmm/liststore.h>
-#include <gtkmm/radiobutton.h>
-#include <gtkmm/comboboxtext.h>
+#include <gtkmm.h>
 
 #include "winbase.h"
 #include "gtktrainingplan.h"
@@ -75,7 +68,7 @@ class GuiPlanAttribOpt : public WinBase
     Gtk::Label original_time_label;
     Gtk::Label best_time_label;
     Gtk::Label difference_time_label;
-    Gtk::HBox warning_box;
+    Gtk::Box warning_box;
 
     GtkTreeModelColumnsOptimizer cols;
     Glib::RefPtr<Gtk::ListStore> liststore;
@@ -97,4 +90,3 @@ class GuiPlanAttribOpt : public WinBase
 };
 
 #endif	/* GUI_PLAN_ATTRIB_OPT_HEADER */
-

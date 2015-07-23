@@ -16,10 +16,10 @@ ifdef DEBUG
 endif
 
 GCC_INCL = -I.
-GTK_FLAGS = $(shell pkg-config --cflags gtkmm-2.4)
+GTK_FLAGS = $(shell pkg-config --cflags gtkmm-3.0)
 XML_FLAGS = $(shell pkg-config --cflags libxml-2.0)
 
-GTK_LIBS = $(shell pkg-config --libs gtkmm-2.4)
+GTK_LIBS = $(shell pkg-config --libs gtkmm-3.0)
 XML_LIBS = $(shell pkg-config --libs libxml-2.0)
 PTH_LIBS = -lpthread
 ZLIB_LIBS = -lz

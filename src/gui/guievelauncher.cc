@@ -1,15 +1,16 @@
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
 #include <iostream>
 
-#include <gtkmm/table.h>
-#include <gtkmm/label.h>
-#include <gtkmm/entry.h>
-#include <gtkmm/separator.h>
-#include <gtkmm/box.h>
-#include <gtkmm/stock.h>
-#include <gtkmm/button.h>
-#include <gtkmm/image.h>
-#include <gtkmm/frame.h>
-#include <gtkmm/messagedialog.h>
+#include <gtkmm.h>
 
 #include "util/exception.h"
 #include "util/helpers.h"
@@ -69,7 +70,7 @@ GuiEveLauncher::GuiEveLauncher (std::vector<std::string> const& cmds)
     eve_cmd_entry->set_text(cmds[i]);
     eve_cmd_entry->set_editable(false);
     Gtk::Button* launch_but = MK_BUT0;
-    launch_but->set_image(*MK_IMG(Gtk::Stock::EXECUTE, Gtk::ICON_SIZE_MENU));
+    launch_but->set_image_from_icon_name("system-run", Gtk::ICON_SIZE_MENU);
     launch_but->signal_clicked().connect(sigc::bind(sigc::mem_fun
         (*this, &GuiEveLauncher::run_command), cmds[i]));
 
@@ -84,12 +85,12 @@ GuiEveLauncher::GuiEveLauncher (std::vector<std::string> const& cmds)
   main_frame->add(*launch_table);
 
   /* Button bar. */
-  Gtk::HBox* button_bar = MK_HBOX;
-  Gtk::Button* close_but = MK_BUT(Gtk::Stock::CLOSE);
+  Gtk::Box* button_bar = MK_HBOX(5);
+  Gtk::Button* close_but = MK_BUT("Close");
   button_bar->pack_start(*MK_HSEP, true, true, 0);
   button_bar->pack_end(*close_but, false, false, 0);
 
-  Gtk::VBox* main_box = MK_VBOX;
+  Gtk::Box* main_box = MK_VBOX(5);
   main_box->set_border_width(5);
   main_box->pack_start(*main_frame, false, false, 0);
   main_box->pack_end(*button_bar, false, false, 0);

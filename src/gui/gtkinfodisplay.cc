@@ -1,8 +1,14 @@
-#include <gtkmm/scrolledwindow.h>
-#include <gtkmm/button.h>
-#include <gtkmm/separator.h>
-#include <gtkmm/stock.h>
-#include <gtkmm/frame.h>
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
+#include <gtkmm.h>
 
 #include "api/evetime.h"
 #include "util/exception.h"
@@ -11,26 +17,24 @@
 #include "gtkinfodisplay.h"
 
 GtkInfoDisplay::GtkInfoDisplay (InfoDisplayStyle style)
-  : Gtk::VBox(false, 0)
+  : Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0)
 {
-  this->text.set_alignment(Gtk::ALIGN_LEFT);
+  this->text.set_halign(Gtk::ALIGN_START);
 
-  this->info_but.set_image(*Gtk::manage(new Gtk::Image
-        (Gtk::Stock::FIND, Gtk::ICON_SIZE_MENU)));
+  this->info_but.set_image_from_icon_name("edit-find", Gtk::ICON_SIZE_MENU);
   this->info_but.set_relief(Gtk::RELIEF_NONE);
   this->info_but.set_tooltip_text("Detailed information");
 
   Gtk::Button* close_but = MK_BUT0;
-  close_but->set_image(*Gtk::manage(new Gtk::Image
-        (Gtk::Stock::CLOSE, Gtk::ICON_SIZE_MENU)));
+  close_but->set_image_from_icon_name("window-close", Gtk::ICON_SIZE_MENU);
   close_but->set_relief(Gtk::RELIEF_NONE);
   close_but->set_tooltip_text("Hide message box");
 
-  Gtk::HBox* button_box = MK_HBOX0;
+  Gtk::Box* button_box = MK_HBOX(0);
   button_box->pack_start(this->info_but, false, false, 0);
   button_box->pack_start(*close_but, false, false, 0);
 
-  Gtk::HBox* item_box = MK_HBOX;
+  Gtk::Box* item_box = MK_HBOX(5);
   item_box->pack_start(this->icon, false, false, 0);
   item_box->pack_start(this->text, true, true, 0);
   item_box->pack_start(*button_box, false, false, 0);
@@ -70,14 +74,14 @@ GtkInfoDisplay::append (InfoItem const& item)
   switch (item.type)
   {
     case INFO_NOTIFICATION:
-      this->icon.set(Gtk::Stock::DIALOG_INFO, Gtk::ICON_SIZE_BUTTON);
+      this->icon.set_from_icon_name("dialog-information", Gtk::ICON_SIZE_MENU);
       break;
     case INFO_WARNING:
-      this->icon.set(Gtk::Stock::DIALOG_WARNING, Gtk::ICON_SIZE_BUTTON);
+      this->icon.set_from_icon_name("dialog-warning", Gtk::ICON_SIZE_MENU);
       break;
     default:
     case INFO_ERROR:
-      this->icon.set(Gtk::Stock::DIALOG_ERROR, Gtk::ICON_SIZE_BUTTON);
+      this->icon.set_from_icon_name("dialog-error", Gtk::ICON_SIZE_MENU);
       break;
   }
 
@@ -107,17 +111,18 @@ GtkInfoDisplay::show_info_log (void)
 
 GuiInfoDisplayLog::GuiInfoDisplayLog (std::vector<InfoItem> const& log)
   : log(log),
-    prev_but(Gtk::Stock::GO_BACK),
-    next_but(Gtk::Stock::GO_FORWARD),
+    prev_but("_Back"),
+    next_but("_Forward"),
     text_buffer(Gtk::TextBuffer::create()),
     text_view(text_buffer)
 {
   if (log.size() == 0)
     throw Exception("Need log entries to display!");
 
-  Gtk::Button* close_but = MK_BUT(Gtk::Stock::CLOSE);
+  Gtk::Button* close_but = MK_BUT0;
+  close_but->set_image_from_icon_name("window-close", Gtk::ICON_SIZE_BUTTON);
 
-  Gtk::HBox* button_box = MK_HBOX;
+  Gtk::Box* button_box = MK_HBOX(5);
   button_box->pack_start(this->prev_but, false, false, 0);
   button_box->pack_start(this->next_but, false, false, 0);
   button_box->pack_start(*MK_HSEP, true, true, 0);
@@ -128,11 +133,11 @@ GuiInfoDisplayLog::GuiInfoDisplayLog (std::vector<InfoItem> const& log)
   scwin->add(this->text_view);
   scwin->set_shadow_type(Gtk::SHADOW_ETCHED_IN);
 
-  this->message.set_alignment(Gtk::ALIGN_LEFT);
+  this->message.set_halign(Gtk::ALIGN_START);
   this->text_view.set_editable(false);
   this->text_view.set_wrap_mode(Gtk::WRAP_WORD);
 
-  Gtk::VBox* main_box = MK_VBOX;
+  Gtk::Box* main_box = MK_VBOX(5);
   main_box->set_border_width(5);
   main_box->pack_start(this->message, false, false, 0);
   main_box->pack_start(*scwin, true, true, 0);

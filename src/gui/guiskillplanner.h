@@ -1,20 +1,17 @@
-/*
- * This file is part of GtkEveMon.
- *
- * GtkEveMon is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * You should have received a copy of the GNU General Public License
- * along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
- */
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef GUI_SKILL_PLANNER_HEADER
 #define GUI_SKILL_PLANNER_HEADER
 
-#include <gtkmm/paned.h>
-#include <gtkmm/notebook.h>
+#include <gtkmm.h>
 
 #include "bits/character.h"
 #include "winbase.h"
@@ -44,8 +41,6 @@ class GuiSkillPlanner : public WinBase
 
     void init_from_config (void);
     void store_to_config (void);
-
-    bool on_gtkmain_quit (void);
 
   public:
     GuiSkillPlanner (void);

@@ -1,20 +1,17 @@
-/*
- * This file is part of GtkEveMon.
- *
- * GtkEveMon is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * You should have received a copy of the GNU General Public License
- * along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
- */
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef GUI_UPDATER_HEADER
 #define GUI_UPDATER_HEADER
 
-#include <gtkmm/button.h>
-#include <gtkmm/box.h>
+#include <gtkmm.h>
 
 #include "bits/updater.h"
 #include "net/asynchttp.h"
@@ -31,7 +28,8 @@ class GuiUpdater : public WinBase, public UpdaterBase
     GtkDownloader downloader;
     Gtk::Button* close_but;
     Gtk::Button* update_but;
-    Gtk::VBox files_box;
+    Gtk::Box* frame_box;
+    Gtk::Box* files_box;
 
   protected:
     void rebuild_files_box (void);

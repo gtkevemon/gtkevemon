@@ -1,9 +1,16 @@
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
 #include <iostream>
-#include <gtkmm/stock.h>
-#include <gtkmm/messagedialog.h>
-#include <gtkmm/entry.h>
-#include <gtkmm/table.h>
-#include <gtkmm/scrolledwindow.h>
+
+#include <gtkmm.h>
 
 #include "util/helpers.h"
 #include "api/evetime.h"
@@ -383,7 +390,7 @@ GtkSkillList::is_dependency (unsigned int index)
 /* ---------------------------------------------------------------- */
 
 OptimalData
-GtkSkillList::get_optimal_data (void) const 
+GtkSkillList::get_optimal_data (void) const
 {
   GtkSkillList plan = *this;
 
@@ -523,12 +530,12 @@ GtkTreeViewColumns::GtkTreeViewColumns (Gtk::TreeView* view,
 
   this->objective.set_resizable(false);
   Gtk::CellRendererToggle* objective_col = dynamic_cast
-      <Gtk::CellRendererToggle*>(this->objective.get_first_cell_renderer());
+      <Gtk::CellRendererToggle*>(this->objective.get_first_cell());
   objective_col->set_property("activatable", true);
 
   /* Make user notes editable. */
   ((Gtk::CellRendererText*)this->user_notes
-      .get_first_cell_renderer())->property_editable() = true;
+      .get_first_cell())->property_editable() = true;
 
   this->append_column(&this->objective, GtkColumnOptions
       (false, true, false, ImageStore::columnconf[1]));
@@ -558,19 +565,19 @@ GtkTreeViewColumns::GtkTreeViewColumns (Gtk::TreeView* view,
   this->train_duration.set_resizable(false);
   this->skill_duration.set_resizable(false);
   this->completed.set_resizable(false);
-  this->completed.get_first_cell_renderer()->set_property("xalign", 1.0f);
+  this->completed.get_first_cell()->set_property("xalign", 1.0f);
   this->attributes.set_resizable(false);
   this->est_start.set_resizable(false);
   this->est_finish.set_resizable(false);
   this->user_notes.set_resizable(true);
   this->spph.set_resizable(false);
-  this->spph.get_first_cell_renderer()->set_property("xalign", 1.0);
+  this->spph.get_first_cell()->set_property("xalign", 1.0);
 }
 
 /* ================================================================ */
 
 GtkTrainingPlan::GtkTrainingPlan (void)
-  : Gtk::VBox(false, 5),
+  : Gtk::Box(Gtk::ORIENTATION_VERTICAL, 5),
     liststore(Gtk::ListStore::create(cols)),
     treeview(liststore),
     viewcols(&treeview, &cols)
@@ -580,36 +587,29 @@ GtkTrainingPlan::GtkTrainingPlan (void)
   // DELETE is defined in winnt.h and clashes with GTK
 # undef DELETE
 #endif
-  this->delete_plan_but.set_image(*MK_IMG
-      (Gtk::Stock::DELETE, Gtk::ICON_SIZE_MENU));
-  this->create_plan_but.set_image(*MK_IMG
-      (Gtk::Stock::NEW, Gtk::ICON_SIZE_MENU));
-  this->rename_plan_but.set_image(*MK_IMG
-      (Gtk::Stock::EDIT, Gtk::ICON_SIZE_MENU));
-  this->export_plan_but.set_image(*MK_IMG
-      (Gtk::Stock::SAVE_AS, Gtk::ICON_SIZE_MENU));
-  this->import_plan_but.set_image(*MK_IMG
-      (Gtk::Stock::REVERT_TO_SAVED, Gtk::ICON_SIZE_MENU));
+  this->delete_plan_but.set_image_from_icon_name("edit-delete", Gtk::ICON_SIZE_MENU);
+  this->create_plan_but.set_image_from_icon_name("document-new", Gtk::ICON_SIZE_MENU);
+  this->rename_plan_but.set_image_from_icon_name("gtk-edit", Gtk::ICON_SIZE_MENU);
+  this->export_plan_but.set_image_from_icon_name("document-save-as", Gtk::ICON_SIZE_MENU);
+  this->import_plan_but.set_image_from_icon_name("document-revert", Gtk::ICON_SIZE_MENU);
   //this->delete_plan_but.set_relief(Gtk::RELIEF_NONE);
   //this->create_plan_but.set_relief(Gtk::RELIEF_NONE);
   //this->rename_plan_but.set_relief(Gtk::RELIEF_NONE);
   //this->export_plan_but.set_label("Export");
   //this->import_plan_but.set_label("Import");
 
-  this->clean_plan_but.set_image(*MK_IMG
-      (Gtk::Stock::CLEAR, Gtk::ICON_SIZE_MENU));
+  this->clean_plan_but.set_image_from_icon_name("edit-clear", Gtk::ICON_SIZE_MENU);
   this->clean_plan_but.set_label("Clean finished");
   this->column_conf_but.set_image(*MK_IMG_PB(ImageStore::columnconf[0]));
   this->column_conf_but.set_label("Configure columns");
-  this->optimize_att_but.set_image(*MK_IMG
-      (Gtk::Stock::NETWORK, Gtk::ICON_SIZE_MENU));
+  this->clean_plan_but.set_image_from_icon_name("network-workgroup", Gtk::ICON_SIZE_MENU);
 
   this->total_time.set_text("n/a");
-  this->total_time.set_alignment(Gtk::ALIGN_LEFT);
+  this->total_time.set_halign(Gtk::ALIGN_START);
   this->optimize_att_but.set_label("Optimize attributes");
 
   this->optimal_time.set_text("n/a");
-  this->optimal_time.set_alignment(Gtk::ALIGN_LEFT);
+  this->optimal_time.set_halign(Gtk::ALIGN_START);
 
   this->reorder_new_index = -1;
   //this->clean_plan_but.set_label("Clean up");
@@ -631,15 +631,15 @@ GtkTrainingPlan::GtkTrainingPlan (void)
   scwin->set_shadow_type(Gtk::SHADOW_ETCHED_IN);
 
   /* Create GUI. */
-  Gtk::HBox* button_box = MK_HBOX;
+  Gtk::Box* button_box = MK_HBOX(5);
   button_box->pack_start(this->clean_plan_but, false, false, 0);
   button_box->pack_start(this->column_conf_but, false, false, 0);
   button_box->pack_start(this->optimize_att_but, false, false, 0);
 
-  Gtk::VBox* button_vbox = MK_VBOX;
+  Gtk::Box* button_vbox = MK_VBOX(5);
   button_vbox->pack_end(*button_box, false, false, 0);
 
-  Gtk::HBox* section_selection_box = MK_HBOX0;
+  Gtk::Box* section_selection_box = MK_HBOX(0);
   section_selection_box->pack_start(this->plan_selection, true, true, 0);
   section_selection_box->pack_start(this->rename_plan_but, false, false, 0);
   section_selection_box->pack_start(this->create_plan_but, false, false, 0);
@@ -648,11 +648,11 @@ GtkTrainingPlan::GtkTrainingPlan (void)
   Gtk::Label* select_label = MK_LABEL("Training plan:");
   Gtk::Label* time_label = MK_LABEL("Total time:");
   Gtk::Label* optimal_time_label = MK_LABEL("Optimal time:");
-  select_label->set_alignment(Gtk::ALIGN_LEFT);
-  time_label->set_alignment(Gtk::ALIGN_LEFT);
-  optimal_time_label->set_alignment(Gtk::ALIGN_LEFT);
+  select_label->set_halign(Gtk::ALIGN_START);
+  time_label->set_halign(Gtk::ALIGN_START);
+  optimal_time_label->set_halign(Gtk::ALIGN_START);
 
-  Gtk::HBox* time_file_ops = MK_HBOX0;
+  Gtk::Box* time_file_ops = MK_HBOX(0);
   time_file_ops->pack_start(this->total_time, false, false, 0);
   time_file_ops->pack_end(this->import_plan_but, false, false, 0);
   time_file_ops->pack_end(this->export_plan_but, false, false, 0);
@@ -725,7 +725,7 @@ GtkTrainingPlan::GtkTrainingPlan (void)
   this->viewcols.signal_editing_canceled().connect(sigc::mem_fun
       (this, &GtkTrainingPlan::on_user_notes_editing_canceled));
   dynamic_cast<Gtk::CellRendererToggle*>(this->viewcols.objective
-      .get_first_cell_renderer())->signal_toggled().connect(sigc::mem_fun
+      .get_first_cell())->signal_toggled().connect(sigc::mem_fun
       (*this, &GtkTrainingPlan::on_objective_toggled));
   this->treeview.signal_query_tooltip().connect(sigc::mem_fun
       (*this, &GtkTrainingPlan::on_query_skillview_tooltip));
@@ -1118,11 +1118,11 @@ GtkTrainingPlan::on_create_skill_plan (void)
       "don't need it anymore.");
   dialog.set_title("Create plan - GtkEveMon");
   dialog.set_default_response(Gtk::RESPONSE_OK);
-  Gtk::VBox* dialog_box = dialog.get_vbox();
+  Gtk::Box* dialog_box = dialog.get_content_area();
 
   Gtk::Entry new_name_entry;
   new_name_entry.set_activates_default(true);
-  Gtk::HBox* entry_box = MK_HBOX;
+  Gtk::Box* entry_box = MK_HBOX(5);
   entry_box->pack_start(*MK_LABEL("Plan name:"), false, false, 0);
   entry_box->pack_start(new_name_entry, true, true, 0);
   dialog_box->pack_start(*entry_box, false, false, 0);
@@ -1159,13 +1159,13 @@ GtkTrainingPlan::on_rename_skill_plan (void)
   dialog.set_secondary_text("Remember to always fly safe!");
   dialog.set_title("Rename plan - GtkEveMon");
   dialog.set_default_response(Gtk::RESPONSE_OK);
-  Gtk::VBox* dialog_box = dialog.get_vbox();
+  Gtk::Box* dialog_box = dialog.get_content_area();
 
   Gtk::Entry new_name_entry;
   new_name_entry.set_activates_default(true);
   new_name_entry.set_text(old_text);
   new_name_entry.select_region(0, -1);
-  Gtk::HBox* entry_box = MK_HBOX;
+  Gtk::Box* entry_box = MK_HBOX(5);
   entry_box->pack_start(*MK_LABEL("Plan name:"), false, false, 0);
   entry_box->pack_start(new_name_entry, true, true, 0);
   dialog_box->pack_start(*entry_box, false, false, 0);
@@ -1327,7 +1327,7 @@ GtkTrainingPlan::on_import_plan (void)
   dialog_tbl->attach(*label_new, 0, 1, 2, 3, Gtk::SHRINK | Gtk::FILL);
   dialog_tbl->attach(*entry_new, 1, 2, 2, 3, Gtk::EXPAND | Gtk::FILL);
 
-  Gtk::VBox* dialog_box = dialog.get_vbox();
+  Gtk::Box* dialog_box = dialog.get_content_area();
   dialog_box->pack_start(*dialog_tbl, false, false, 0);
   dialog_box->show_all();
 
@@ -1357,20 +1357,20 @@ GtkTrainingPlan::on_import_plan (void)
   /* Open file chooser dialog. */
   Gtk::FileChooserDialog fcd(*toplevel, "Export skill plan...",
       Gtk::FILE_CHOOSER_ACTION_SAVE);
-  fcd.add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
-  fcd.add_button(Gtk::Stock::OPEN, Gtk::RESPONSE_OK);
+  fcd.add_button("Cancel", Gtk::RESPONSE_CANCEL);
+  fcd.add_button("Open", Gtk::RESPONSE_OK);
 
   {
-    Gtk::FileFilter filter;
-    filter.add_pattern("*.emp");
-    filter.set_name("EveMon Plan (*.emp)");
+    Glib::RefPtr<Gtk::FileFilter> filter = Gtk::FileFilter::create();
+    filter->add_pattern("*.emp");
+    filter->set_name("EveMon Plan (*.emp)");
     fcd.add_filter(filter);
   }
 
   {
-    Gtk::FileFilter filter;
-    filter.add_pattern("*.xml");
-    filter.set_name("EveMon Uncompressed Plan (*.xml)");
+    Glib::RefPtr<Gtk::FileFilter> filter = Gtk::FileFilter::create();
+    filter->add_pattern("*.xml");
+    filter->set_name("EveMon Uncompressed Plan (*.xml)");
     fcd.add_filter(filter);
   }
 
@@ -1425,24 +1425,24 @@ GtkTrainingPlan::on_export_plan (void)
 
   Gtk::FileChooserDialog fcb(*toplevel, "Export skill plan...",
       Gtk::FILE_CHOOSER_ACTION_SAVE);
-  fcb.add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
-  fcb.add_button(Gtk::Stock::SAVE, Gtk::RESPONSE_OK);
+  fcb.add_button("Cancel", Gtk::RESPONSE_CANCEL);
+  fcb.add_button("Save", Gtk::RESPONSE_OK);
   fcb.set_do_overwrite_confirmation(true);
 
 #define PLAN_FILTER_EMP "EveMon Plan (*.emp)"
 #define PLAN_FILTER_XML "EveMon Uncompressed Plan (*.xml)"
 
   {
-    Gtk::FileFilter filter;
-    filter.add_pattern("*.emp");
-    filter.set_name(PLAN_FILTER_EMP);
+    Glib::RefPtr<Gtk::FileFilter> filter = Gtk::FileFilter::create();
+    filter->add_pattern("*.emp");
+    filter->set_name(PLAN_FILTER_EMP);
     fcb.add_filter(filter);
   }
 
   {
-    Gtk::FileFilter filter;
-    filter.add_pattern("*.xml");
-    filter.set_name(PLAN_FILTER_XML);
+    Glib::RefPtr<Gtk::FileFilter> filter = Gtk::FileFilter::create();
+    filter->add_pattern("*.xml");
+    filter->set_name(PLAN_FILTER_XML);
     fcb.add_filter(filter);
   }
 
@@ -1459,7 +1459,7 @@ GtkTrainingPlan::on_export_plan (void)
 
     /* FIXME: Fetch extension from filter. */
     #if 0
-    Gtk::FileFilter* filter = fcb.get_filter();
+    Glib::RefPtr<Gtk::FileFilter> filter = fcb.get_filter();
     if (filter->get_name() == PLAN_FILTER_XML)
       extension = ".xml";
     #endif

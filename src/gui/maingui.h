@@ -1,24 +1,19 @@
-/*
- * This file is part of GtkEveMon.
- *
- * GtkEveMon is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * You should have received a copy of the GNU General Public License
- * along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
- */
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef MAIN_GUI_HEADER
 #define MAIN_GUI_HEADER
 
 #include <vector>
-#include <gtkmm/window.h>
-#include <gtkmm/uimanager.h>
-#include <gtkmm/actiongroup.h>
-#include <gtkmm/notebook.h>
-#include <gtkmm/statusicon.h>
+
+#include <gtkmm.h>
 
 #include "util/conf.h"
 #include "bits/character.h"
@@ -58,8 +53,8 @@ class MainGui : public Gtk::Window
     void add_character (CharacterPtr character);
     void remove_character (std::string char_id);
 
-    void on_pages_changed (Gtk::Widget* widget, guint pnum);
-    void on_pages_switched (GtkNotebookPage* page, guint pnum);
+    void on_pages_changed (Widget* page, guint page_num);
+    void on_pages_switched (Widget* page, guint page_num);
     void on_data_files_changed (void);
     void on_data_files_unchanged (void);
     void check_if_no_pages (void);

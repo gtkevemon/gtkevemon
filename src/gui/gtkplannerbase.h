@@ -1,22 +1,17 @@
-/*
- * This file is part of GtkEveMon.
- *
- * GtkEveMon is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * You should have received a copy of the GNU General Public License
- * along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
- */
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef GTK_PLANNER_BASE_HEADER
 #define GTK_PLANNER_BASE_HEADER
 
-#include <gtkmm/treeview.h>
-#include <gtkmm/treemodel.h>
-#include <gtkmm/menu.h>
-#include <gdkmm/pixbuf.h>
+#include <gtkmm.h>
 
 #include "api/apiskilltree.h"
 #include "api/apicerttree.h"

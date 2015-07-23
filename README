@@ -18,7 +18,7 @@ The required libraries to build GtkEveMon (which can be installed
 using your distribution's package management) are:
 
 	libxml++ (with headers)
-	libgtkmm (with headers, at least version 2.4)
+	libgtkmm (with headers, at least version 3.0)
 	libcurl (with headers, compiled with encryption support)
 
 The source does not come with a configure script. Just execute:
@@ -37,7 +37,7 @@ If you don't want to install GtkEveMon, just execute GtkEveMon with:
 
     $ ./src/gtkevemon
 
-Once you install GtkEveMon (read below), type "gtkevemon" anywhere 
+Once you install GtkEveMon (read below), type "gtkevemon" anywhere
 in your system or make a shortcut in your window manager.
 
 

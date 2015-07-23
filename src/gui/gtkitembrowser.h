@@ -1,22 +1,17 @@
-/*
- * This file is part of GtkEveMon.
- *
- * GtkEveMon is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * You should have received a copy of the GNU General Public License
- * along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
- */
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef GTK_ITEM_BROWSER_HEADER
 #define GTK_ITEM_BROWSER_HEADER
 
-#include <gtkmm/box.h>
-#include <gtkmm/entry.h>
-#include <gtkmm/treestore.h>
-#include <gtkmm/comboboxtext.h>
+#include <gtkmm.h>
 
 #include "api/apicharsheet.h"
 #include "gtkplannerbase.h"
@@ -61,7 +56,7 @@ class ItemBrowserBase
 
 /* ---------------------------------------------------------------- */
 
-class GtkSkillBrowser : public ItemBrowserBase, public Gtk::VBox
+class GtkSkillBrowser : public ItemBrowserBase, public Gtk::Box
 {
   private:
     Gtk::Entry filter_entry;
@@ -80,7 +75,7 @@ class GtkSkillBrowser : public ItemBrowserBase, public Gtk::VBox
 
 /* ---------------------------------------------------------------- */
 
-class GtkCertBrowser : public ItemBrowserBase, public Gtk::VBox
+class GtkCertBrowser : public ItemBrowserBase, public Gtk::Box
 {
   protected:
     enum CertPrerequisite

@@ -1,14 +1,16 @@
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
 #include <iostream>
-#include <gtkmm/label.h>
-#include <gtkmm/table.h>
-#include <gtkmm/box.h>
-#include <gtkmm/separator.h>
-#include <gtkmm/scrolledwindow.h>
-#include <gtkmm/image.h>
-#include <gtkmm/button.h>
-#include <gtkmm/stock.h>
-#include <gtkmm/frame.h>
-#include <gtkmm/messagedialog.h>
+
+#include <gtkmm.h>
 
 #include "util/exception.h"
 #include "api/apicharlist.h"
@@ -19,7 +21,7 @@
 #include "guiuserdata.h"
 
 GuiUserData::GuiUserData (void)
-  : apply_button(Gtk::Stock::APPLY)
+  : apply_button("Apply")
 {
   /* Setup the EVE API fetcher. */
   this->charlist_fetcher.set_doctype(API_DOCTYPE_CHARLIST);
@@ -41,13 +43,15 @@ GuiUserData::GuiUserData (void)
 
   /* Build GUI. */
   Gtk::Label* history_label = MK_LABEL("API Keys:");
-  Gtk::HBox* history_hbox = MK_HBOX;
+  Gtk::Box* history_hbox = MK_HBOX(5);
   history_hbox->pack_start(*history_label, false, false, 0);
   history_hbox->pack_start(this->history_box, true, true, 0);
 
-  Gtk::HBox* info1_hbox = Gtk::manage(new Gtk::HBox(false, 10));
-  info1_hbox->pack_start(*Gtk::manage(new Gtk::Image
-      (Gtk::Stock::DIALOG_INFO, Gtk::ICON_SIZE_DIALOG)), false, false, 0);
+  Gtk::Box* info1_hbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 10));
+  Gtk::Image* info1_image = MK_IMG0;
+  info1_image->set_from_icon_name("dialog-information",
+      Gtk::ICON_SIZE_DIALOG);
+  info1_hbox->pack_start(*info1_image, false, false, 0);
 
   Gtk::Label* info1_label = MK_LABEL(
       "Enter your key ID and your verification code such that GtkEveMon "
@@ -55,11 +59,11 @@ GuiUserData::GuiUserData (void)
       "You can get the information at:");
   info1_label->set_width_chars(50);
   info1_label->set_line_wrap(true);
-  info1_label->set_alignment(Gtk::ALIGN_LEFT);
+  info1_label->set_halign(Gtk::ALIGN_START);
   Gtk::Label* info1b_label = MK_LABEL("http://support.eveonline.com/api");
-  info1b_label->set_alignment(Gtk::ALIGN_LEFT);
+  info1b_label->set_halign(Gtk::ALIGN_START);
   info1b_label->set_selectable(true);
-  Gtk::VBox* info1_vbox = MK_VBOX0;
+  Gtk::Box* info1_vbox = MK_VBOX(0);
   info1_vbox->pack_start(*info1_label, false, false, 0);
   info1_vbox->pack_start(*info1b_label, false, false, 0);
   info1_hbox->pack_start(*info1_vbox, true, true, 0);
@@ -70,8 +74,8 @@ GuiUserData::GuiUserData (void)
   data_table->set_col_spacings(5);
   Gtk::Label* userid_label = MK_LABEL("Key ID:");
   Gtk::Label* apikey_label = MK_LABEL("V-Code:");
-  userid_label->set_alignment(Gtk::ALIGN_LEFT);
-  apikey_label->set_alignment(Gtk::ALIGN_LEFT);
+  userid_label->set_halign(Gtk::ALIGN_START);
+  apikey_label->set_halign(Gtk::ALIGN_START);
   data_table->attach(*userid_label, 0, 1, 0, 1, Gtk::FILL, Gtk::FILL);
   data_table->attach(*apikey_label, 0, 1, 1, 2, Gtk::FILL, Gtk::FILL);
   data_table->attach(this->userid_entry, 1, 2, 0, 1,
@@ -81,18 +85,20 @@ GuiUserData::GuiUserData (void)
   data_table->attach(this->api_v1_cb, 2, 3, 0, 1,
       Gtk::SHRINK, Gtk::SHRINK);
 
-  Gtk::HBox* apply_separator = MK_HBOX;
+  Gtk::Box* apply_separator = MK_HBOX(5);
   apply_separator->pack_start(*MK_HSEP, true, true, 0);
   apply_separator->pack_start(this->apply_button, false, false, 0);
 
-  Gtk::HBox* info2_hbox = Gtk::manage(new Gtk::HBox(false, 10));
-  info2_hbox->pack_start(*Gtk::manage(new Gtk::Image
-      (Gtk::Stock::DIALOG_INFO, Gtk::ICON_SIZE_DIALOG)), false, false, 0);
+  Gtk::Box* info2_hbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 10));
+  Gtk::Image* info2_image = MK_IMG0;
+  info2_image->set_from_icon_name("dialog-information",
+      Gtk::ICON_SIZE_DIALOG);
+  info2_hbox->pack_start(*info2_image, false, false, 0);
   Gtk::Label* info2_label = MK_LABEL(
       "After entering your user information click the button above "
       "to load the character list. Select the characters you want GtkEveMon "
       "to display.");
-  info2_label->set_alignment(Gtk::ALIGN_LEFT);
+  info2_label->set_halign(Gtk::ALIGN_START);
   info2_label->set_line_wrap(true);
   info2_hbox->pack_start(*info2_label, true, true, 0);
 
@@ -101,7 +107,7 @@ GuiUserData::GuiUserData (void)
   scwin->set_shadow_type(Gtk::SHADOW_ETCHED_IN);
   scwin->add(this->char_list);
 
-  Gtk::VBox* settings_vbox = MK_VBOX;
+  Gtk::Box* settings_vbox = MK_VBOX(5);
   settings_vbox->set_border_width(5);
   settings_vbox->pack_start(*history_hbox, false, false, 0);
   settings_vbox->pack_start(*MK_HSEP, false, false, 0);
@@ -115,15 +121,15 @@ GuiUserData::GuiUserData (void)
   main_frame->add(*settings_vbox);
   main_frame->set_shadow_type(Gtk::SHADOW_OUT);
 
-  Gtk::Button* but_close = MK_BUT(Gtk::Stock::CLOSE);
-  Gtk::Button* but_add = MK_BUT(Gtk::Stock::ADD);
+  Gtk::Button* but_close = MK_BUT("Close");
+  Gtk::Button* but_add = MK_BUT("Add");
 
-  Gtk::HBox* button_bar = MK_HBOX;
+  Gtk::Box* button_bar = MK_HBOX(5);
   button_bar->pack_start(*but_close, false, false, 0);
   button_bar->pack_start(*MK_HSEP, true, true, 0);
   button_bar->pack_start(*but_add, false, false, 0);
 
-  Gtk::VBox* main_vbox = MK_VBOX;
+  Gtk::Box* main_vbox = MK_VBOX(5);
   main_vbox->set_border_width(5);
   main_vbox->pack_start(*main_frame, true, true, 0);
   main_vbox->pack_end(*button_bar, false, false, 0);

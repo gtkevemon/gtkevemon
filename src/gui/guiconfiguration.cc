@@ -1,16 +1,16 @@
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
 #include <iostream>
-#include <gtkmm/table.h>
-#include <gtkmm/stock.h>
-#include <gtkmm/separator.h>
-#include <gtkmm/scrolledwindow.h>
-#include <gtkmm/filechooserdialog.h>
-#include <gtkmm/box.h>
-#include <gtkmm/frame.h>
-#include <gtkmm/button.h>
-#include <gtkmm/image.h>
-#include <gtkmm/label.h>
-#include <gtkmm/textview.h>
-#include <gtkmm/notebook.h>
+
+#include <gtkmm.h>
 
 #include "util/helpers.h"
 #include "defines.h"
@@ -26,7 +26,7 @@ GuiConfiguration::GuiConfiguration (void)
   this->tray_usage.append_conf_row("Minimize to tray", "minimize");
   this->tray_usage.append_conf_row("Always stay in tray", "always");
 
-  Gtk::HBox* misc_tray_box = MK_HBOX;
+  Gtk::Box* misc_tray_box = MK_HBOX(5);
   misc_tray_box->pack_start(*MK_LABEL("Tray usage:"), false, false, 0);
   misc_tray_box->pack_start(this->tray_usage, true, true, 0);
 
@@ -52,7 +52,7 @@ GuiConfiguration::GuiConfiguration (void)
       (new GtkConfCheckButton("Automatically check for updated data files",
       false, "updater.autocheck"));
 
-  Gtk::VBox* misc_cb_box = MK_VBOX0;
+  Gtk::Box* misc_cb_box = MK_VBOX(0);
   misc_cb_box->pack_start(*misc_min_on_close_cb, false, false, 0);
   misc_cb_box->pack_start(*misc_detailed_tray_tt_cb, false, false, 0);
   misc_cb_box->pack_start(*misc_verbose_wintitle_cb, false, false, 0);
@@ -61,7 +61,7 @@ GuiConfiguration::GuiConfiguration (void)
   misc_cb_box->pack_start(*misc_show_unpublished_skills_cb, false, false, 0);
   misc_cb_box->pack_start(*misc_updater_autocheck, false, false, 0);
 
-  Gtk::VBox* page_misc = MK_VBOX;
+  Gtk::Box* page_misc = MK_VBOX(5);
   page_misc->set_border_width(5);
   page_misc->pack_start(*misc_tray_box, false, false, 0);
   page_misc->pack_start(*misc_cb_box, false, false, 0);
@@ -72,7 +72,7 @@ GuiConfiguration::GuiConfiguration (void)
       "specify more than one command, GtkEveMon will prompt which command "
       "to execute.\n"
       "Note that \"~\" does not work as home directory.");
-  launch_info_label->set_alignment(Gtk::ALIGN_LEFT);
+  launch_info_label->set_halign(Gtk::ALIGN_START);
   launch_info_label->set_line_wrap(true);
 
   Gtk::Table* launch_table = Gtk::manage(new Gtk::Table
@@ -96,7 +96,7 @@ GuiConfiguration::GuiConfiguration (void)
         (new GtkConfTextEntry("settings." + key));
 
     Gtk::Button* eve_cmd_choose = MK_BUT0;
-    eve_cmd_choose->set_image(*MK_IMG(Gtk::Stock::OPEN, Gtk::ICON_SIZE_MENU));
+    eve_cmd_choose->set_image_from_icon_name("document-open", Gtk::ICON_SIZE_MENU);
 
     eve_cmd_choose->signal_clicked().connect(sigc::bind(sigc::mem_fun
         (*this, &GuiConfiguration::select_launcher_file), eve_cmd_entry));
@@ -106,7 +106,7 @@ GuiConfiguration::GuiConfiguration (void)
     launch_table->attach(*eve_cmd_choose, 2, 3, i, i + 1, Gtk::FILL);
   }
 
-  Gtk::VBox* page_launch = MK_VBOX;
+  Gtk::Box* page_launch = MK_VBOX(5);
   page_launch->set_border_width(5);
   page_launch->pack_start(*launch_info_label, false, false, 0);
   page_launch->pack_start(*launch_table, false, false, 0);
@@ -118,7 +118,7 @@ GuiConfiguration::GuiConfiguration (void)
       "You can optionally use a proxy server that is used for both "
       "HTTP and HTTPS connections. "
       "Note that the server monitor doesn't use the proxy.");
-  net_info_label->set_alignment(Gtk::ALIGN_LEFT);
+  net_info_label->set_halign(Gtk::ALIGN_START);
   net_info_label->set_line_wrap(true);
 
   GtkConfCheckButton* use_api_ssl_cb = Gtk::manage(new GtkConfCheckButton
@@ -133,13 +133,13 @@ GuiConfiguration::GuiConfiguration (void)
       ("network.proxy_port"));
   proxy_port_entry->set_width_chars(5);
 
-  Gtk::HBox* net_proxy_entry_box = MK_HBOX;
+  Gtk::Box* net_proxy_entry_box = MK_HBOX(5);
   net_proxy_entry_box->pack_start(*net_proxy_label, false, false, 0);
   net_proxy_entry_box->pack_start(*proxy_entry, true, true, 0);
   net_proxy_entry_box->pack_start(*net_proxy_port_label, false, false, 0);
   net_proxy_entry_box->pack_start(*proxy_port_entry, false, false, 0);
 
-  Gtk::VBox* page_network = MK_VBOX;
+  Gtk::Box* page_network = MK_VBOX(5);
   page_network->set_border_width(5);
   page_network->pack_start(*net_info_label, false, false, 0);
   page_network->pack_start(*use_api_ssl_cb, false, false, 0);
@@ -149,7 +149,7 @@ GuiConfiguration::GuiConfiguration (void)
   /* The NOTIFICATIONS notebook tab. */
   Gtk::Label* notify_info_label = MK_LABEL("Specify how you want "
       "GtkEveMon to notify you if the skill training is complete.");
-  notify_info_label->set_alignment(Gtk::ALIGN_LEFT);
+  notify_info_label->set_halign(Gtk::ALIGN_START);
   notify_info_label->set_line_wrap(true);
 
   GtkConfCheckButton* notify_with_popup = Gtk::manage
@@ -162,14 +162,14 @@ GuiConfiguration::GuiConfiguration (void)
       (new GtkConfCheckButton("Show information bar (in GtkEveMon)", false,
       "notifications.show_info_bar"));
 
-  Gtk::VBox* notify_cb_box = MK_VBOX0;
+  Gtk::Box* notify_cb_box = MK_VBOX(0);
   notify_cb_box->pack_start(*notify_with_popup, false, false, 0);
   notify_cb_box->pack_start(*notify_with_tray, false, false, 0);
   notify_cb_box->pack_start(*notify_with_info_bar, false, false, 0);
 
   Gtk::Label* notify_info2_label = MK_LABEL("See the forums for "
       "how to send emails with this handler.");
-  notify_info2_label->set_alignment(Gtk::ALIGN_LEFT);
+  notify_info2_label->set_halign(Gtk::ALIGN_START);
   notify_info2_label->set_line_wrap(true);
 
   GtkConfCheckButton* notify_handler_enabled = Gtk::manage
@@ -183,11 +183,11 @@ GuiConfiguration::GuiConfiguration (void)
       (new GtkConfTextEntry("notifications.minimum_sp"));
 
   Gtk::Label* notify_command_label = MK_LABEL("Command to execute:");
-  notify_command_label->set_alignment(Gtk::ALIGN_LEFT);
+  notify_command_label->set_halign(Gtk::ALIGN_START);
   Gtk::Label* notify_data_label = MK_LABEL("Data to send (stdin):");
-  notify_data_label->set_alignment(Gtk::ALIGN_LEFT);
+  notify_data_label->set_halign(Gtk::ALIGN_START);
   Gtk::Label* notify_minsp_label = MK_LABEL("Minimum skill SP:");
-  notify_minsp_label->set_alignment(Gtk::ALIGN_LEFT);
+  notify_minsp_label->set_halign(Gtk::ALIGN_START);
 
   Gtk::Table* notify_handler_table = Gtk::manage(new Gtk::Table(4, 2));
   notify_handler_table->set_row_spacings(1);
@@ -207,7 +207,7 @@ GuiConfiguration::GuiConfiguration (void)
   notify_handler_table->attach(*notify_min_sp_entry, 1, 2, 3, 4,
       Gtk::EXPAND | Gtk::FILL);
 
-  Gtk::VBox* page_notifications = MK_VBOX;
+  Gtk::Box* page_notifications = MK_VBOX(5);
   page_notifications->set_border_width(5);
   page_notifications->pack_start(*notify_info_label, false, false, 0);
   page_notifications->pack_start(*notify_cb_box, false, false, 0);
@@ -217,12 +217,12 @@ GuiConfiguration::GuiConfiguration (void)
   /* The TIME_FORMAT notebook tab. */
   Gtk::Label* time_info_label = MK_LABEL
       ("Enter your desired time format here.");
-  time_info_label->set_alignment(Gtk::ALIGN_LEFT);
+  time_info_label->set_halign(Gtk::ALIGN_START);
   time_info_label->set_line_wrap(true);
 
   Gtk::Label* time_info_label2 = MK_LABEL
       ("The default time format is: %Y-%m-%d %H:%M:%S");
-  time_info_label2->set_alignment(Gtk::ALIGN_LEFT);
+  time_info_label2->set_halign(Gtk::ALIGN_START);
   time_info_label2->set_selectable(true);
 
   GtkConfTextEntry* time_format_entry = Gtk::manage
@@ -230,7 +230,7 @@ GuiConfiguration::GuiConfiguration (void)
 
   Gtk::Label* time_info_label3 = MK_LABEL
       ("The default short time format is: %m-%d %H:%M");
-  time_info_label3->set_alignment(Gtk::ALIGN_LEFT);
+  time_info_label3->set_halign(Gtk::ALIGN_START);
   time_info_label3->set_selectable(true);
 
   GtkConfTextEntry* time_short_format_entry = Gtk::manage
@@ -484,11 +484,11 @@ GuiConfiguration::GuiConfiguration (void)
   time_scwin->set_policy(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_ALWAYS);
   time_scwin->add(*time_helptext);
 
-  Gtk::HBox* time_example_hbox = MK_HBOX;
+  Gtk::Box* time_example_hbox = MK_HBOX(5);
   time_example_hbox->pack_start(*MK_LABEL("Example:"), false, false, 0);
   time_example_hbox->pack_start(this->time_example, false, false, 0);
 
-  Gtk::VBox* page_timeformat = MK_VBOX;
+  Gtk::Box* page_timeformat = MK_VBOX(5);
   page_timeformat->set_border_width(5);
   page_timeformat->pack_start(*time_info_label, false, false, 0);
   page_timeformat->pack_start(*time_info_label2, false, false, 0);
@@ -501,8 +501,8 @@ GuiConfiguration::GuiConfiguration (void)
   this->update_time_example();
 
   /* Button bar. */
-  Gtk::HBox* button_bar = MK_HBOX;
-  Gtk::Button* close_but = MK_BUT(Gtk::Stock::CLOSE);
+  Gtk::Box* button_bar = MK_HBOX(5);
+  Gtk::Button* close_but = MK_BUT("Close");
   button_bar->pack_end(*close_but, false, false, 0);
   //button_bar->pack_start(*MK_HSEP, true, true, 0);
 
@@ -518,11 +518,11 @@ GuiConfiguration::GuiConfiguration (void)
   image_frame->set_shadow_type(Gtk::SHADOW_IN);
   image_frame->add(*Gtk::manage(new Gtk::Image(ImageStore::aboutlogo)));
 
-  Gtk::HBox* main_hbox = MK_HBOX;
+  Gtk::Box* main_hbox = MK_HBOX(5);
   main_hbox->pack_start(*image_frame, false, false, 0);
   main_hbox->pack_start(*notebook, true, true, 0);
 
-  Gtk::VBox* main_vbox = MK_VBOX;
+  Gtk::Box* main_vbox = MK_VBOX(5);
   main_vbox->set_border_width(5);
   main_vbox->pack_start(*main_hbox, true, true, 0);
   main_vbox->pack_end(*button_bar, false, false, 0);
@@ -570,8 +570,8 @@ GuiConfiguration::select_launcher_file (Gtk::Entry* cmd_entry)
 {
   Gtk::FileChooserDialog fcd(*this, "Select file to execute...",
       Gtk::FILE_CHOOSER_ACTION_OPEN);
-  fcd.add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
-  fcd.add_button(Gtk::Stock::SAVE, Gtk::RESPONSE_OK);
+  fcd.add_button("Cancel", Gtk::RESPONSE_CANCEL);
+  fcd.add_button("Save", Gtk::RESPONSE_OK);
 
   int ret = fcd.run();
   if (ret == Gtk::RESPONSE_OK)

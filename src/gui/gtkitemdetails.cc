@@ -1,9 +1,14 @@
-#include <gtkmm/textview.h>
-#include <gtkmm/stock.h>
-#include <gtkmm/scrolledwindow.h>
-#include <gtkmm/paned.h>
-#include <gtkmm/table.h>
-#include <gtkmm/separator.h>
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
+#include <gtkmm.h>
 
 #include "util/helpers.h"
 #include "api/evetime.h"
@@ -13,13 +18,12 @@
 #include "gtkitemdetails.h"
 
 GtkItemHistory::GtkItemHistory (void)
-  : Gtk::HBox(false, 0)
+  : Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0)
 {
   this->history_pos = 0;
 
-  this->back_but.set_image(*MK_IMG(Gtk::Stock::GO_BACK, Gtk::ICON_SIZE_MENU));
-  this->next_but.set_image(*MK_IMG(Gtk::Stock::GO_FORWARD,
-      Gtk::ICON_SIZE_MENU));
+  this->back_but.set_image_from_icon_name("go-previous", Gtk::ICON_SIZE_MENU);
+  this->next_but.set_image_from_icon_name("go-next", Gtk::ICON_SIZE_MENU);
   this->back_but.set_relief(Gtk::RELIEF_NONE);
   this->next_but.set_relief(Gtk::RELIEF_NONE);
   this->position_label.set_text("0/0");
@@ -350,11 +354,11 @@ GtkDependencyList::on_query_element_tooltip (int x, int y, bool /*key*/,
 /* ================================================================ */
 
 GtkItemDetails::GtkItemDetails (void)
-  : Gtk::VBox(false, 5)
+  : Gtk::Box(Gtk::ORIENTATION_VERTICAL, 5)
 {
   this->element = 0;
-  this->element_name.set_alignment(Gtk::ALIGN_LEFT);
-  this->element_path.set_alignment(Gtk::ALIGN_LEFT);
+  this->element_name.set_halign(Gtk::ALIGN_START);
+  this->element_path.set_halign(Gtk::ALIGN_START);
   this->element_path.set_text("No item is selected.");
 
   Gtk::Table* elem_info_table = MK_TABLE(2, 3);
@@ -401,7 +405,7 @@ GtkItemDetails::set_element (ApiElement const* elem)
 void
 GtkItemDetails::on_element_changed (ApiElement const* elem)
 {
-  if (this->details_box.children().empty())
+  if (this->details_box.get_children().empty())
   {
     this->details_box.pack_start(this->skill_details, true, true, 0);
     this->details_box.pack_start(this->cert_details, true, true, 0);
@@ -459,15 +463,16 @@ GtkItemDetails::on_element_changed (ApiElement const* elem)
 /* ================================================================ */
 
 GtkSkillDetails::GtkSkillDetails (void)
-  : Gtk::VBox(false, 5),
+  : Gtk::Box(Gtk::ORIENTATION_VERTICAL, 5),
     desc_buffer(Gtk::TextBuffer::create()),
     deps(false)
 {
-  this->skill_primary.set_alignment(Gtk::ALIGN_LEFT);
-  this->skill_secondary.set_alignment(Gtk::ALIGN_LEFT);
+  this->skill_primary.set_halign(Gtk::ALIGN_START);
+  this->skill_secondary.set_halign(Gtk::ALIGN_START);
   for (unsigned int i = 0; i < 5; ++i)
   {
-    this->skill_level[i].set_alignment(Gtk::ALIGN_LEFT, Gtk::ALIGN_TOP);
+    this->skill_level[i].set_halign(Gtk::ALIGN_START);
+    this->skill_level[i].set_valign(Gtk::ALIGN_START);
     this->skill_level[i].set_selectable(true);
   }
 
@@ -482,15 +487,16 @@ GtkSkillDetails::GtkSkillDetails (void)
 
   Gtk::Label* primary_label = MK_LABEL("Primary:");
   Gtk::Label* secondary_label = MK_LABEL("Secondary:");
-  primary_label->set_alignment(Gtk::ALIGN_LEFT);
-  secondary_label->set_alignment(Gtk::ALIGN_LEFT);
+  primary_label->set_halign(Gtk::ALIGN_START);
+  secondary_label->set_halign(Gtk::ALIGN_START);
   Gtk::Label* to_level_label[5];
   for (unsigned int i = 0; i < 5; ++i)
   {
     to_level_label[i] = Gtk::manage(new Gtk::Label);
     to_level_label[i]->set_text("To level "
         + Helpers::get_string_from_int(i + 1) + ":");
-    to_level_label[i]->set_alignment(Gtk::ALIGN_LEFT, Gtk::ALIGN_TOP);
+    to_level_label[i]->set_halign(Gtk::ALIGN_START);
+    to_level_label[i]->set_valign(Gtk::ALIGN_START);
   }
 
   Gtk::Table* details_table = Gtk::manage(new Gtk::Table(7, 3, false));

@@ -13,9 +13,8 @@
 #ifndef GTK_HELPERS_HEADER
 #define GTK_HELPERS_HEADER
 
-#include <gtkmm/tooltip.h>
-#include <gtkmm/treeview.h>
-#include <gtkmm/treemodel.h>
+#include <glibmm.h>
+#include <gtkmm.h>
 
 #include "api/apiskilltree.h"
 #include "api/apicharsheet.h"
@@ -36,7 +35,7 @@ class GtkHelpers
         Glib::RefPtr<Gtk::TreeModel> store,
         Gtk::TreeModelColumn<ApiElement const*> col);
 
-    static std::string locale_to_utf8 (Glib::ustring const& opsys_string);
+    static Glib::ustring locale_to_utf8 (Glib::ustring const& opsys_string);
 };
 
 #endif /* GTK_HELPERS_HEADER */

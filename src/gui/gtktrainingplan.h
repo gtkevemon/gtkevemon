@@ -1,23 +1,17 @@
-/*
- * This file is part of GtkEveMon.
- *
- * GtkEveMon is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * You should have received a copy of the GNU General Public License
- * along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
- */
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef GTK_TRAINING_PLAN
 #define GTK_TRAINING_PLAN
 
-#include <gtkmm/button.h>
-#include <gtkmm/label.h>
-#include <gtkmm/box.h>
-#include <gtkmm/treeview.h>
-#include <gtkmm/liststore.h>
+#include <gtkmm.h>
 
 #include "bits/config.h"
 #include "bits/character.h"
@@ -172,7 +166,7 @@ class GtkTreeViewColumns : public GtkColumnsBase
 
 /* ---------------------------------------------------------------- */
 
-class GtkTrainingPlan : public Gtk::VBox
+class GtkTrainingPlan : public Gtk::Box
 {
   private:
     CharacterPtr character;
@@ -275,19 +269,19 @@ inline GtkTreeViewColumns::CellEditedSignal
 GtkTreeViewColumns::signal_user_notes_changed (void)
 {
   return ((Gtk::CellRendererText*)this->user_notes
-      .get_first_cell_renderer())->signal_edited();
+      .get_first_cell())->signal_edited();
 }
 
 inline GtkTreeViewColumns::CellStartEditingSignal
 GtkTreeViewColumns::signal_editing_started (void)
 {
-  return this->user_notes.get_first_cell_renderer()->signal_editing_started();
+  return this->user_notes.get_first_cell()->signal_editing_started();
 }
 
 inline GtkTreeViewColumns::CellEditCanceledSignal
 GtkTreeViewColumns::signal_editing_canceled (void)
 {
-  return this->user_notes.get_first_cell_renderer()->signal_editing_canceled();
+  return this->user_notes.get_first_cell()->signal_editing_canceled();
 }
 
 inline sigc::signal<void, ApiSkill const*>&

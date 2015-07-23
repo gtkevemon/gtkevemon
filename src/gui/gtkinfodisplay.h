@@ -14,11 +14,8 @@
 #define GTK_INFO_DISPLAY
 
 #include <string>
-#include <gtkmm/label.h>
-#include <gtkmm/image.h>
-#include <gtkmm/box.h>
-#include <gtkmm/textbuffer.h>
-#include <gtkmm/textview.h>
+
+#include <gtkmm.h>
 
 #include "winbase.h"
 
@@ -54,7 +51,7 @@ class InfoItem
 
 /* ---------------------------------------------------------------- */
 
-class GtkInfoDisplay : public Gtk::VBox
+class GtkInfoDisplay : public Gtk::Box
 {
   private:
     std::vector<InfoItem> log;

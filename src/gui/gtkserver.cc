@@ -1,6 +1,15 @@
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
 #include <iostream>
-#include <gtkmm/stock.h>
-#include <gtkmm/label.h>
+#include <gtkmm.h>
 
 #include "util/exception.h"
 #include "util/helpers.h"
@@ -55,16 +64,16 @@ GtkServer::GtkServer (ServerPtr server)
   this->status.set_text("Fetching");
 
   this->set_col_spacings(5);
-  this->set_status_icon(Gtk::Stock::REFRESH);
+  this->set_status_icon("view-refresh");
   this->status_but.set_relief(Gtk::RELIEF_NONE);
 
   Gtk::Label* label_server = Gtk::manage(new Gtk::Label("Server:"));
 
-  label_server->set_alignment(Gtk::ALIGN_LEFT);
-  this->status_desc.set_alignment(Gtk::ALIGN_LEFT);
+  label_server->set_halign(Gtk::ALIGN_START);
+  this->status_desc.set_halign(Gtk::ALIGN_START);
 
-  this->name.set_alignment(Gtk::ALIGN_RIGHT);
-  this->status.set_alignment(Gtk::ALIGN_RIGHT);
+  this->name.set_halign(Gtk::ALIGN_END);
+  this->status.set_halign(Gtk::ALIGN_END);
 
   this->name.set_text(server->get_name());
 
@@ -90,11 +99,11 @@ GtkServer::update (void)
 {
   if (server->is_refreshing() || server->get_players() == -1)
   {
-    this->set_status_icon(Gtk::Stock::REFRESH);
+    this->set_status_icon("view-refresh");
   }
   else if (server->is_online())
   {
-    this->set_status_icon(Gtk::Stock::YES);
+    this->set_status_icon("gtk-yes");
     this->status_desc.set_text("Players:");
 
     if (server->get_players() == -2)
@@ -105,7 +114,7 @@ GtkServer::update (void)
   }
   else
   {
-    this->set_status_icon(Gtk::Stock::NO);
+    this->set_status_icon("gtk-no");
     this->status_desc.set_text("Status:");
     this->status.set_text("Offline");
   }
@@ -118,14 +127,13 @@ GtkServer::force_refresh (void)
 {
   GtkServerChecker* sc = new GtkServerChecker(this->server);
   sc->pt_create();
-  this->set_status_icon(Gtk::Stock::REFRESH);
+  this->set_status_icon("view-refresh");
 }
 
 /* ---------------------------------------------------------------- */
 
 void
-GtkServer::set_status_icon (Gtk::BuiltinStockID const& id)
+GtkServer::set_status_icon (const Glib::ustring icon_name)
 {
-  this->status_but.set_image(*Gtk::manage
-      (new Gtk::Image(id, Gtk::ICON_SIZE_BUTTON)));
+  this->status_but.set_image_from_icon_name(icon_name, Gtk::ICON_SIZE_BUTTON);
 }

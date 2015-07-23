@@ -1,9 +1,14 @@
-#include <gtkmm/button.h>
-#include <gtkmm/stock.h>
-#include <gtkmm/image.h>
-#include <gtkmm/table.h>
-#include <gtkmm/main.h>
-#include <gtkmm/box.h>
+// This file is part of GtkEveMon.
+//
+// GtkEveMon is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// You should have received a copy of the GNU General Public License
+// along with GtkEveMon. If not, see <http://www.gnu.org/licenses/>.
+
+#include <gtkmm.h>
 
 #include "util/helpers.h"
 #include "net/http.h"
@@ -16,12 +21,12 @@ GtkDownloader::GtkDownloader (void)
   this->asynchttp = 0;
   this->progressbar.set_text(" ");
 
-  Gtk::HBox* filename_box = MK_HBOX;
+  Gtk::Box* filename_box = MK_HBOX(5);
   filename_box->pack_start(*MK_LABEL("Downloading:"), false, false, 0);
   filename_box->pack_start(this->filename_label, false, false, 0);
 
   Gtk::Button* cancel_but = MK_BUT0;
-  cancel_but->set_image(*MK_IMG(Gtk::Stock::CANCEL, Gtk::ICON_SIZE_MENU));
+  cancel_but->set_image_from_icon_name("gtk-cancel", Gtk::ICON_SIZE_MENU);
   cancel_but->set_relief(Gtk::RELIEF_NONE);
 
   Gtk::Table* main_table = MK_TABLE(2, 1);
