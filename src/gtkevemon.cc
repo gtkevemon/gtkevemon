@@ -12,7 +12,8 @@
 
 #include <csignal> // for ::signal()
 #include <cstdlib> // for EXIT_SUCCESS
-#include <gtkmm/main.h>
+
+#include <gtkmm.h>
 
 #include "api/evetime.h"
 #include "bits/argumentsettings.h"
