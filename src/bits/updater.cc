@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include <iostream>
-#include <gtkmm/main.h>
+
+#include <gtkmm.h>
 
 #include "api/evetime.h"
 #include "api/apicerttree.h"
