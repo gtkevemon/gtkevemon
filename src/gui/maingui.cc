@@ -135,7 +135,7 @@ MainGui::MainGui (void)
   help_menu->set_right_justified(true);
 
   /* Create the GUI part of server list. */
-  Gtk::Box* server_box = Gtk::manage(new Gtk::Box);
+  Gtk::Box* server_box = MK_HBOX(10);
   server_box->pack_start(*MK_LABEL0, true, true, 0);
 
   for (unsigned int i = 0; i < ServerList::list.size(); ++i)
