@@ -11,7 +11,8 @@ clean:
 	$(MAKE) -C src clean
 
 install:
-	install -Dm 755 src/gtkevemon $(DESTDIR)$(BINDIR)/gtkevemon
+	mkdir -p $(DESTDIR)$(BINDIR)
+	install -m 755 src/gtkevemon $(DESTDIR)$(BINDIR)/gtkevemon
 	$(MAKE) -C icon
 
 uninstall:
