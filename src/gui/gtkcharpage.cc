@@ -41,7 +41,7 @@ GtkCharPage::GtkCharPage (CharacterPtr character)
   this->refresh_but.set_relief(Gtk::RELIEF_NONE);
   this->refresh_but.set_focus_on_click(false);
 
-  this->refresh_but.set_image_from_icon_name("dialog-information", Gtk::ICON_SIZE_MENU);
+  this->info_but.set_image_from_icon_name("dialog-information", Gtk::ICON_SIZE_MENU);
   this->info_but.set_relief(Gtk::RELIEF_NONE);
 
   this->char_name_label.set_halign(Gtk::ALIGN_START);
