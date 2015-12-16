@@ -54,7 +54,7 @@ ifeq (${PLATFORM},linux)
   SOURCES = util/pipedexec_posix.cc util/os_unix.cc
   BINARY = gtkevemon
 
-  CXXUSE11 := $(shell expr `g++ -dumpversion | cut -f1 -d.` \>= 5)
+  CXXUSE11 := $(shell expr `g++ -dumpversion | cut -f1,2 -d.` \>= 4.7)
   ifeq "$(CXXUSE11)" "1"
     GCC_FLAGS += -std=c++11
   endif
