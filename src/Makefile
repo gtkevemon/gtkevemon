@@ -56,9 +56,9 @@ ifeq (${PLATFORM},linux)
 
   CXXVERSION := $(shell $(CXX) -dumpversion | cut -f1,2 -d.)
 
-  ifeq "$(CXX)" "g++"
+  ifneq "$(findstring g++, $(CXX))" ""
       CXXUSE11 := $(shell expr $(CXXVERSION) \>= 4.7)
-  else ifeq "$(CXX)" "clang"
+  else ifneq "$(findstring clang, $(CXX))" ""
       CXXUSE11 := $(shell expr $(CXXVERSION) \>= 3.3)
   endif
 
