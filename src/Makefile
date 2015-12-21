@@ -9,7 +9,7 @@ endif
 #include Makefile.$(PLATFORM)
 
 # Compiler options, flags, and libraries
-GCC_FLAGS = -Wall -Wextra -ansi -Wundef -Wconversion -pedantic -Os
+GCC_FLAGS = -Wall -Wextra -ansi -Wundef -Wconversion -pedantic -Os -std=c++11
 ifdef DEBUG
     GCC_FLAGS := $(filter-out -Os,$(GCC_FLAGS))
     GCC_FLAGS += -g -O0
