@@ -56,10 +56,12 @@ GuiUserData::GuiUserData (void)
   Gtk::Label* info1_label = MK_LABEL(
       "Enter your key ID and your verification code such that GtkEveMon "
       "can request \"SkillQueue\" and \"CharacterSheet\". You can get "
-      "the information at:\nhttp://support.eveonline.com/api");
+      "the information at:\n"
+      "<a href='https://community.eveonline.com/support/api-key/'>"
+      "https://community.eveonline.com/support/api-key/</a>");
   info1_label->set_line_wrap(true);
   info1_label->set_halign(Gtk::ALIGN_START);
-  info1_label->set_selectable(true);
+  info1_label->set_use_markup(true);
   Gtk::Box* info1_vbox = MK_VBOX(0);
   info1_vbox->pack_start(*info1_label, false, false, 0);
   info1_hbox->pack_start(*info1_vbox, true, true, 0);
@@ -131,7 +133,7 @@ GuiUserData::GuiUserData (void)
   main_vbox->pack_end(*button_bar, false, false, 0);
 
   this->set_title("User Data - GtkEveMon");
-  this->set_default_size(600, -1);
+  this->set_default_size(500, -1);
   this->add(*main_vbox);
   this->show_all();
   info1_label->select_region(0, 0);

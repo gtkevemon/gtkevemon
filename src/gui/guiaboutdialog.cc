@@ -36,14 +36,14 @@ GuiAboutDialog::GuiAboutDialog (void)
   info_label->set_justify(Gtk::JUSTIFY_LEFT);
   info_label->set_halign(Gtk::ALIGN_START);
   info_label->set_text(
-      "GtkEveMon is a skill monitoring standalone"
-      "application for GNU/Linux systems. With GtkEveMon"
-      "you can monitor your current skills and your"
-      "skill training process without starting EVE-Online."
-      "You will never miss to train your next skill!\n\n"
+      "GtkEveMon is a skill monitoring standalone application for GNU/Linux "
+      "systems. With GtkEveMon you can monitor your current skills and your "
+      "skill training process without starting EVE-Online. You will never "
+      "miss to train your next skill!\n\n"
 
       "GtkEveMon on Github:\n"
-      "https://github.com/gtkevemon/gtkevemon\n\n"
+      "<a href='https://github.com/gtkevemon/gtkevemon'>"
+      "https://github.com/gtkevemon/gtkevemon</a>\n"
       "GtkEveMon " GTKEVEMON_VERSION_STR);
   info_label->set_use_markup(true);
 
