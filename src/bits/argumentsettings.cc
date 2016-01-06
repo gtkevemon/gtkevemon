@@ -19,8 +19,7 @@ ArgumentSettings::show_help (void)
       << "Options:" << std::endl
       << "  -c DIR, --config-dir DIR  Use DIR as config directory" << std::endl
       << "  -h, --help                Display this helpful text" << std::endl
-      << "  -m, --start-minimized     Start gtkevemon minimized" << std::endl
-      << "  -v, --version             Display version and exit" << std::endl;
+      << "  -m, --start-minimized     Start gtkevemon minimized" << std::endl;
 }
 
 /* ---------------------------------------------------------------- */
@@ -43,11 +42,6 @@ ArgumentSettings::init (int argc, char** argv)
     else if (sw == "-h" || sw == "--help")
     {
       ArgumentSettings::show_help();
-      std::exit(EXIT_SUCCESS);
-    }
-    else if (sw == "-v" || sw == "--version")
-    {
-      std::cout << "GtkEveMon Version: " GTKEVEMON_VERSION_STR << std::endl;
       std::exit(EXIT_SUCCESS);
     }
     else if (sw == "-c" || sw == "--config-dir")

@@ -27,7 +27,6 @@ usage (char** argv, bool slim = false)
       << "Options:" << std::endl
       << "  -c DIR, --config-dir DIR  Use DIR as config directory" << std::endl
       << "  -h, --help                Display this helpful text" << std::endl
-      << "  -v, --version             Display version and exit" << std::endl
       << "  --char-sheet CID          Show sheet for character CID" << std::endl
       << "  --train-sheet CID         Show training sheet for CID" << std::endl
       << "  --skill-queue CID         Show skill queue for CID" << std::endl;
@@ -116,11 +115,6 @@ main (int argc, char** argv)
     if (argi == "-h" || argi == "--help")
     {
       usage(argv);
-      std::exit(EXIT_SUCCESS);
-    }
-    else if (argi == "-v" || argi == "--version")
-    {
-      std::cout << "GtkEveMon Version: " GTKEVEMON_VERSION_STR << std::endl;
       std::exit(EXIT_SUCCESS);
     }
 

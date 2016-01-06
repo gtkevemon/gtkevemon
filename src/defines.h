@@ -13,9 +13,6 @@
 #ifndef DEFINES_HEADER
 #define DEFINES_HEADER
 
-/* The version string used in the application. */
-#define GTKEVEMON_VERSION_STR "Version 1.10"
-
 /* General compile-time configuration. */
 #define LAUNCHER_CMD_AMOUNT 5
 
