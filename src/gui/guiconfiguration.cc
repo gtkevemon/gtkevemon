@@ -527,8 +527,9 @@ GuiConfiguration::GuiConfiguration (void)
   main_vbox->pack_start(*main_hbox, true, true, 0);
   main_vbox->pack_end(*button_bar, false, false, 0);
 
-  this->add(*main_vbox);
   this->set_title("Configuration - GtkEveMon");
+  this->set_default_size(600, -1);
+  this->add(*main_vbox);
   this->show_all();
 
   close_but->signal_clicked().connect(sigc::mem_fun

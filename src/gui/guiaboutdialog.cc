@@ -36,10 +36,10 @@ GuiAboutDialog::GuiAboutDialog (void)
   info_label->set_justify(Gtk::JUSTIFY_LEFT);
   info_label->set_halign(Gtk::ALIGN_START);
   info_label->set_text(
-      "GtkEveMon is a skill monitoring standalone\n"
-      "application for GNU/Linux systems. With GtkEveMon\n"
-      "you can monitor your current skills and your\n"
-      "skill training process without starting EVE-Online.\n"
+      "GtkEveMon is a skill monitoring standalone"
+      "application for GNU/Linux systems. With GtkEveMon"
+      "you can monitor your current skills and your"
+      "skill training process without starting EVE-Online."
       "You will never miss to train your next skill!\n\n"
 
       "GtkEveMon on Github:\n"
@@ -67,8 +67,8 @@ GuiAboutDialog::GuiAboutDialog (void)
 
   close_but->signal_clicked().connect(sigc::mem_fun(*this, &WinBase::close));
 
-  this->add(*main_box);
-  this->set_default_size(410, 250);
   this->set_title("About GtkEveMon");
+  this->set_default_size(500, -1);
+  this->add(*main_box);
   this->show_all();
 }
