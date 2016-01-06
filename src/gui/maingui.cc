@@ -281,11 +281,16 @@ MainGui::init_from_charlist (void)
 void
 MainGui::add_character (CharacterPtr character)
 {
+  /* Remove "getting started" page. */
+  if (this->notebook.get_show_tabs() == false)
+    this->notebook.remove_page(0);
+
   /* Create the new character page for the notebook. */
   GtkCharPage* page = Gtk::manage(new GtkCharPage(character));
   page->set_parent_window(this);
   this->notebook.append_page(*page, character->get_char_name(), false);
   this->notebook.set_current_page(-1);
+  this->notebook.set_show_tabs(true);
 
   character->signal_name_available().connect(sigc::mem_fun
       (*this, &MainGui::update_char_name));
