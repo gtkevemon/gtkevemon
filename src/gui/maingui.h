@@ -79,8 +79,8 @@ class MainGui : public Gtk::Window
     void close (void);
 
     /* Window state and tray icon. */
-    bool on_window_state_event (GdkEventWindowState* event);
     bool on_delete_event (GdkEventAny* event);
+    bool on_window_state_event (GdkEventWindowState* event);
     void on_tray_icon_clicked (void);
     void create_tray_icon (void);
     void destroy_tray_icon (void);

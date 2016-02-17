@@ -415,94 +415,6 @@ MainGui::update_windowtitle (void)
 }
 
 /* ---------------------------------------------------------------- */
-/* FIXME: What is the return value? */
-
-bool
-MainGui::on_window_state_event (GdkEventWindowState* event)
-{
-  ConfValuePtr value = Config::conf.get_value("settings.tray_usage");
-
-  /* Manage the tray icon. */
-  if (**value == "minimize")
-  {
-    if (event->new_window_state & GDK_WINDOW_STATE_ICONIFIED)
-      this->create_tray_icon();
-    else
-      this->destroy_tray_icon();
-  }
-  else if (**value == "always")
-  {
-    if (!this->tray)
-      this->create_tray_icon();
-  }
-  else /* if (**value == "never") */
-  {
-    if (this->tray)
-      this->destroy_tray_icon();
-  }
-
-  /* Manage window state. */
-  if (event->new_window_state & GDK_WINDOW_STATE_ICONIFIED)
-  {
-    this->iconified = true;
-
-    if (**value != "never")
-    {
-      this->set_skip_taskbar_hint(true);
-      //this->hide();
-    }
-  }
-  else
-  {
-    this->iconified = false;
-    this->set_skip_taskbar_hint(false);
-    //this->show();
-  }
-
-  while (Gtk::Main::events_pending())
-    Gtk::Main::iteration();
-
-  return true;
-}
-
-/* ---------------------------------------------------------------- */
-
-void
-MainGui::on_tray_icon_clicked (void)
-{
-  //Gdk::WindowState ws = this->get_screen()->get_active_window()->get_state();
-  //std::cout << "WS: " << ws << std::endl;
-  //if ((ws & Gdk::WINDOW_STATE_ICONIFIED) == Gdk::WINDOW_STATE_ICONIFIED)
-
-  //std::cout << "Tray clicked. Taskbar hint is: " << this->get_skip_taskbar_hint() << std::endl;
-
-  if (this->iconified)
-  {
-    this->set_skip_taskbar_hint(false);
-    this->deiconify();
-    this->iconified = false;
-  }
-  else
-  {
-    this->iconify();
-    this->iconified = true;
-  }
-}
-
-/* ---------------------------------------------------------------- */
-
-bool
-MainGui::on_delete_event (GdkEventAny* /*event*/)
-{
-  if (Config::conf.get_value("settings.minimize_on_close")->get_bool())
-    this->iconify();
-  else
-    this->close();
-
-  return true;
-}
-
-/* ---------------------------------------------------------------- */
 
 void
 MainGui::on_pages_changed (Widget*, guint)
@@ -567,6 +479,93 @@ MainGui::update_char_name (std::string char_id)
 
 /* ---------------------------------------------------------------- */
 
+bool
+MainGui::on_delete_event (GdkEventAny* /*event*/)
+{
+  if (Config::conf.get_value("settings.minimize_on_close")->get_bool())
+    this->iconify();
+  else
+    this->close();
+
+  return true;
+}
+
+/* ---------------------------------------------------------------- */
+
+bool
+MainGui::on_window_state_event (GdkEventWindowState* event)
+{
+  ConfValuePtr value = Config::conf.get_value("settings.tray_usage");
+  this->iconified = event->new_window_state & GDK_WINDOW_STATE_ICONIFIED;
+
+  /* Manage the tray icon. */
+  if (**value == "minimize")
+  {
+    if (this->iconified)
+      this->create_tray_icon();
+    else
+      this->destroy_tray_icon();
+    //this->set_skip_taskbar_hint(this->iconified);
+  }
+  else if (**value == "always")
+  {
+    this->create_tray_icon();
+    //this->set_skip_taskbar_hint(this->iconified);
+  }
+  else /* if (**value == "never") */
+  {
+    this->destroy_tray_icon();
+    this->set_skip_taskbar_hint(false);
+  }
+
+  return true;
+}
+
+/* ---------------------------------------------------------------- */
+
+void
+MainGui::on_tray_icon_clicked (void)
+{
+  if (this->iconified)
+  {
+    this->deiconify();
+    this->present();
+  }
+  else
+  {
+    this->iconify();
+  }
+}
+
+/* ---------------------------------------------------------------- */
+
+void
+MainGui::create_tray_icon (void)
+{
+  if (this->tray)
+    return;
+
+  /* Create the tray icon. */
+  this->tray = Gtk::StatusIcon::create(ImageStore::applogo);
+  this->tray->set_visible(true);
+  this->tray->signal_activate().connect(sigc::mem_fun
+      (*this, &MainGui::on_tray_icon_clicked));
+  this->tray->signal_popup_menu().connect(sigc::mem_fun
+      (*this, &MainGui::tray_popup_menu));
+  this->update_tooltip();
+}
+
+/* ---------------------------------------------------------------- */
+
+void
+MainGui::destroy_tray_icon (void)
+{
+  /* Destroy the tray icon. */
+  this->tray.reset();
+}
+
+/* ---------------------------------------------------------------- */
+
 void
 MainGui::tray_popup_menu (guint button, guint32 activate_time)
 {
@@ -595,33 +594,6 @@ MainGui::update_tray_settings (void)
   {
     this->destroy_tray_icon();
   }
-}
-
-/* ---------------------------------------------------------------- */
-
-void
-MainGui::create_tray_icon (void)
-{
-  if (this->tray)
-    return;
-
-  /* Create the tray icon. */
-  this->tray = Gtk::StatusIcon::create(ImageStore::applogo);
-  this->tray->signal_activate().connect(sigc::mem_fun
-      (*this, &MainGui::on_tray_icon_clicked));
-  this->tray->signal_popup_menu().connect(sigc::mem_fun
-      (*this, &MainGui::tray_popup_menu));
-  this->update_tooltip();
-}
-
-/* ---------------------------------------------------------------- */
-
-void
-MainGui::destroy_tray_icon (void)
-{
-  /* Destroy the tray icon. */
-  //this->tray.reset(); // Compile error for glibmm < 2.16
-  this->tray.clear(); // Deprecated
 }
 
 /* ---------------------------------------------------------------- */
