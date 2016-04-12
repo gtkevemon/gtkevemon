@@ -64,10 +64,9 @@ char const* default_config =
  * configuration but the values can be deleted from the config. */
 char const* initial_config =
     "[servermonitor]\n"
-    "  0_Tranquility = 87.237.38.200\n"
-    "  1_Serenity = 61.129.54.100\n"
-    "  2_Singularity = 87.237.38.50\n";
-
+    "  0_Tranquility = 87.237.34.200\n"
+    "  1_Serenity = 211.144.214.68\n"
+    "  2_Singulariy= 87.237.32.2\n";
 /* ---------------------------------------------------------------- */
 
 Conf Config::conf;
