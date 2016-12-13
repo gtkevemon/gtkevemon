@@ -53,6 +53,19 @@ ifeq (${PLATFORM},linux)
   CORES = $(shell grep processor /proc/cpuinfo | wc -l)
   SOURCES = util/pipedexec_posix.cc util/os_unix.cc
   BINARY = gtkevemon
+
+  CXXVERSION := $(shell $(CXX) -dumpversion | cut -f1,2 -d.)
+
+  ifneq "$(findstring g++, $(CXX))" ""
+      CXXUSE11 := $(shell expr $(CXXVERSION) \>= 4.7)
+  else ifneq "$(findstring clang, $(CXX))" ""
+      CXXUSE11 := $(shell expr $(CXXVERSION) \>= 3.3)
+  endif
+
+  ifeq "$(CXXUSE11)" "1"
+    GCC_FLAGS += -std=c++11
+  endif
+
 endif
 
 ifeq (${PLATFORM},sunos)
