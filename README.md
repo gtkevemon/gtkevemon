@@ -1,6 +1,6 @@
 # Deprecation Notice
 
-This Eve Online XML API will likely be shut down May 8th, 2018.
+This Eve Online XML API will likely be shut down May 8th, 2018.  
 http://eveonline-third-party-documentation.readthedocs.io/en/latest/xmlapi/index.html
 
 # GtkEveMon
