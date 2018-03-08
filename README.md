@@ -1,5 +1,9 @@
-GtkEveMon
-=========
+# Deprecation Notice
+
+This Eve Online XML API will likely be shut down May 8th, 2018.
+http://eveonline-third-party-documentation.readthedocs.io/en/latest/xmlapi/index.html
+
+# GtkEveMon
 
 This is the README file for GtkEveMon. It covers:
 
@@ -9,17 +13,16 @@ This is the README file for GtkEveMon. It covers:
 * Uninstalling GtkEveMon
 
 
-STEP 1: BUILDING
-=====================================================================
+## STEP 1: BUILDING
 
 GtkEveMon comes in form of source code, which is located in the "src/"
 directory. The source code needs to be built in order to execute it.
 The required libraries to build GtkEveMon (which can be installed
 using your distribution's package management) are:
 
-	libxml++ (with headers)
-	libgtkmm (with headers, at least version 3.0)
-	libcurl (with headers, compiled with encryption support)
+* libxml++ (with headers)
+* libgtkmm (with headers, at least version 3.0)
+* libcurl (with headers, compiled with encryption support)
 
 The source does not come with a configure script. Just execute:
 
@@ -29,8 +32,7 @@ To build a debug version execute:
 
     $ make debug
 
-STEP 2: RUNNING
-=====================================================================
+## STEP 2: RUNNING
 
 Note that you DO NOT NEED to install GtkEveMon in order to use it.
 If you don't want to install GtkEveMon, just execute GtkEveMon with:
@@ -41,8 +43,7 @@ Once you install GtkEveMon (read below), type "gtkevemon" anywhere
 in your system or make a shortcut in your window manager.
 
 
-OPTION: INSTALLING
-=====================================================================
+## OPTION: INSTALLING
 
 Make sure your current working directory is relative to this file.
 To install GtkEveMon execute the following command (as super user):
@@ -67,8 +68,7 @@ CertificateTree.xml) are placed in "~/.gtkevemon" whether you
 install GtkEveMon or not. This is not changeable at runtime.
 
 
-OPTION: UNINSTALLING
-=====================================================================
+## OPTION: UNINSTALLING
 
 If you want to uninstall GtkEveMon, just type
 following command (as super user):
