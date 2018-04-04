@@ -184,20 +184,6 @@ ApiSkillQueue::get_training_skill (void) const
 
 /* ---------------------------------------------------------------- */
 
-unsigned int
-ApiSkillQueue::get_spph_for_current (void) const
-{
-  ApiSkillQueueItem const* item = this->get_training_skill();
-  if (item == 0)
-    return 0;
-
-  double skill_sp = (double)(item->end_sp - item->start_sp);
-  double train_time = (double)(item->end_time_t - item->start_time_t);
-  return (unsigned int)(skill_sp * 3600.0 / train_time);
-}
-
-/* ---------------------------------------------------------------- */
-
 void
 ApiSkillQueue::debug_dump (void)
 {

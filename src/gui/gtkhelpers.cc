@@ -56,16 +56,12 @@ GtkHelpers::create_tooltip (Glib::RefPtr<Gtk::Tooltip> const& tooltip,
         /* Fill live information. */
         current_sp = character->training_skill_sp;
         completed = character->training_level_done;
-        spph = character->training_spph;
-        time_remaining = character->training_remaining;
       }
-      else
-      {
-        /* Fill information from char sheet. */
-        int sp_remaining = cskill->points_dest - current_sp;
-        spph = (double)character->cs->get_spph_for_skill(skill);
-        time_remaining = (time_t)(3600.0 * (double)sp_remaining / spph);
-      }
+
+      /* Fill information from char sheet. */
+      int sp_remaining = cskill->points_dest - current_sp;
+      spph = (double)character->cs->get_spph_for_skill(skill);
+      time_remaining = (time_t)(3600.0 * (double)sp_remaining / spph);
     }
 
     ss << "Skill level from " << Helpers::get_dotted_str_from_int

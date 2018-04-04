@@ -59,7 +59,10 @@ Notifier::exec (CharacterPtr character)
   }
 
   /* Prepare even more information. */
-  unsigned int spph = character->training_spph;
+  /* This spph value isn't actually the average SP/hr over the skill train,
+   * but I'm pretty sure there is no way to actually get that given
+   * the bogus values the API returns. */
+  unsigned int spph = character->cs->get_spph_for_skill(skill);
   double spps = (double)spph / 3600.0;
 
   std::string to_level_str = Helpers::get_roman_from_int(to_level);

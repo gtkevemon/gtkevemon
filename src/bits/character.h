@@ -66,7 +66,6 @@ class Character
     /* Information if the training sheet is available. */
     ApiSkill const* training_skill;
     ApiSkillQueueItem training_info;
-    unsigned int training_spph;
     unsigned int training_level_sp; /* Live SP. */
     unsigned int training_skill_sp; /* Live SP. */
     double training_level_done; /* Live SP. */
